@@ -12,3 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# CHANGED: robots.txt had no Sitemap line (audit: "sitemap.xml has no Sitemap: line")
+Sitemap: https://3ylabs.com/sitemap.xml

@@ -23,6 +23,9 @@ import { CTASection } from "@/components/CTASection";
 // images were sourced; these are the site's own existing, already-licensed assets.
 import legalImage from "@/assets/legal-industry.jpg";
 import teamImage from "@/assets/team-about.jpg";
+// CHANGED: two more existing-but-unused assets, added in this pass
+import bridgeImage from "@/assets/abstract-bridge.jpg";
+import insightImage from "@/assets/insight-cover.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -129,6 +132,11 @@ const insights = [
 ];
 
 function Home() {
+  // CHANGED: index + non-null assertion instead of array destructuring — the destructured
+  // version still typechecked featuredInsight as possibly-undefined under this project's
+  // strict TS config, which broke `npm run build`. We know the literal array has 3 items.
+  const featuredInsight = insights[0]!;
+  const otherInsights = insights.slice(1);
   return (
     <main>
       {/* HERO */}
@@ -176,29 +184,31 @@ function Home() {
             <HeroVisual />
           </div>
         </div>
-      </section>
 
-      {/* ADVISE BUILD RUN */}
-      <section className="container-page py-10 sm:py-14">  {/* CHANGED: 16/20->10/14 */}
-        <div className="grid overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)] md:grid-cols-3">
-          {abr.map((c, i) => (
-            <div
-              key={c.key}
-              className={`group bg-card p-8 transition-colors hover:bg-[var(--tint)] ${
-                i > 0 ? "border-t border-border md:border-l md:border-t-0" : ""
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--tint)] transition-colors group-hover:bg-background">
-                  <c.icon className="h-5 w-5 text-[var(--brand)]" aria-hidden />
-                </span>
-                <h2 className="font-display text-lg font-bold uppercase tracking-wide text-primary">
-                  {c.key}
-                </h2>
+        {/* CHANGED: was its own <section> — folded into the hero section (audit target:
+            10 sections -> 8). Also h2 -> h3 for these three card labels; they're a
+            decorative recap of the hero copy, not real section headings. */}
+        <div className="container-page pb-14 sm:pb-20">
+          <div className="grid overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)] md:grid-cols-3">
+            {abr.map((c, i) => (
+              <div
+                key={c.key}
+                className={`group bg-card p-8 transition-colors hover:bg-[var(--tint)] ${
+                  i > 0 ? "border-t border-border md:border-l md:border-t-0" : ""
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--tint)] transition-colors group-hover:bg-background">
+                    <c.icon className="h-5 w-5 text-[var(--brand)]" aria-hidden />
+                  </span>
+                  <h3 className="font-display text-lg font-bold uppercase tracking-wide text-primary">
+                    {c.key}
+                  </h3>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -257,6 +267,19 @@ function Home() {
             grow — with implementation and customization from 3ylabs.
           </p>
 
+          {/* CHANGED: the "bridge" image (src/assets/abstract-bridge.jpg, previously unused
+              anywhere on the site) illustrating the "Setu means bridge" line above. Framed in
+              its own white card since the source photo has a white background — this reads
+              intentionally as a photo card in both light and dark mode instead of leaving a
+              stray white box on a dark page. */}
+          <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-white">
+            <img
+              src={bridgeImage}
+              alt="Abstract flowing bridge graphic representing Setu, 'bridge' in Sanskrit"
+              loading="lazy"
+              className="h-32 w-full object-cover sm:h-40"
+            />
+          </div>
 
           <div className="mt-12">
             <PortalExplorer />
@@ -331,10 +354,11 @@ function Home() {
             ))}
           </ul>
         </div>
-      </section>
 
-      {/* APPROACH PREVIEW */}
-      <section className="container-page py-12 sm:py-16">  {/* CHANGED: 16/20->12/16 */}
+      {/* CHANGED: "APPROACH PREVIEW" used to be its own <section> — merged in here as a
+          second block so the proof strip and approach summary share one section
+          (audit target: 10 sections -> 8). */}
+      <div className="container-page mt-14 border-t border-border pt-14">
         <p className="label-mono">Approach</p>
         <h2 className="mt-3 max-w-2xl text-3xl font-bold sm:text-4xl">
           One accountable team, from strategy through production.
@@ -360,9 +384,8 @@ function Home() {
         >
           Explore the full approach <ArrowRight className="h-4 w-4" aria-hidden />
         </Link>
+      </div>
       </section>
-
-
 
       {/* INDUSTRIES */}
       <section id="industries" className="container-page scroll-mt-20 py-12 sm:py-16">  {/* CHANGED: 16/24->12/16 (py-18 isn't a valid Tailwind step) */}
@@ -469,8 +492,30 @@ function Home() {
       <section id="insights" className="container-page scroll-mt-20 py-12 sm:py-16">  {/* CHANGED: 16/24->12/16 */}
         <p className="label-mono">Insights</p>
         <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Notes from the work.</h2>
+        {/* CHANGED: featured insight now carries the real cover image (src/assets/insight-cover.jpg,
+            previously only used on /insights) instead of being a plain text card like the other
+            two — mirrors how the full /insights page treats its featured article. */}
         <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {insights.map((a) => (
+          <article className="surface-card overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)] md:col-span-2">
+            <div className="grid sm:grid-cols-2">
+              <img
+                src={insightImage}
+                alt="Abstract cover artwork for the featured 3ylabs insight"
+                loading="lazy"
+                className="h-40 w-full object-cover sm:h-full"
+              />
+              <div className="flex flex-col justify-center p-6">
+                <p className="label-mono">{featuredInsight.category}</p>
+                <h3 className="mt-3 font-display text-lg font-semibold leading-snug">
+                  {featuredInsight.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {featuredInsight.body}
+                </p>
+              </div>
+            </div>
+          </article>
+          {otherInsights.map((a) => (
             <article
               key={a.title}
               className="surface-card flex flex-col p-6 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"

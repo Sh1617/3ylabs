@@ -76,7 +76,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    meta: [
+        meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "3ylabs: From AI curiosity to AI capability" },
@@ -92,7 +92,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "AI strategy, AI-native products and production operations.",
       },
       { property: "og:type", content: "website" },
+      // CHANGED: og:image was missing site-wide (audit: "/og.png returns 404") — added the
+      // tag plus twitter:image, and generated public/og.png at the standard 1200x630.
+      { property: "og:image", content: "https://3ylabs.com/og.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://3ylabs.com/og.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

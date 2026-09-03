@@ -23,7 +23,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Services">
-          <h2 className="label-mono">Services</h2>
+          <p className="label-mono">Services</p>
           <ul className="mt-4 space-y-2.5">
             {services.map((s) => (
               <li key={s.slug}>
@@ -40,7 +40,7 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Products">
-          <h2 className="label-mono">Products</h2>
+          <p className="label-mono">Products</p>
           <ul className="mt-4 space-y-2.5">
             <li>
               <Link
@@ -54,7 +54,7 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Company">
-          <h2 className="label-mono">Company</h2>
+          <p className="label-mono">Company</p>
           <ul className="mt-4 space-y-2.5">
             {company.map((l) => (
               <li key={l.label}>
