@@ -13,6 +13,10 @@ export interface Portal {
   description: string;
   benefits: string[];
   short: string;
+  // CHANGED: added to fix "six equal options, no buyer named" — each portal now names
+  // who it's for and whether it's the recommended entry point.
+  buyer: string;
+  recommended?: boolean;
 }
 
 export const portals: Portal[] = [
@@ -28,6 +32,8 @@ export const portals: Portal[] = [
       "Nothing falls through the cracks",
       "Leadership sees workload and progress in real time",
     ],
+    buyer: "Operations & case leads", // CHANGED: named buyer
+    recommended: true, // CHANGED: this is the recommended starting portal
   },
   {
     id: "finance",
@@ -37,6 +43,7 @@ export const portals: Portal[] = [
     description:
       "Billing and invoicing for professional-services firms with engagements, invoices, payment tracking and financial reporting.",
     benefits: ["Faster billing cycles", "Fewer missed payments", "Clean financial records"],
+    buyer: "Finance & billing teams", // CHANGED
   },
   {
     id: "evidence",
@@ -50,6 +57,7 @@ export const portals: Portal[] = [
       "Reviewable document workflows",
       "Sensitive files stay under customer control",
     ],
+    buyer: "Case preparation & paralegal teams", // CHANGED
   },
   {
     id: "tickets",
@@ -63,6 +71,7 @@ export const portals: Portal[] = [
       "Every request is assigned",
       "Response quality becomes measurable",
     ],
+    buyer: "Client services & support teams", // CHANGED
   },
   {
     id: "discover",
@@ -71,6 +80,7 @@ export const portals: Portal[] = [
     short: "Surfaces where AI will create measurable value.",
     description: "Analyzes operations and surfaces where AI will create measurable value.",
     benefits: ["Prioritized AI opportunities", "ROI-ranked roadmap", "Reduced guesswork"],
+    buyer: "Leadership evaluating where to start", // CHANGED
   },
   {
     id: "assistant",
@@ -84,5 +94,6 @@ export const portals: Portal[] = [
       "Reduce time spent searching",
       "Accelerate employee onboarding",
     ],
+    buyer: "Every role, once other portals are live", // CHANGED
   },
 ];

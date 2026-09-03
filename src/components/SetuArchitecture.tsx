@@ -26,7 +26,9 @@ export function SetuArchitecture() {
       </ul>
       <div aria-hidden className="mx-auto h-8 w-px bg-border" />
       <div className="text-center">
-        <span className="inline-flex rounded-xl border border-[var(--cyan)] bg-[color-mix(in_oklab,var(--cyan)_10%,white)] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[var(--brand-deep)]">
+        {/* CHANGED: mixed with the theme background instead of literal white, so this
+            badge no longer stays a light chip on a dark page */}
+        <span className="inline-flex rounded-xl border border-[var(--cyan)] bg-[color-mix(in_oklab,var(--cyan)_10%,var(--background))] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[var(--brand-deep)]">
           AI Assistant
         </span>
       </div>

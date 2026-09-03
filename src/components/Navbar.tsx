@@ -2,6 +2,8 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Wordmark } from "./Wordmark";
+// CHANGED: wire up the previously-unused ThemeToggle component
+import { ThemeToggle } from "./ThemeToggle";
 import { services } from "@/data/services";
 import { portals } from "@/data/setu";
 
@@ -208,7 +210,9 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-2 lg:flex">
+          {/* CHANGED: theme toggle placed next to the primary CTA on desktop */}
+          <ThemeToggle />
           <Link
             to="/contact"
             style={{ background: "var(--gradient-accent)" }}
@@ -219,15 +223,19 @@ export function Navbar() {
           </Link>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-border text-primary lg:hidden"
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        {/* CHANGED: theme toggle also available on mobile, next to the hamburger */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-border text-primary"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       {open && (

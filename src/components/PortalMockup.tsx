@@ -61,7 +61,9 @@ function Row({ cells, badge }: { cells: string[]; badge?: { text: string; tone: 
   );
 }
 
-const ok = "bg-[color-mix(in_oklab,var(--cyan)_16%,white)] text-[var(--brand-deep)]";
+// CHANGED: mixed with the theme background instead of literal white, so this stays a
+// legible tinted chip in both light and dark mode rather than a light chip on a dark page
+const ok = "bg-[color-mix(in_oklab,var(--cyan)_16%,var(--background))] text-[var(--brand-deep)]";
 const warn = "bg-secondary text-muted-foreground";
 
 export function PortalMockup({ id }: { id: PortalId }) {
@@ -109,7 +111,8 @@ export function PortalMockup({ id }: { id: PortalId }) {
               className="flex-1 rounded-t-md"
               style={{
                 height: `${h}px`,
-                background: i > 8 ? "var(--gradient-brand)" : "color-mix(in oklab, var(--brand) 18%, white)",
+                // CHANGED: mixed with the theme background instead of literal white
+                background: i > 8 ? "var(--gradient-brand)" : "color-mix(in oklab, var(--brand) 18%, var(--background))",
               }}
             />
           ))}

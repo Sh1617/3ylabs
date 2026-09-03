@@ -18,6 +18,11 @@ import { HeroVisual } from "@/components/HeroVisual";
 import { PortalExplorer } from "@/components/PortalExplorer";
 import { SetuArchitecture } from "@/components/SetuArchitecture";
 import { CTASection } from "@/components/CTASection";
+// CHANGED: these two photos already shipped in src/assets (used on /industries and /about)
+// but were never used on the homepage — the page that audit actually looked at. No new
+// images were sourced; these are the site's own existing, already-licensed assets.
+import legalImage from "@/assets/legal-industry.jpg";
+import teamImage from "@/assets/team-about.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,7 +133,7 @@ function Home() {
     <main>
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border bg-[var(--gradient-tint)]">
-        <div className="container-page grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2">
+        <div className="container-page grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-2">  {/* CHANGED: 24->20 hero padding, cuts homepage length */}
           <div className="animate-fade-up">
             <p className="label-mono">
               AI Transformation • AI-Native Products • Production
@@ -142,6 +147,12 @@ function Home() {
             </p>
             <p className="mt-4 font-mono text-xs uppercase tracking-[0.14em] text-[var(--brand-deep)]">
               We advise. We build. We run our own products.
+            </p>
+            {/* CHANGED: added — nowhere on the old homepage did one sentence explain how
+                3ylabs, Setu Systems and AscendHSI relate to each other. */}
+            <p className="mt-3 max-w-xl text-xs leading-relaxed text-muted-foreground">
+              3ylabs is the studio. Setu Systems is the product platform we build and sell.
+              AscendHSI is a client who runs their operations on it end to end.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -168,7 +179,7 @@ function Home() {
       </section>
 
       {/* ADVISE BUILD RUN */}
-      <section className="container-page py-16 sm:py-20">
+      <section className="container-page py-10 sm:py-14">  {/* CHANGED: 16/20->10/14 */}
         <div className="grid overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)] md:grid-cols-3">
           {abr.map((c, i) => (
             <div
@@ -192,7 +203,7 @@ function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="container-page scroll-mt-20 py-16 sm:py-20">
+      <section id="services" className="container-page scroll-mt-20 py-12 sm:py-16">  {/* CHANGED: 16/20->12/16 */}
         <p className="label-mono">Services</p>
         <h2 className="mt-3 max-w-2xl text-3xl font-bold sm:text-4xl">
           Where AI becomes operational.
@@ -227,7 +238,7 @@ function Home() {
 
 
       {/* SETU */}
-      <section id="products" className="scroll-mt-20 bg-[var(--tint)] py-16 sm:py-24">
+      <section id="products" className="scroll-mt-20 bg-[var(--tint)] py-14 sm:py-20">  {/* CHANGED: 16/24->14/20 */}
         <div className="container-page">
           <p className="label-mono">Setu Systems</p>
           <h2 className="mt-3 max-w-3xl text-3xl font-bold sm:text-4xl">
@@ -240,8 +251,10 @@ function Home() {
             evidence and insight, all with AI woven through.
           </p>
           <p className="mt-3 text-sm font-medium text-primary">
-            Start with one portal. Add the rest as you grow, with implementation and customization
-            from 3ylabs.
+            {/* CHANGED: made the recommendation explicit instead of leaving six equal tabs
+                for the visitor to sort out on their own. */}
+            Most teams start with Setu Vantage for case management, then add portals as they
+            grow — with implementation and customization from 3ylabs.
           </p>
 
 
@@ -265,8 +278,19 @@ function Home() {
       </section>
 
       {/* ASCENDHSI PROOF STRIP */}
-      <section className="container-page py-16 sm:py-20">
-        <div className="surface-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+      <section className="container-page py-12 sm:py-16">  {/* CHANGED: 16/20->12/16 */}
+        {/* CHANGED: grid widened from 2 to 3 columns to fit the photo below */}
+        <div className="surface-card grid gap-8 overflow-hidden p-7 sm:p-10 lg:grid-cols-[1fr_0.85fr_1fr] lg:items-center">
+          {/* CHANGED: real photo (src/assets/team-about.jpg, previously only used on /about) —
+              this section was the site's main proof point and had zero imagery. */}
+          <div className="order-first overflow-hidden rounded-2xl lg:order-none">
+            <img
+              src={teamImage}
+              alt="The 3ylabs team reviewing an operations workflow together"
+              loading="lazy"
+              className="h-44 w-full object-cover sm:h-56 lg:h-full lg:min-h-[220px]"
+            />
+          </div>
           <div>
             <p className="label-mono">Proof in production · AscendHSI</p>
             <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
@@ -276,6 +300,14 @@ function Home() {
               3ylabs powers AscendHSI's operations end to end with Setu portals for case management,
               client ticketing and billing, AI in daily workflows with human review, and the cloud
               infrastructure underneath.
+            </p>
+            {/* CHANGED: added — flags that this is the one place on the whole site that needs
+                a real number and a client quote/logo. Replace the bracketed text with the
+                actual figures before shipping; I didn't invent stats. */}
+            <p className="mt-3 max-w-xl text-xs italic leading-relaxed text-muted-foreground/80">
+              [Add one real metric here — e.g. response-time reduction, case volume, or a direct
+              quote from AscendHSI — plus their logo. A single verified number will do more work
+              than all three bullets below combined.]
             </p>
             <Link
               to="/results"
@@ -302,7 +334,7 @@ function Home() {
       </section>
 
       {/* APPROACH PREVIEW */}
-      <section className="container-page py-16 sm:py-20">
+      <section className="container-page py-12 sm:py-16">  {/* CHANGED: 16/20->12/16 */}
         <p className="label-mono">Approach</p>
         <h2 className="mt-3 max-w-2xl text-3xl font-bold sm:text-4xl">
           One accountable team, from strategy through production.
@@ -333,7 +365,7 @@ function Home() {
 
 
       {/* INDUSTRIES */}
-      <section id="industries" className="container-page scroll-mt-20 py-16 sm:py-24">
+      <section id="industries" className="container-page scroll-mt-20 py-12 sm:py-16">  {/* CHANGED: 16/24->12/16 (py-18 isn't a valid Tailwind step) */}
         <p className="label-mono">Industries</p>
         <h2 className="mt-3 max-w-2xl text-3xl font-bold sm:text-4xl">
           AI that fits the way your industry works.
@@ -342,12 +374,23 @@ function Home() {
           {industries.map((i) => (
             <article
               key={i.name}
-              className={`rounded-2xl border p-6 transition-all hover:-translate-y-1 ${
+              className={`relative overflow-hidden rounded-2xl border p-6 transition-all hover:-translate-y-1 ${
                 i.featured
                   ? "border-transparent text-primary-foreground shadow-[var(--shadow-lift)]"
                   : "border-border bg-card shadow-[var(--shadow-soft)]"
               }`}
-              style={i.featured ? { background: "var(--gradient-brand)" } : undefined}
+              // CHANGED: featured card now shows the real legal-industry.jpg photo (already
+              // in src/assets, previously only used on /industries) under a brand-gradient
+              // scrim, instead of a flat CSS gradient with no imagery at all.
+              style={
+                i.featured
+                  ? {
+                      backgroundImage: `linear-gradient(135deg, color-mix(in oklab, var(--brand-deep) 92%, transparent) 0%, color-mix(in oklab, var(--brand) 80%, transparent) 100%), url(${legalImage})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }
+                  : undefined
+              }
             >
               <i.icon
                 className={`h-5 w-5 ${i.featured ? "text-primary-foreground" : "text-[var(--brand)]"}`}
@@ -369,7 +412,7 @@ function Home() {
       </section>
 
       {/* HEM */}
-      <section id="about" className="scroll-mt-20 border-y border-border bg-[var(--tint)] py-16 sm:py-24">
+      <section id="about" className="scroll-mt-20 border-y border-border bg-[var(--tint)] py-14 sm:py-20">  {/* CHANGED: 16/24->14/20 */}
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="label-mono">HEM / Hyper Enabled Minds</p>
@@ -423,7 +466,7 @@ function Home() {
 
 
       {/* INSIGHTS */}
-      <section id="insights" className="container-page scroll-mt-20 py-16 sm:py-24">
+      <section id="insights" className="container-page scroll-mt-20 py-12 sm:py-16">  {/* CHANGED: 16/24->12/16 */}
         <p className="label-mono">Insights</p>
         <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Notes from the work.</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">

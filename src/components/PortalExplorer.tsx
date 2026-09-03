@@ -25,13 +25,23 @@ export function PortalExplorer() {
               aria-selected={on}
               type="button"
               onClick={() => setActive(p.id)}
-              className={`snap-start whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-medium transition-all ${
+              className={`relative snap-start whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-medium transition-all ${
                 on
                   ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)]"
                   : "border-border bg-background text-muted-foreground hover:border-[var(--brand)] hover:text-primary"
               }`}
             >
               {p.name}
+              {/* CHANGED: recommended-portal badge — fixes "six equal options, no recommendation" */}
+              {p.recommended && (
+                <span
+                  className={`ml-2 rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
+                    on ? "bg-primary-foreground/20 text-primary-foreground" : "bg-[var(--tint)] text-[var(--brand-deep)]"
+                  }`}
+                >
+                  Start here
+                </span>
+              )}
             </button>
           );
         })}
@@ -39,7 +49,13 @@ export function PortalExplorer() {
 
       <div key={active} className="animate-fade-up mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
-          <p className="label-mono">{portal.label}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="label-mono">{portal.label}</p>
+            {/* CHANGED: named buyer next to the label so a visitor knows if this portal is for them */}
+            <span className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+              For {portal.buyer}
+            </span>
+          </div>
           <h3 className="mt-3 text-2xl font-bold sm:text-3xl">{portal.name}</h3>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             {portal.description}
@@ -47,7 +63,9 @@ export function PortalExplorer() {
           <ul className="mt-6 space-y-3">
             {portal.benefits.map((b) => (
               <li key={b} className="flex items-start gap-3 text-sm text-foreground">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--cyan)_20%,white)]">
+                {/* CHANGED: was hard-coded to mix with literal white, so the chip stayed
+                    light even in dark mode; now mixes with the theme background instead */}
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--cyan)_20%,var(--background))]">
                   <Check className="h-3 w-3 text-[var(--brand-deep)]" aria-hidden />
                 </span>
                 {b}

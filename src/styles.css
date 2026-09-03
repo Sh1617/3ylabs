@@ -87,6 +87,47 @@
 
 }
 
+/* CHANGED: dark theme tokens — fixes "one theme, no dark mode, no toggle" from the audit.
+   Same variable names as :root so every component that already reads var(--x) or the
+   color-* utilities picks this up automatically; no component-level color logic needed. */
+.dark {
+  --background: oklch(0.16 0.014 265);
+  --foreground: oklch(0.95 0.006 265);
+  --card: oklch(0.20 0.016 265);
+  --card-foreground: oklch(0.95 0.006 265);
+  --popover: oklch(0.20 0.016 265);
+  --popover-foreground: oklch(0.95 0.006 265);
+  --primary: oklch(0.58 0.11 264);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.25 0.016 265);
+  --secondary-foreground: oklch(0.9 0.008 265);
+  --muted: oklch(0.25 0.016 265);
+  --muted-foreground: oklch(0.64 0.014 265);
+  --accent: oklch(0.28 0.03 264);
+  --accent-foreground: oklch(0.9 0.008 265);
+  --destructive: oklch(0.64 0.21 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.31 0.018 265);
+  --input: oklch(0.31 0.018 265);
+  --ring: oklch(0.58 0.11 264);
+  --brand: oklch(0.68 0.1 264);
+  --brand-deep: oklch(0.72 0.09 264);
+  --cyan: oklch(0.7 0.13 52);
+  --amber: oklch(0.8 0.12 72);
+  --tint: oklch(0.23 0.018 265);
+  --chart-1: oklch(0.58 0.11 264);
+  --chart-2: oklch(0.7 0.13 52);
+  --chart-3: oklch(0.42 0.09 265);
+  --chart-4: oklch(0.8 0.12 72);
+  --chart-5: oklch(0.5 0.09 264);
+
+  --gradient-brand: linear-gradient(135deg, oklch(0.3 0.08 265) 0%, var(--primary) 50%, oklch(0.44 0.11 264) 100%);
+  --gradient-accent: linear-gradient(90deg, oklch(0.26 0.07 264) 0%, oklch(0.32 0.09 264) 42%, oklch(0.42 0.1 40) 78%, oklch(0.58 0.13 52) 100%);
+  --gradient-tint: linear-gradient(180deg, var(--background) 0%, var(--tint) 100%);
+  --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.4), 0 8px 24px -12px oklch(0 0 0 / 0.55);
+  --shadow-lift: 0 2px 4px oklch(0 0 0 / 0.4), 0 24px 48px -20px oklch(0 0 0 / 0.6);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -103,6 +144,8 @@
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    /* CHANGED: smooths the light/dark toggle instead of an instant color snap */
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   h1,
