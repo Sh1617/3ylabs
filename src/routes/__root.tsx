@@ -18,8 +18,8 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h1 className="text-scale-56 font-bold tracking-display-tight text-foreground">404</h1>
+        <h2 className="mt-4 text-scale-21 font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -46,7 +46,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-scale-21 font-semibold tracking-tight text-foreground">
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -99,6 +99,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://3ylabs.com/og.png" },
+      // CHANGED: Daylight/Lab spec — mobile browser chrome should match the active theme.
+      { name: "theme-color", content: "#FBFBFD", media: "(prefers-color-scheme: light)" },
+      { name: "theme-color", content: "#0B0F18", media: "(prefers-color-scheme: dark)" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -106,10 +109,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
+        // CHANGED: dropped Sora 400/800 — headings only ever use 600/700 (font-semibold/font-bold);
+        // 800 was unused dead weight and 400 was never referenced either.
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
       },
+      // CHANGED: image-system brief — SVG favicon is now primary (crisp at any size, modern
+      // browser support), PNG kept as a fallback for browsers that don't support SVG icons.
+      // apple-touch-icon needs a real raster PNG (iOS doesn't reliably accept SVG here) and a
+      // manifest.webmanifest were both previously absent, per the audit.
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
@@ -118,15 +129,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-// CHANGED: runs before paint so the page never flashes light-then-dark (or vice versa).
-// Priority: explicit user choice in localStorage, then the OS-level prefers-color-scheme,
-// which is the "no prefers-color-scheme handling" gap called out in the audit.
+// CHANGED: Daylight/Lab spec — blocking script, before the stylesheet, stamps data-theme only
+// when the visitor has made an explicit choice. No stored value means no attribute at all, so
+// the :root:not([data-theme="daylight"]) media-query layer in styles.css runs the OS preference.
 const THEME_INIT_SCRIPT = `
 (function () {
   try {
-    var stored = localStorage.getItem("3ylabs-theme");
-    var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.classList.toggle("dark", dark);
+    var t = localStorage.getItem("3y-theme");
+    if (t === "lab" || t === "daylight") document.documentElement.dataset.theme = t;
   } catch (e) {}
 })();
 `;

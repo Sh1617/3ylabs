@@ -63,7 +63,7 @@ function AboutPage() {
         <div className="container-page grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2">
           <div>
             <p className="label-mono">About</p>
-            <h1 className="mt-4 text-4xl font-bold leading-[1.08] sm:text-5xl">
+            <h1 className="mt-4 text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
               We build the AI we <span className="text-gradient-brand">recommend.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
@@ -72,11 +72,17 @@ function AboutPage() {
               production.
             </p>
           </div>
+          {/* FLAG (image-system brief, IMG-20): same generic whiteboard stock photo as the
+              homepage proof section — replace with real commissioned team headshots/photography
+              once that shoot happens. */}
           <Reveal className="relative">
             <img
               src={teamImage}
               alt="The 3ylabs team working together in a studio setting"
+              width={1600}
+              height={1200}
               loading="lazy"
+              decoding="async"
               className="aspect-[4/3] w-full rounded-2xl border border-border object-cover shadow-[var(--shadow-lift)]"
             />
           </Reveal>
@@ -101,7 +107,7 @@ function AboutPage() {
           {facts.map((f) => (
             <div key={f.k} className="bg-background p-6">
               <dt className="label-mono">{f.k}</dt>
-              <dd className="mt-2 font-display text-xl font-semibold">{f.v}</dd>
+              <dd className="mt-2 font-display text-scale-21 font-semibold">{f.v}</dd>
             </div>
           ))}
         </dl>

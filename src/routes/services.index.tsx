@@ -35,7 +35,7 @@ function ServicesHub() {
       <section className="container-page py-14 sm:py-20">
         <Reveal>
           <p className="label-mono">Services</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold sm:text-5xl">
+          <h1 className="mt-3 max-w-3xl text-scale-34 font-bold tracking-display-tight sm:text-scale-44">
             Where AI becomes operational.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -58,7 +58,7 @@ function ServicesHub() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="flex-1">
-                  <span className="block font-display text-xl font-semibold transition-colors group-hover:text-[var(--brand)] sm:text-2xl">
+                  <span className="block font-display text-scale-21 font-semibold transition-colors group-hover:text-[var(--brand)] sm:text-scale-27">
                     {s.name}
                   </span>
                   <span className="mt-2 block max-w-2xl text-sm leading-relaxed text-muted-foreground">

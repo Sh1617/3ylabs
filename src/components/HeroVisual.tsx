@@ -29,7 +29,7 @@ export function HeroVisual() {
               <Boxes className="h-5 w-5 text-primary-foreground" aria-hidden />
             </span>
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary-foreground/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-primary-foreground/70">
                 Platform
               </p>
               <p className="font-display text-lg font-semibold text-primary-foreground">

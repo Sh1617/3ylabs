@@ -48,7 +48,7 @@ function ResultsPage() {
       <section className="border-b border-border bg-[var(--gradient-tint)]">
         <div className="container-page py-16 sm:py-24">
           <p className="label-mono">Results</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
             Proof in <span className="text-gradient-brand">production.</span>
           </h1>
           <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
@@ -60,7 +60,7 @@ function ResultsPage() {
       <section className="container-page py-16 sm:py-20">
         <div className="surface-card p-6 sm:p-10">
           <p className="label-mono">Featured client</p>
-          <h2 className="mt-3 text-3xl font-bold">AscendHSI</h2>
+          <h2 className="mt-3 text-scale-34 font-bold">AscendHSI</h2>
           <p className="mt-2 text-sm text-muted-foreground">An immigration case operations firm.</p>
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             <p className="text-base leading-relaxed text-foreground">

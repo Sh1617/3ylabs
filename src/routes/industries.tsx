@@ -106,7 +106,7 @@ function Industries() {
       <section className="container-page py-14 sm:py-20">
         <Reveal>
           <p className="label-mono">Industries</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold sm:text-5xl">
+          <h1 className="mt-3 max-w-3xl text-scale-34 font-bold tracking-display-tight sm:text-scale-44">
             AI that fits the way your industry works.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -154,12 +154,13 @@ function Industries() {
                 src={legalImage}
                 alt="Professionals reviewing case material in a modern glass meeting room"
                 loading="lazy"
+                decoding="async"
                 width={1400}
                 height={1000}
                 className="h-56 w-full object-cover sm:h-72"
               />
               <div className="bg-card p-7 sm:p-9">
-                <h2 className="font-display text-2xl font-bold sm:text-3xl">{current.name}</h2>
+                <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">{current.name}</h2>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">{current.lead}</p>
                 <ul className="mt-6 space-y-3">
                   {current.points.map((p) => (

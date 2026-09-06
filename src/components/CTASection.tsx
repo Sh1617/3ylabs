@@ -13,7 +13,7 @@ export function CTASection() {
           className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full"
           style={{ background: "radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%)" }}
         />
-        <h2 className="mx-auto max-w-2xl text-3xl font-bold text-primary-foreground sm:text-4xl">
+        <h2 className="mx-auto max-w-2xl text-scale-34 font-bold text-primary-foreground sm:text-scale-34">
           Ready to move from AI curiosity to AI capability?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm text-primary-foreground/80">

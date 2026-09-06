@@ -16,7 +16,7 @@ export function Footer() {
     <footer className="border-t border-border bg-[var(--tint)]">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div>
-          <Wordmark className="text-2xl" />
+          <Wordmark className="text-scale-27" />
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             From AI curiosity to AI capability. We advise, we build, we run our own products.
           </p>

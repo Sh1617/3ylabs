@@ -223,9 +223,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* CHANGED: theme toggle also available on mobile, next to the hamburger */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <button
             type="button"
             className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-border text-primary"
@@ -296,6 +294,11 @@ export function Navbar() {
                 Book an AI Readiness Assessment
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
               </Link>
+            </li>
+            {/* CHANGED: theme toggle spec — drawer, last row, full width, with a label. */}
+            <li className="mt-3 flex items-center justify-between border-t border-border pt-3">
+              <span className="text-sm font-medium text-foreground">Theme</span>
+              <ThemeToggle />
             </li>
           </ul>
         </div>

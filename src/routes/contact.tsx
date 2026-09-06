@@ -102,7 +102,7 @@ function ContactPage() {
       <section className="border-b border-border bg-[var(--gradient-tint)]">
         <div className="container-page py-16 sm:py-24">
           <p className="label-mono">Contact</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
             Ready to move from AI curiosity to{" "}
             <span className="text-gradient-brand">AI capability?</span>
           </h1>
@@ -117,7 +117,7 @@ function ContactPage() {
           {state === "done" ? (
             <div className="animate-fade-up py-10 text-center">
               <CheckCircle2 className="mx-auto h-12 w-12 text-[var(--cyan)]" aria-hidden />
-              <h2 className="mt-5 text-xl font-semibold">Assessment request received</h2>
+              <h2 className="mt-5 text-scale-21 font-semibold">Assessment request received</h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Thanks. Your information has been captured for this prototype.
               </p>

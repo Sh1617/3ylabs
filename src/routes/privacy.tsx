@@ -40,7 +40,7 @@ function Privacy() {
     <main>
       <Breadcrumbs items={[{ label: "Privacy" }]} />
       <section className="container-page max-w-3xl py-14 sm:py-20">
-        <h1 className="text-4xl font-bold sm:text-5xl">Privacy</h1>
+        <h1 className="text-scale-34 font-bold tracking-display-tight sm:text-scale-44">Privacy</h1>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
           This prototype summarizes how 3ylabs intends to handle information. Final legal wording is
           issued with the production site.

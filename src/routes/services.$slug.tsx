@@ -40,7 +40,7 @@ function ServiceDetail() {
         <div className="container-page py-14 sm:py-20">
           <Reveal>
             <p className="label-mono">{service.kind === "core" ? "Core service" : "Extended service"}</p>
-            <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl">
+            <h1 className="mt-3 max-w-3xl text-scale-34 font-bold leading-tight tracking-display-tight sm:text-scale-44">
               {service.name}
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -71,7 +71,7 @@ function ServiceDetail() {
       <section className="border-y border-border bg-[var(--tint)] py-14 sm:py-20">
         <div className="container-page grid gap-10 lg:grid-cols-2">
           <Reveal>
-            <h2 className="text-2xl font-bold sm:text-3xl">Capabilities</h2>
+            <h2 className="text-scale-27 font-bold sm:text-scale-34">Capabilities</h2>
             <ul className="mt-6 space-y-3">
               {service.capabilities.map((c) => (
                 <li key={c} className="flex items-start gap-3 text-sm text-foreground">
@@ -82,7 +82,7 @@ function ServiceDetail() {
             </ul>
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="text-2xl font-bold sm:text-3xl">What you get</h2>
+            <h2 className="text-scale-27 font-bold sm:text-scale-34">What you get</h2>
             <ul className="mt-6 space-y-3">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-3 text-sm text-foreground">
@@ -117,7 +117,7 @@ function ServiceDetail() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <h2 className="text-2xl font-bold sm:text-3xl">Questions we get asked</h2>
+          <h2 className="text-scale-27 font-bold sm:text-scale-34">Questions we get asked</h2>
           <div className="mt-6 divide-y divide-border border-y border-border">
             {service.faqs.map((f) => (
               <details key={f.q} className="group py-4">

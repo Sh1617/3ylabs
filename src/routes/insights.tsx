@@ -9,7 +9,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import coverImage from "@/assets/insight-cover.jpg";
+// CHANGED: image-system brief — one of the three generated abstract covers (IMG-12), replacing
+// the generic reused jpg, consistent with the homepage's per-card covers.
+import coverImage from "@/assets/insight-cover-playbooks.svg";
 
 export const Route = createFileRoute("/insights")({
   head: () => ({
@@ -78,7 +80,7 @@ function InsightsPage() {
       <section className="border-b border-border bg-[var(--gradient-tint)]">
         <div className="container-page py-16 sm:py-24">
           <p className="label-mono">Insights</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
             Notes from the <span className="text-gradient-brand">work.</span>
           </h1>
           <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
@@ -92,13 +94,17 @@ function InsightsPage() {
         <Reveal as="article" className="surface-card grid gap-8 overflow-hidden lg:grid-cols-2">
           <img
             src={coverImage}
-            alt="Abstract cover artwork for the featured 3ylabs insight"
-            loading="lazy"
+            alt={`Abstract cover artwork for the ${featured.tag} insight`}
+            width={1200}
+            height={675}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
             className="h-full min-h-64 w-full object-cover"
           />
           <div className="p-6 sm:p-10">
             <p className="label-mono">{featured.tag}</p>
-            <h2 className="mt-3 text-2xl font-bold leading-snug sm:text-3xl">{featured.title}</h2>
+            <h2 className="mt-3 text-scale-27 font-bold leading-snug sm:text-scale-34">{featured.title}</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">{featured.body}</p>
             <p className="mt-6 font-mono text-[11px] tracking-widest text-[var(--brand)]">
               {featured.read}
@@ -110,7 +116,7 @@ function InsightsPage() {
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="label-mono">More notes</p>
-              <h2 className="mt-2 text-2xl font-bold">Short reads</h2>
+              <h2 className="mt-2 text-scale-27 font-bold">Short reads</h2>
             </div>
           </div>
 

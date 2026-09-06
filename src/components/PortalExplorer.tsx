@@ -56,7 +56,7 @@ export function PortalExplorer() {
               For {portal.buyer}
             </span>
           </div>
-          <h3 className="mt-3 text-2xl font-bold sm:text-3xl">{portal.name}</h3>
+          <h3 className="mt-3 text-scale-27 font-bold sm:text-scale-34">{portal.name}</h3>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             {portal.description}
           </p>

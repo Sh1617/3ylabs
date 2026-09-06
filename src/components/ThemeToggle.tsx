@@ -1,37 +1,68 @@
-// CHANGED: new file. Adds the dark/light toggle called out in the audit
-// ("no dark mode, no prefers-color-scheme handling, no toggle"). Reads the
-// theme the inline script in __root.tsx already applied to <html>, then
-// flips the `dark` class and persists the choice.
-import { Moon, Sun } from "lucide-react";
+// CHANGED: rebuilt per the Daylight/Lab toggle spec — a labeled two-segment control instead of
+// a sun/moon icon button. The theme names are part of the brand, so an icon-only control that
+// doesn't say what it does isn't enough. Persists to localStorage["3y-theme"]; no stored value
+// means no explicit choice, and styles.css falls back to the OS preference.
 import { useEffect, useState } from "react";
 
+type Theme = "daylight" | "lab";
+
 export function ThemeToggle({ className = "" }: { className?: string }) {
-  const [dark, setDark] = useState(false);
+  const [theme, setTheme] = useState<Theme | null>(null);
+  const [announcement, setAnnouncement] = useState("");
 
   useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
+    const stamped = document.documentElement.dataset["theme"];
+    if (stamped === "lab" || stamped === "daylight") {
+      setTheme(stamped);
+    } else {
+      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "lab" : "daylight");
+    }
   }, []);
 
-  const toggle = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
+  const choose = (next: Theme) => {
+    setTheme(next);
+    document.documentElement.dataset["theme"] = next;
     try {
-      window.localStorage.setItem("3ylabs-theme", next ? "dark" : "light");
+      window.localStorage.setItem("3y-theme", next);
     } catch {
       // localStorage unavailable (private mode etc.) — theme just won't persist
     }
+    setAnnouncement(`${next === "lab" ? "Lab" : "Daylight"} theme on.`);
   };
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      aria-pressed={dark}
-      className={`inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-border text-primary transition-colors hover:bg-secondary ${className}`}
+    <div
+      role="group"
+      aria-label="Theme"
+      className={`inline-flex items-center gap-0.5 rounded-lg border border-border bg-secondary p-0.5 ${className}`}
     >
-      {dark ? <Sun className="h-4 w-4" aria-hidden /> : <Moon className="h-4 w-4" aria-hidden />}
-    </button>
+      <button
+        type="button"
+        aria-pressed={theme === "daylight"}
+        onClick={() => choose("daylight")}
+        className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-[240ms] ease-out motion-reduce:transition-none ${
+          theme === "daylight"
+            ? "bg-card text-foreground shadow-[var(--shadow-soft)]"
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        Daylight
+      </button>
+      <button
+        type="button"
+        aria-pressed={theme === "lab"}
+        onClick={() => choose("lab")}
+        className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-[240ms] ease-out motion-reduce:transition-none ${
+          theme === "lab"
+            ? "bg-card text-foreground shadow-[var(--shadow-soft)]"
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        Lab
+      </button>
+      <span aria-live="polite" className="sr-only">
+        {announcement}
+      </span>
+    </div>
   );
 }

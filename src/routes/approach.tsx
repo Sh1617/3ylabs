@@ -66,7 +66,7 @@ function ApproachPage() {
       <section className="border-b border-border bg-[var(--gradient-tint)]">
         <div className="container-page py-16 sm:py-24">
           <p className="label-mono">Approach</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
             From opportunity to <span className="text-gradient-brand">production.</span>
           </h1>
           <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
@@ -110,7 +110,7 @@ function ApproachPage() {
         <div key={stage.n} className="animate-fade-up mt-10 grid gap-8 surface-card p-6 sm:p-10 lg:grid-cols-2">
           <div>
             <p className="label-mono">Stage {stage.n}</p>
-            <h2 className="mt-3 text-3xl font-bold">{stage.name}</h2>
+            <h2 className="mt-3 text-scale-34 font-bold">{stage.name}</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">{stage.summary}</p>
           </div>
           <div className="rounded-2xl border border-border bg-[var(--tint)] p-5">
