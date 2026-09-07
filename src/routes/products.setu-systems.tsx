@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useState } from "react";
 import { portals } from "@/data/setu";
@@ -36,7 +36,7 @@ function SetuPage() {
       <section className="border-b border-border bg-[var(--gradient-tint)]">
         <div className="container-page py-16 sm:py-24">
           <p className="label-mono">Setu Systems</p>
-          <h1 className="mt-4 max-w-3xl text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
+          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl">
             Run your firm on one <span className="text-gradient-brand">intelligent platform.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
@@ -58,7 +58,7 @@ function SetuPage() {
       </section>
 
       <section className="container-page py-16 sm:py-20">
-        <h2 className="text-scale-34 font-bold">Six portals. One platform.</h2>
+        <h2 className="text-3xl font-bold">Six portals. One platform.</h2>
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {portals.map((p) => (
             <article
@@ -67,16 +67,25 @@ function SetuPage() {
               className="surface-card flex scroll-mt-24 flex-col p-6 transition-shadow hover:shadow-[var(--shadow-lift)]"
             >
               <p className="label-mono">{p.label}</p>
-              <h3 className="mt-3 font-display text-scale-21 font-semibold">{p.name}</h3>
+              <h3 className="mt-3 font-display text-xl font-semibold">{p.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{p.short}</p>
               <p className="mt-4 text-sm font-medium text-[var(--brand-deep)]">✓ {p.benefits[0]}</p>
-              <button
-                type="button"
-                onClick={() => setDemo(p.name)}
-                className="mt-6 w-full rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
-              >
-                Request a Demo
-              </button>
+              <div className="mt-6 grid grid-cols-2 gap-2">
+                <Link
+                  to="/products/$portal"
+                  params={{ portal: p.id }}
+                  className="inline-flex items-center justify-center rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
+                >
+                  View portal
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setDemo(p.name)}
+                  className="rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
+                >
+                  Request Demo
+                </button>
+              </div>
             </article>
           ))}
         </div>
@@ -84,7 +93,7 @@ function SetuPage() {
 
       <section className="bg-[var(--tint)] py-16 sm:py-20">
         <div className="container-page">
-          <h2 className="text-scale-34 font-bold">Explore the platform</h2>
+          <h2 className="text-3xl font-bold">Explore the platform</h2>
           <div className="mt-8">
             <PortalExplorer />
           </div>
@@ -92,7 +101,7 @@ function SetuPage() {
       </section>
 
       <section className="container-page py-16 sm:py-20">
-        <h2 className="text-scale-34 font-bold">Platform architecture</h2>
+        <h2 className="text-3xl font-bold">Platform architecture</h2>
         <div className="mt-8">
           <SetuArchitecture />
         </div>
