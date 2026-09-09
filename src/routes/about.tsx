@@ -66,10 +66,16 @@ function AboutPage() {
             <h1 className="mt-4 text-scale-34 font-bold leading-[1.08] tracking-display-tight sm:text-scale-44">
               We build the AI we <span className="text-gradient-brand">recommend.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-              3ylabs is a small, senior team that takes AI from an opportunity map to a system your
-              operation depends on. We advise, we build, and we run our own platforms in
-              production.
+            {/* CHANGED (08.1): brand-architecture line at the top of /about, stating how
+                3ylabs, Setu Systems and AscendHSI relate. */}
+            <p className="mt-5 max-w-xl text-base font-medium text-primary sm:text-lg">
+              3ylabs is an AI engineering studio. We build Setu Systems, our operations platform,
+              and we run it in production for firms like AscendHSI.
+            </p>
+            <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
+              We're a small, senior team that takes AI from an opportunity map to a system your
+              operation depends on. Most agencies advise and build — very few also operate what they
+              ship.
             </p>
           </div>
           {/* FLAG (image-system brief, IMG-20): same generic whiteboard stock photo as the

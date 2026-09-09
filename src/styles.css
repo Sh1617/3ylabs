@@ -204,6 +204,34 @@ html {
   color-scheme: light dark;
 }
 
+/* CHANGED (07 — compaction pass): single vertical-rhythm token replacing the inconsistent
+   80px/96px section padding. Applied via padding-block so seams between two adjacent
+   same-background sections can collapse to one --section-y instead of stacking to 176px. */
+:root {
+  --section-y: 44px;
+}
+@media (min-width: 640px) {
+  :root {
+    --section-y: 56px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --section-y: 72px;
+  }
+}
+
+@utility section-y {
+  padding-block: var(--section-y);
+}
+
+/* Scoped to .section-y so pages that don't opt in are unaffected. data-alt (used on sections
+   with their own background, e.g. the tinted Setu/HEM sections) opts out of the collapse so
+   the seam stays visible. */
+.section-y + .section-y:not([data-alt]) {
+  padding-block-start: 0;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

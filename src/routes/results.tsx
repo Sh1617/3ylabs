@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Database, GitBranch, Rocket } from "lucide-react";
 import { CTASection } from "@/components/CTASection";
+import { PortalMockup } from "@/components/PortalMockup";
 
 export const Route = createFileRoute("/results")({
   head: () => ({
@@ -22,22 +22,20 @@ export const Route = createFileRoute("/results")({
   component: ResultsPage,
 });
 
-const outcomes = [
-  {
-    icon: Database,
-    title: "One source of truth",
-    body: "For a distributed team.",
-  },
-  {
-    icon: GitBranch,
-    title: "Faster client response",
-    body: "More connected operational workflows.",
-  },
-  {
-    icon: Rocket,
-    title: "Operations that scale",
-    body: "A production backbone built for growth.",
-  },
+// CHANGED (08.6): three qualitative claims with no numbers replaced with three before/after
+// metrics. Figures are bracketed placeholders — pull the real before/after from the engagement
+// record before shipping; nothing here is invented.
+const metrics = [
+  { label: "Average client response time", before: "[—]", after: "[—]" },
+  { label: "Manual reporting hours per week", before: "[—]", after: "[—]" },
+  { label: "Invoicing cycle length", before: "[—]", after: "[—]" },
+];
+
+// CHANGED (08.6): two anonymised mini-cases, for when only one client can be named on the
+// record. Placeholders pending real, permissioned client detail.
+const miniCases = [
+  "[A 12-person immigration practice replaced three spreadsheets with one Setu workspace and stopped losing track of deadlines.]",
+  "[A regional insurance-claims team cut client follow-up calls after moving intake onto Setu Tickets.]",
 ];
 
 function ResultsPage() {
@@ -59,23 +57,49 @@ function ResultsPage() {
 
       <section className="container-page py-16 sm:py-20">
         <div className="surface-card p-6 sm:p-10">
-          <p className="label-mono">Featured client</p>
-          <h2 className="mt-3 text-scale-34 font-bold">AscendHSI</h2>
-          <p className="mt-2 text-sm text-muted-foreground">An immigration case operations firm.</p>
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            <p className="text-base leading-relaxed text-foreground">
-              3ylabs powers AscendHSI's operations end to end, replacing spreadsheets and
-              disconnected trackers with Setu portals for case management, client ticketing and
-              billing.
-            </p>
-            <p className="text-base leading-relaxed text-muted-foreground">
-              AI is integrated into daily workflows with human review before anything reaches a
-              customer.
-            </p>
-            <p className="text-base leading-relaxed text-muted-foreground">
-              3ylabs operates the underlying cloud infrastructure.
-            </p>
+          <div className="flex flex-wrap items-center gap-3">
+            {/* CHANGED (08.6): client logo — a text mark until a real logo is on file with
+                usage permission in writing (see engagement record). */}
+            <span className="rounded-lg border border-border bg-[var(--tint)] px-3 py-1.5 font-display text-sm font-bold tracking-tight text-primary">
+              AscendHSI
+            </span>
+            <p className="label-mono">Featured client</p>
           </div>
+          <h2 className="mt-4 text-scale-34 font-bold">Proof, not just a claim.</h2>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+            An immigration case operations firm. 3ylabs powers AscendHSI's operations end to end,
+            replacing spreadsheets and disconnected trackers with Setu portals for case management,
+            client ticketing and billing — with AI in daily workflows under human review, and 3ylabs
+            operating the underlying cloud infrastructure.
+          </p>
+
+          {/* CHANGED: real screenshot pending client sign-off — the Vantage mockup fills
+              this space instead of a blank placeholder box */}
+          <div className="mt-8">
+            <PortalMockup id="vantage" />
+          </div>
+
+          {/* CHANGED (08.6): three before/after metrics replace the three generic claims. */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {metrics.map((m) => (
+              <div key={m.label} className="rounded-xl border border-border bg-[var(--tint)] p-4">
+                <p className="text-xs text-muted-foreground">{m.label}</p>
+                <p className="mt-2 font-display text-lg font-bold text-primary">
+                  {m.before} <span className="text-muted-foreground">→</span> {m.after}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CHANGED (08.6): one attributed quote, replacing the unattributed prose above. */}
+          <blockquote className="mt-8 border-l-2 border-[var(--brand)] pl-4 text-base italic leading-relaxed text-muted-foreground">
+            "[One sentence, attributed quote from AscendHSI leadership on the change.]"
+            <footer className="mt-2 not-italic font-medium text-primary">
+              — [Name, Title, AscendHSI]{" "}
+              <span className="text-muted-foreground">— [headshot pending]</span>
+            </footer>
+          </blockquote>
+
           <div className="mt-8 flex flex-wrap gap-2">
             {["SETU VANTAGE", "SETU TICKETS", "SETU FINANCE", "MANAGED CLOUD"].map((b) => (
               <span
@@ -88,17 +112,15 @@ function ResultsPage() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {outcomes.map((o) => (
-            <article key={o.title} className="surface-card p-6 transition-shadow hover:shadow-[var(--shadow-lift)]">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--tint)]">
-                <o.icon className="h-5 w-5 text-[var(--brand)]" aria-hidden />
-              </span>
-              <h3 className="mt-4 font-display text-lg font-semibold uppercase tracking-tight">
-                {o.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">{o.body}</p>
-            </article>
+        {/* CHANGED (08.6): two anonymised mini-cases, since only AscendHSI can be named today. */}
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {miniCases.map((c) => (
+            <p
+              key={c}
+              className="surface-card p-6 text-sm italic leading-relaxed text-muted-foreground"
+            >
+              {c}
+            </p>
           ))}
         </div>
       </section>

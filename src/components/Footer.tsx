@@ -17,8 +17,11 @@ export function Footer() {
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div>
           <Wordmark className="text-scale-27" />
+          {/* CHANGED (08.1): brand-architecture line — states how the three names on the
+              homepage relate, on every page. */}
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            From AI curiosity to AI capability. We advise, we build, we run our own products.
+            3ylabs is an AI engineering studio. We build Setu Systems, our operations platform, and
+            we run it in production for firms like AscendHSI.
           </p>
         </div>
 
