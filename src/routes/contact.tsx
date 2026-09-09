@@ -41,15 +41,7 @@ const goals = [
   "Other",
 ];
 
-function Field({
-  id,
-  label,
-  type = "text",
-}: {
-  id: string;
-  label: string;
-  type?: string;
-}) {
+function Field({ id, label, type = "text" }: { id: string; label: string; type?: string }) {
   return (
     <div>
       <label htmlFor={id} className="text-sm font-medium">
@@ -109,6 +101,10 @@ function ContactPage() {
           <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
             Tell us where you are today. We'll help identify where AI can create measurable value.
           </p>
+          {/* CHANGED (08.4): states what the visitor gets and when, before they commit to the form */}
+          <p className="mt-2 max-w-xl text-sm font-medium text-primary">
+            45 minutes, and a written opportunity map within a week.
+          </p>
         </div>
       </section>
 
@@ -134,6 +130,20 @@ function ContactPage() {
               <Field id="name" label="Name" />
               <Field id="email" label="Work Email" type="email" />
               <Field id="company" label="Company" />
+              {/* CHANGED (08.4): the field that makes the follow-up call useful, asked before
+                  the multiple-choice questions rather than after. */}
+              <div>
+                <label htmlFor="messiest-part" className="text-sm font-medium">
+                  What is the messiest part of your operation right now?
+                </label>
+                <textarea
+                  id="messiest-part"
+                  name="messiest-part"
+                  rows={3}
+                  placeholder="e.g. deadlines live in someone's inbox, not the system"
+                  className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--brand)]"
+                />
+              </div>
               <SelectField id="industry" label="Industry" options={industries} />
               <SelectField id="maturity" label="AI Maturity" options={maturity} />
               <SelectField id="goal" label="Primary Goal" options={goals} />

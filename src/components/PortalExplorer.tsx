@@ -14,7 +14,15 @@ export function PortalExplorer() {
       <div
         role="tablist"
         aria-label="Setu portals"
-        className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 pb-2 lg:mx-0 lg:flex-wrap lg:px-0"
+        // CHANGED (07 — compaction pass): momentum scrolling + fade edge on the mobile tab
+        // strip, so it scrolls smoothly and doesn't wrap to three rows.
+        className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 pb-2 [-webkit-overflow-scrolling:touch] lg:mx-0 lg:flex-wrap lg:px-0"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent)",
+        }}
       >
         {portals.map((p) => {
           const on = p.id === active;
@@ -36,7 +44,9 @@ export function PortalExplorer() {
               {p.recommended && (
                 <span
                   className={`ml-2 rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
-                    on ? "bg-primary-foreground/20 text-primary-foreground" : "bg-[var(--tint)] text-[var(--brand-deep)]"
+                    on
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "bg-[var(--tint)] text-[var(--brand-deep)]"
                   }`}
                 >
                   Start here
@@ -47,7 +57,10 @@ export function PortalExplorer() {
         })}
       </div>
 
-      <div key={active} className="animate-fade-up mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+      <div
+        key={active}
+        className="animate-fade-up mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
+      >
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <p className="label-mono">{portal.label}</p>
