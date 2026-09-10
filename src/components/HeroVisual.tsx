@@ -16,7 +16,7 @@ export function HeroVisual() {
         className="pointer-events-none absolute inset-0 -z-10 rounded-[2rem]"
         style={{
           background:
-            "radial-gradient(60% 60% at 70% 30%, color-mix(in oklab, var(--cyan) 22%, transparent), transparent 70%)",
+            "radial-gradient(60% 60% at 70% 30%, color-mix(in oklab, var(--accent-orange) 22%, transparent), transparent 70%)",
         }}
       />
       <div className="surface-card p-5 sm:p-7">
@@ -62,7 +62,7 @@ export function HeroVisual() {
               </span>
               <div className="min-w-0">
                 <p className="truncate text-sm font-medium text-foreground">{n.title}</p>
-                <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--cyan)]">
+                <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--accent-orange)]">
                   {n.meta}
                 </p>
               </div>

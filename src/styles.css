@@ -2,6 +2,17 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* CHANGED (WEB-012): self-hosted fonts (Fontsource) replacing the render-blocking Google
+   Fonts stylesheet. Only the weights actually used in this codebase (font-semibold/font-bold
+   for Sora, font-normal/medium/semibold for Inter, normal/medium for the mono) are imported. */
+@import "@fontsource/sora/600.css";
+@import "@fontsource/sora/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
 /* CHANGED: theme switched from a `.dark` class to a `data-theme="lab"` attribute (spec: three-
    layer cascade below). Tailwind's `dark:` variant is redefined to match so the two existing
    `dark:` call sites (alert.tsx, chart.tsx) keep working with no edits to those files. */
@@ -38,7 +49,7 @@
   --color-ring: var(--ring);
   --color-brand: var(--brand);
   --color-brand-deep: var(--brand-deep);
-  --color-cyan: var(--cyan);
+  --color-accent-orange: var(--accent-orange);
   --color-tint: var(--tint);
   /* CHANGED: brighter accent variant for graphics/borders only (spec contrast rule — the
      darker --accent is for text). Plus semantic status colors, distinct from the accent hue. */
@@ -92,7 +103,7 @@
   --ring: oklch(0.39 0.135 268);
   --brand: oklch(0.39 0.135 268);
   --brand-deep: oklch(0.30 0.135 268);
-  --cyan: oklch(0.52 0.135 47);
+  --accent-orange: oklch(0.52 0.135 47);
   --amber: oklch(0.65 0.15 55);
   --tint: oklch(0.965 0.005 265);
   /* Semantic status — never reused as the accent; each checked against its own surface. */
@@ -137,7 +148,7 @@
     --ring: oklch(0.82 0.125 178);
     --brand: oklch(0.82 0.125 178);
     --brand-deep: oklch(0.70 0.11 178);
-    --cyan: oklch(0.82 0.125 178);
+    --accent-orange: oklch(0.82 0.125 178);
     --amber: oklch(0.75 0.16 55);
     --tint: oklch(0.21 0.018 265);
     --ok: oklch(0.68 0.15 152);
@@ -181,7 +192,7 @@
   --ring: oklch(0.82 0.125 178);
   --brand: oklch(0.82 0.125 178);
   --brand-deep: oklch(0.70 0.11 178);
-  --cyan: oklch(0.82 0.125 178);
+  --accent-orange: oklch(0.82 0.125 178);
   --amber: oklch(0.75 0.16 55);
   --tint: oklch(0.21 0.018 265);
   --ok: oklch(0.68 0.15 152);

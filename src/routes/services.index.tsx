@@ -17,9 +17,12 @@ export const Route = createFileRoute("/services/")({
       { property: "og:title", content: "Services | 3ylabs" },
       {
         property: "og:description",
-        content: "AI strategy, product engineering, legal-tech and platform delivery from one accountable team.",
+        content:
+          "AI strategy, product engineering, legal-tech and platform delivery from one accountable team.",
       },
+      { property: "og:url", content: "https://3ylabs.com/services" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/services" }],
   }),
   component: ServicesHub,
 });

@@ -1,13 +1,7 @@
 import { CheckCircle2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-export function DemoModal({
-  product,
-  onClose,
-}: {
-  product: string;
-  onClose: () => void;
-}) {
+export function DemoModal({ product, onClose }: { product: string; onClose: () => void }) {
   const [sent, setSent] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -44,7 +38,7 @@ export function DemoModal({
 
         {sent ? (
           <div className="py-8 text-center">
-            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--cyan)]" aria-hidden />
+            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--accent-orange)]" aria-hidden />
             <h3 className="mt-4 text-lg font-semibold">Demo request received</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               Thanks, we'll be in touch to arrange your walkthrough.

@@ -78,7 +78,7 @@ export function PortalExplorer() {
               <li key={b} className="flex items-start gap-3 text-sm text-foreground">
                 {/* CHANGED: was hard-coded to mix with literal white, so the chip stayed
                     light even in dark mode; now mixes with the theme background instead */}
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--cyan)_20%,var(--background))]">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-orange)_20%,var(--background))]">
                   <Check className="h-3 w-3 text-[var(--brand-deep)]" aria-hidden />
                 </span>
                 {b}

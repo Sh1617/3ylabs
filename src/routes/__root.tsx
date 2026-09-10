@@ -76,7 +76,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-        meta: [
+    meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "3ylabs: From AI curiosity to AI capability" },
@@ -105,14 +105,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        // CHANGED: dropped Sora 400/800 — headings only ever use 600/700 (font-semibold/font-bold);
-        // 800 was unused dead weight and 400 was never referenced either.
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
-      },
+      // CHANGED (WEB-012): fonts are self-hosted via @fontsource (imported in styles.css)
+      // instead of a render-blocking Google Fonts stylesheet — removes the two cross-origin
+      // round-trips this finding flagged.
       // CHANGED: image-system brief — SVG favicon is now primary (crisp at any size, modern
       // browser support), PNG kept as a fallback for browsers that don't support SVG icons.
       // apple-touch-icon needs a real raster PNG (iOS doesn't reliably accept SVG here) and a
@@ -173,4 +168,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

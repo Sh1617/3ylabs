@@ -19,7 +19,9 @@ export const Route = createFileRoute("/products/$portal")({
         { name: "description", content: portal.description },
         { property: "og:title", content: `${portal.name}: ${portal.headline} | 3ylabs` },
         { property: "og:description", content: portal.description },
+        { property: "og:url", content: `https://3ylabs.com/products/${portal.id}` },
       ],
+      links: [{ rel: "canonical", href: `https://3ylabs.com/products/${portal.id}` }],
     };
   },
   component: PortalPage,
@@ -143,7 +145,10 @@ function PortalPage() {
           <ul className="mt-6 space-y-3">
             {(portal.dayOne ?? []).map((d) => (
               <li key={d} className="flex items-start gap-3 text-sm text-foreground">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--cyan)]" aria-hidden />
+                <Check
+                  className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-orange)]"
+                  aria-hidden
+                />
                 {d}
               </li>
             ))}

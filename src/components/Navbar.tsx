@@ -30,14 +30,24 @@ const groups: NavGroup[] = [
         title: "Core services",
         items: services
           .filter((s) => s.kind === "core")
-          .map((s) => ({ label: s.name, to: "/services/$slug", params: { slug: s.slug }, desc: s.tagline })),
+          .map((s) => ({
+            label: s.name,
+            to: "/services/$slug",
+            params: { slug: s.slug },
+            desc: s.tagline,
+          })),
       },
       {
         title: "Extended services",
         items: [
           ...services
             .filter((s) => s.kind === "extended")
-            .map((s) => ({ label: s.name, to: "/services/$slug", params: { slug: s.slug }, desc: s.tagline })),
+            .map((s) => ({
+              label: s.name,
+              to: "/services/$slug",
+              params: { slug: s.slug },
+              desc: s.tagline,
+            })),
           { label: "All services", to: "/services", desc: "The full capability map." },
         ],
       },
@@ -55,12 +65,22 @@ const groups: NavGroup[] = [
             to: "/products/setu-systems",
             desc: "One intelligent platform for the whole operation.",
           },
-          ...portals.slice(0, 3).map((p) => ({ label: p.name, to: "/products/$portal", params: { portal: p.id }, desc: p.short })),
+          ...portals.slice(0, 3).map((p) => ({
+            label: p.name,
+            to: "/products/$portal",
+            params: { portal: p.id },
+            desc: p.short,
+          })),
         ],
       },
       {
         title: "Portals",
-        items: portals.slice(3).map((p) => ({ label: p.name, to: "/products/$portal", params: { portal: p.id }, desc: p.short })),
+        items: portals.slice(3).map((p) => ({
+          label: p.name,
+          to: "/products/$portal",
+          params: { portal: p.id },
+          desc: p.short,
+        })),
       },
     ],
   },
@@ -72,7 +92,11 @@ const groups: NavGroup[] = [
         title: "About 3ylabs",
         items: [
           { label: "About", to: "/about", desc: "Who we are and how we think." },
-          { label: "Approach", to: "/approach", desc: "Discover to Optimize, one accountable team." },
+          {
+            label: "Approach",
+            to: "/approach",
+            desc: "Discover to Optimize, one accountable team.",
+          },
         ],
       },
       {
@@ -92,6 +116,8 @@ export function Navbar() {
   const [menu, setMenu] = useState<string | null>(null);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // CHANGED (WEB-001): remember which trigger opened a menu so Escape can return focus to it.
+  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
@@ -122,10 +148,17 @@ export function Navbar() {
         scrolled ? "shadow-[0_1px_24px_-10px_rgba(11,16,32,0.35)]" : ""
       }`}
       onKeyDown={(e) => {
-        if (e.key === "Escape") setMenu(null);
+        // CHANGED (WEB-001): Escape closes the open dropdown and returns focus to its trigger
+        if (e.key === "Escape" && menu) {
+          triggerRefs.current[menu]?.focus();
+          setMenu(null);
+        }
       }}
     >
-      <nav aria-label="Main" className="container-page flex h-16 items-center justify-between gap-4">
+      <nav
+        aria-label="Main"
+        className="container-page flex h-16 items-center justify-between gap-4"
+      >
         <Link to="/" className="shrink-0 cursor-pointer" aria-label="3ylabs home">
           <Wordmark />
         </Link>
@@ -156,7 +189,12 @@ export function Navbar() {
               >
                 <button
                   type="button"
+                  ref={(el) => {
+                    triggerRefs.current[g.label] = el;
+                  }}
                   aria-expanded={active}
+                  aria-haspopup="true"
+                  aria-controls={`nav-panel-${g.label}`}
                   onClick={() => setMenu(active ? null : g.label)}
                   className={`inline-flex cursor-pointer items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary hover:text-primary ${
                     active ? "text-primary" : "text-muted-foreground"
@@ -170,6 +208,11 @@ export function Navbar() {
                 </button>
 
                 <div
+                  id={`nav-panel-${g.label}`}
+                  // CHANGED (WEB-001): `inert` removes the closed panel's ~30 links from the
+                  // accessibility tree and tab order entirely — opacity/pointer-events alone
+                  // left them exposed to screen readers.
+                  inert={!active}
                   className={`absolute left-1/2 top-full w-[42rem] -translate-x-1/2 pt-3 transition-all duration-200 ${
                     active
                       ? "pointer-events-auto translate-y-0 opacity-100"
@@ -219,7 +262,10 @@ export function Navbar() {
             className="group inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
           >
             Book an Assessment
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden />
+            <ArrowRight
+              className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden
+            />
           </Link>
         </div>
 
@@ -271,17 +317,19 @@ export function Navbar() {
                   </button>
                   {expanded && (
                     <ul className="animate-fade-in pb-2">
-                      {g.columns.flatMap((c) => c.items).map((it) => (
-                        <li key={it.label + it.to}>
-                          <Link
-                            to={it.to as never}
-                            params={it.params as never}
-                            className="block cursor-pointer rounded-md px-4 py-2.5 text-sm text-muted-foreground"
-                          >
-                            {it.label}
-                          </Link>
-                        </li>
-                      ))}
+                      {g.columns
+                        .flatMap((c) => c.items)
+                        .map((it) => (
+                          <li key={it.label + it.to}>
+                            <Link
+                              to={it.to as never}
+                              params={it.params as never}
+                              className="block cursor-pointer rounded-md px-4 py-2.5 text-sm text-muted-foreground"
+                            >
+                              {it.label}
+                            </Link>
+                          </li>
+                        ))}
                     </ul>
                   )}
                 </li>
@@ -294,7 +342,10 @@ export function Navbar() {
                 className="group flex cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-3 text-center text-sm font-semibold text-primary-foreground transition-all hover:brightness-105"
               >
                 Book an AI Readiness Assessment
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                  aria-hidden
+                />
               </Link>
             </li>
           </ul>

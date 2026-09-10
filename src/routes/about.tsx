@@ -20,7 +20,9 @@ export const Route = createFileRoute("/about")({
         content:
           "Who we are, how we work and why we run our own products alongside client platforms.",
       },
+      { property: "og:url", content: "https://3ylabs.com/about" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/about" }],
   }),
   component: AboutPage,
 });

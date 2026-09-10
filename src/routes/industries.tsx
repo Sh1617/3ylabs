@@ -18,9 +18,12 @@ export const Route = createFileRoute("/industries")({
       { property: "og:title", content: "Industries | 3ylabs" },
       {
         property: "og:description",
-        content: "Legal first, then healthcare, insurance, financial services, manufacturing and professional services.",
+        content:
+          "Legal first, then healthcare, insurance, financial services, manufacturing and professional services.",
       },
+      { property: "og:url", content: "https://3ylabs.com/industries" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/industries" }],
   }),
   component: Industries,
 });
@@ -160,12 +163,19 @@ function Industries() {
                 className="h-56 w-full object-cover sm:h-72"
               />
               <div className="bg-card p-7 sm:p-9">
-                <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">{current.name}</h2>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{current.lead}</p>
+                <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">
+                  {current.name}
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                  {current.lead}
+                </p>
                 <ul className="mt-6 space-y-3">
                   {current.points.map((p) => (
                     <li key={p} className="flex gap-3 text-sm text-foreground">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--cyan)]" aria-hidden />
+                      <span
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-orange)]"
+                        aria-hidden
+                      />
                       {p}
                     </li>
                   ))}

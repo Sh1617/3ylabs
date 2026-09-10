@@ -17,7 +17,9 @@ export const Route = createFileRoute("/results")({
         property: "og:description",
         content: "AscendHSI runs case management, client ticketing and billing on Setu portals.",
       },
+      { property: "og:url", content: "https://3ylabs.com/results" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/results" }],
   }),
   component: ResultsPage,
 });

@@ -13,7 +13,9 @@ export const Route = createFileRoute("/services/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Service not found | 3ylabs" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Service not found | 3ylabs" }, { name: "robots", content: "noindex" }],
+      };
     }
     const { service } = loaderData;
     return {
@@ -22,7 +24,9 @@ export const Route = createFileRoute("/services/$slug")({
         { name: "description", content: service.tagline },
         { property: "og:title", content: `${service.name} | 3ylabs` },
         { property: "og:description", content: service.tagline },
+        { property: "og:url", content: `https://3ylabs.com/services/${service.slug}` },
       ],
+      links: [{ rel: "canonical", href: `https://3ylabs.com/services/${service.slug}` }],
     };
   },
   component: ServiceDetail,
@@ -39,7 +43,9 @@ function ServiceDetail() {
       <section className="border-b border-border bg-[var(--gradient-tint)]">
         <div className="container-page py-14 sm:py-20">
           <Reveal>
-            <p className="label-mono">{service.kind === "core" ? "Core service" : "Extended service"}</p>
+            <p className="label-mono">
+              {service.kind === "core" ? "Core service" : "Extended service"}
+            </p>
             <h1 className="mt-3 max-w-3xl text-scale-34 font-bold leading-tight tracking-display-tight sm:text-scale-44">
               {service.name}
             </h1>
@@ -86,7 +92,10 @@ function ServiceDetail() {
             <ul className="mt-6 space-y-3">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-3 text-sm text-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--cyan)]" aria-hidden />
+                  <Check
+                    className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-orange)]"
+                    aria-hidden
+                  />
                   {d}
                 </li>
               ))}
@@ -110,7 +119,9 @@ function ServiceDetail() {
                 <h3 className="font-display text-base font-semibold text-foreground sm:w-52">
                   {e.name}
                 </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground sm:flex-1">{e.detail}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground sm:flex-1">
+                  {e.detail}
+                </p>
               </li>
             ))}
           </ol>
@@ -127,7 +138,9 @@ function ServiceDetail() {
                     +
                   </span>
                 </summary>
-                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                  {f.a}
+                </p>
               </details>
             ))}
           </div>

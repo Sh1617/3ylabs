@@ -27,7 +27,9 @@ export const Route = createFileRoute("/insights")({
         property: "og:description",
         content: "Field notes on AI readiness, agent design and production operations.",
       },
+      { property: "og:url", content: "https://3ylabs.com/insights" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/insights" }],
   }),
   component: InsightsPage,
 });
@@ -104,7 +106,9 @@ function InsightsPage() {
           />
           <div className="p-6 sm:p-10">
             <p className="label-mono">{featured.tag}</p>
-            <h2 className="mt-3 text-scale-27 font-bold leading-snug sm:text-scale-34">{featured.title}</h2>
+            <h2 className="mt-3 text-scale-27 font-bold leading-snug sm:text-scale-34">
+              {featured.title}
+            </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">{featured.body}</p>
             <p className="mt-6 font-mono text-[11px] tracking-widest text-[var(--brand)]">
               {featured.read}
