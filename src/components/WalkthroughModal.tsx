@@ -59,7 +59,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
           </>
         ) : emailSent ? (
           <div className="py-8 text-center">
-            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--cyan)]" aria-hidden />
+            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--accent-orange)]" aria-hidden />
             <h3 className="mt-4 text-lg font-semibold">Sent</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               We've emailed you the {product} walkthrough and notes.

@@ -28,7 +28,7 @@ export function SetuArchitecture() {
       <div className="text-center">
         {/* CHANGED: mixed with the theme background instead of literal white, so this
             badge no longer stays a light chip on a dark page */}
-        <span className="inline-flex rounded-xl border border-[var(--cyan)] bg-[color-mix(in_oklab,var(--cyan)_10%,var(--background))] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[var(--brand-deep)]">
+        <span className="inline-flex rounded-xl border border-[var(--accent-orange)] bg-[color-mix(in_oklab,var(--accent-orange)_10%,var(--background))] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[var(--brand-deep)]">
           AI Assistant
         </span>
       </div>

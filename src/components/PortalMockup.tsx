@@ -24,7 +24,7 @@ function Stat({ label, value, tone }: { label: string; value: string; tone?: "cy
         {label}
       </p>
       <p
-        className={`mt-1 font-display text-lg font-semibold ${tone === "cyan" ? "text-[var(--cyan)]" : "text-primary"}`}
+        className={`mt-1 font-display text-lg font-semibold ${tone === "cyan" ? "text-[var(--accent-orange)]" : "text-primary"}`}
       >
         {value}
       </p>
@@ -42,7 +42,9 @@ function Bar({ label, pct, value }: { label: string; pct: number; value: string 
           style={{ width: `${pct}%`, background: "var(--gradient-brand)" }}
         />
       </div>
-      <p className="w-12 shrink-0 text-right font-mono text-[11px] text-muted-foreground">{value}</p>
+      <p className="w-12 shrink-0 text-right font-mono text-[11px] text-muted-foreground">
+        {value}
+      </p>
     </div>
   );
 }
@@ -63,7 +65,8 @@ function Row({ cells, badge }: { cells: string[]; badge?: { text: string; tone: 
 
 // CHANGED: mixed with the theme background instead of literal white, so this stays a
 // legible tinted chip in both light and dark mode rather than a light chip on a dark page
-const ok = "bg-[color-mix(in_oklab,var(--cyan)_16%,var(--background))] text-[var(--brand-deep)]";
+const ok =
+  "bg-[color-mix(in_oklab,var(--accent-orange)_16%,var(--background))] text-[var(--brand-deep)]";
 const warn = "bg-secondary text-muted-foreground";
 
 export function PortalMockup({ id }: { id: PortalId }) {
@@ -87,9 +90,15 @@ export function PortalMockup({ id }: { id: PortalId }) {
         <div className="mt-5">
           <p className="label-mono">Recent cases</p>
           <div className="mt-2">
-            <Row cells={["H-1B Transfer · Nexa", "Due in 3 days"]} badge={{ text: "IN REVIEW", tone: warn }} />
+            <Row
+              cells={["H-1B Transfer · Nexa", "Due in 3 days"]}
+              badge={{ text: "IN REVIEW", tone: warn }}
+            />
             <Row cells={["Green Card · Patel", "Filed"]} badge={{ text: "ON TRACK", tone: ok }} />
-            <Row cells={["O-1 Petition · Lumen", "Evidence pending"]} badge={{ text: "ACTION", tone: warn }} />
+            <Row
+              cells={["O-1 Petition · Lumen", "Evidence pending"]}
+              badge={{ text: "ACTION", tone: warn }}
+            />
           </div>
         </div>
       </Chrome>
@@ -112,7 +121,10 @@ export function PortalMockup({ id }: { id: PortalId }) {
               style={{
                 height: `${h}px`,
                 // CHANGED: mixed with the theme background instead of literal white
-                background: i > 8 ? "var(--gradient-brand)" : "color-mix(in oklab, var(--brand) 18%, var(--background))",
+                background:
+                  i > 8
+                    ? "var(--gradient-brand)"
+                    : "color-mix(in oklab, var(--brand) 18%, var(--background))",
               }}
             />
           ))}
@@ -121,7 +133,10 @@ export function PortalMockup({ id }: { id: PortalId }) {
           <p className="label-mono">Recent transactions</p>
           <div className="mt-2">
             <Row cells={["INV-2041 · Nexa Corp", "Retainer"]} badge={{ text: "PAID", tone: ok }} />
-            <Row cells={["INV-2042 · Lumen Ltd", "Milestone"]} badge={{ text: "SENT", tone: warn }} />
+            <Row
+              cells={["INV-2042 · Lumen Ltd", "Milestone"]}
+              badge={{ text: "SENT", tone: warn }}
+            />
             <Row cells={["INV-2043 · Patel", "Hourly"]} badge={{ text: "OVERDUE", tone: warn }} />
           </div>
         </div>
@@ -135,14 +150,17 @@ export function PortalMockup({ id }: { id: PortalId }) {
           <div className="rounded-xl border border-border bg-background p-3">
             <p className="label-mono">Documents</p>
             <ul className="mt-3 space-y-2">
-              {["Employment letter.pdf", "Publication record.pdf", "Award citation.pdf", "Expert opinion.docx"].map(
-                (d) => (
-                  <li key={d} className="flex items-center gap-2 text-xs text-foreground">
-                    <FileText className="h-3.5 w-3.5 text-[var(--brand)]" aria-hidden />
-                    <span className="truncate">{d}</span>
-                  </li>
-                ),
-              )}
+              {[
+                "Employment letter.pdf",
+                "Publication record.pdf",
+                "Award citation.pdf",
+                "Expert opinion.docx",
+              ].map((d) => (
+                <li key={d} className="flex items-center gap-2 text-xs text-foreground">
+                  <FileText className="h-3.5 w-3.5 text-[var(--brand)]" aria-hidden />
+                  <span className="truncate">{d}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="rounded-xl border border-border bg-background p-3">
@@ -156,7 +174,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
         </div>
         <div className="mt-4 rounded-xl border border-border bg-[var(--tint)] p-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-[var(--cyan)]" aria-hidden />
+            <Sparkles className="h-4 w-4 text-[var(--accent-orange)]" aria-hidden />
             <p className="text-xs font-semibold text-primary">AI analysis</p>
           </div>
           <p className="mt-2 text-xs text-muted-foreground">
@@ -182,10 +200,22 @@ export function PortalMockup({ id }: { id: PortalId }) {
         <div className="mt-5">
           <p className="label-mono">Queue</p>
           <div className="mt-2">
-            <Row cells={["Status of my filing?", "A. Sharma · SLA 4h"]} badge={{ text: "HIGH", tone: warn }} />
-            <Row cells={["Invoice clarification", "M. Iyer · SLA 8h"]} badge={{ text: "OPEN", tone: ok }} />
-            <Row cells={["Upload new passport", "J. Okafor · SLA 24h"]} badge={{ text: "WAITING", tone: warn }} />
-            <Row cells={["Schedule consultation", "Unassigned"]} badge={{ text: "NEW", tone: ok }} />
+            <Row
+              cells={["Status of my filing?", "A. Sharma · SLA 4h"]}
+              badge={{ text: "HIGH", tone: warn }}
+            />
+            <Row
+              cells={["Invoice clarification", "M. Iyer · SLA 8h"]}
+              badge={{ text: "OPEN", tone: ok }}
+            />
+            <Row
+              cells={["Upload new passport", "J. Okafor · SLA 24h"]}
+              badge={{ text: "WAITING", tone: warn }}
+            />
+            <Row
+              cells={["Schedule consultation", "Unassigned"]}
+              badge={{ text: "NEW", tone: ok }}
+            />
           </div>
         </div>
       </Chrome>
@@ -238,7 +268,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
       </div>
       <div className="mt-3 rounded-xl border border-border bg-background p-3">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-[var(--cyan)]" aria-hidden />
+          <Sparkles className="h-4 w-4 text-[var(--accent-orange)]" aria-hidden />
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
             AI answer
           </p>

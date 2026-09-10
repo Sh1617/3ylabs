@@ -17,7 +17,9 @@ export const Route = createFileRoute("/contact")({
         property: "og:description",
         content: "From AI curiosity to AI capability, start with an AI readiness assessment.",
       },
+      { property: "og:url", content: "https://3ylabs.com/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/contact" }],
   }),
   component: ContactPage,
 });
@@ -112,7 +114,7 @@ function ContactPage() {
         <div className="mx-auto max-w-xl surface-card p-6 sm:p-8">
           {state === "done" ? (
             <div className="animate-fade-up py-10 text-center">
-              <CheckCircle2 className="mx-auto h-12 w-12 text-[var(--cyan)]" aria-hidden />
+              <CheckCircle2 className="mx-auto h-12 w-12 text-[var(--accent-orange)]" aria-hidden />
               <h2 className="mt-5 text-scale-21 font-semibold">Assessment request received</h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Thanks. Your information has been captured for this prototype.

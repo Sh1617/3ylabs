@@ -17,7 +17,9 @@ export const Route = createFileRoute("/approach")({
         property: "og:description",
         content: "The five-stage 3ylabs delivery model for AI-native products and operations.",
       },
+      { property: "og:url", content: "https://3ylabs.com/approach" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/approach" }],
   }),
   component: ApproachPage,
 });
@@ -39,19 +41,31 @@ const stages = [
     n: "03",
     name: "Build",
     summary: "Engineer the AI-native solution.",
-    deliverables: ["Working product increments", "Agents, copilots and pipelines", "Test and evaluation loops"],
+    deliverables: [
+      "Working product increments",
+      "Agents, copilots and pipelines",
+      "Test and evaluation loops",
+    ],
   },
   {
     n: "04",
     name: "Deploy",
     summary: "Productionize securely.",
-    deliverables: ["Cloud and DevOps setup", "Security and access controls", "Release and rollback plans"],
+    deliverables: [
+      "Cloud and DevOps setup",
+      "Security and access controls",
+      "Release and rollback plans",
+    ],
   },
   {
     n: "05",
     name: "Optimize",
     summary: "Measure, improve and continuously innovate.",
-    deliverables: ["Operational monitoring", "Model and workflow tuning", "Continuous improvement backlog"],
+    deliverables: [
+      "Operational monitoring",
+      "Model and workflow tuning",
+      "Continuous improvement backlog",
+    ],
   },
 ];
 
@@ -100,14 +114,17 @@ function ApproachPage() {
                 </button>
                 <div
                   aria-hidden
-                  className={`mt-3 h-1 rounded-full transition-colors ${on ? "bg-[var(--cyan)]" : "bg-border"}`}
+                  className={`mt-3 h-1 rounded-full transition-colors ${on ? "bg-[var(--accent-orange)]" : "bg-border"}`}
                 />
               </li>
             );
           })}
         </ol>
 
-        <div key={stage.n} className="animate-fade-up mt-10 grid gap-8 surface-card p-6 sm:p-10 lg:grid-cols-2">
+        <div
+          key={stage.n}
+          className="animate-fade-up mt-10 grid gap-8 surface-card p-6 sm:p-10 lg:grid-cols-2"
+        >
           <div>
             <p className="label-mono">Stage {stage.n}</p>
             <h2 className="mt-3 text-scale-34 font-bold">{stage.name}</h2>
@@ -118,7 +135,7 @@ function ApproachPage() {
             <ul className="mt-4 space-y-3">
               {stage.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-3 text-sm">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--cyan)]" />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-orange)]" />
                   {d}
                 </li>
               ))}

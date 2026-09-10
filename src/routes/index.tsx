@@ -38,7 +38,9 @@ export const Route = createFileRoute("/")({
         content:
           "AI transformation services, AI-native product engineering, legal-tech solutions and cloud delivery.",
       },
+      { property: "og:url", content: "https://3ylabs.com/" },
     ],
+    links: [{ rel: "canonical", href: "https://3ylabs.com/" }],
   }),
   component: Home,
 });
@@ -428,7 +430,7 @@ function Home() {
               className="absolute -right-16 -top-16 h-56 w-56 rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle, color-mix(in oklab, var(--cyan) 35%, transparent), transparent 70%)",
+                  "radial-gradient(circle, color-mix(in oklab, var(--accent-orange) 35%, transparent), transparent 70%)",
               }}
             />
             <div className="relative grid gap-2.5 sm:grid-cols-2">
