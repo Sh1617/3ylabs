@@ -173,6 +173,10 @@ function Industries() {
               {/* CHANGED: real photo per industry (user-supplied), keyed by the active tab —
                   previously only Legal had a photo and the other five used a generic icon
                   panel while photography was pending. */}
+              {/* CHANGED: the six source photos are near-square/4:3 (portrait-ish), but the old
+                  h-56/h-72 frame forced a short wide strip — object-cover was cropping out heads
+                  and wall signage. aspect-[4/3] matches the photos' real proportions so far less
+                  gets cropped; object-position favors the upper area where faces/signage sit. */}
               <img
                 src={current.image}
                 alt={current.alt}
@@ -180,7 +184,7 @@ function Industries() {
                 decoding="async"
                 width={1400}
                 height={1000}
-                className="h-56 w-full object-cover sm:h-72"
+                className="aspect-[4/3] w-full object-cover object-[center_20%]"
               />
               <div className="bg-card p-7 sm:p-9">
                 <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">
