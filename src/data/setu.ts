@@ -20,7 +20,7 @@ export interface Portal {
   capabilities: string[];
   dayOne: string[];
   security: string;
-  proof: { metric: string; quote: string; attribution: string };
+  proof: { metric: string; pending: boolean };
   faqs: { q: string; a: string }[];
   /** Set only on portals repositioned as a service deliverable rather than a standalone product (8.2, Setu Discover). */
   movedToServiceSlug?: string;
@@ -64,15 +64,26 @@ export const portals: Portal[] = [
     security:
       "Role-based access down to the individual matter, full audit logging on every change, data hosted in region, and no client data used to train shared models.",
     proof: {
-      metric: "[—%] faster to find the status of any matter",
-      quote: "[One sentence on what changed once the team stopped tracking cases in spreadsheets.]",
-      attribution: "[Name, Title, Client firm]",
+      metric: "Faster time to find the status of any matter",
+      pending: true,
     },
     faqs: [
-      { q: "How long does setup take?", a: "A configured, live workspace with your data migrated typically takes four weeks." },
-      { q: "Can we import our existing tracker?", a: "Yes — spreadsheets, CSV exports and most case-management exports can be migrated." },
-      { q: "Does everyone need the same access level?", a: "No. Access is role-based down to the individual matter." },
-      { q: "What happens after the pilot?", a: "You keep the configured workspace and add portals — Tickets, Finance, Evidence Studio, the AI Assistant — as you grow." },
+      {
+        q: "How long does setup take?",
+        a: "A configured, live workspace with your data migrated typically takes four weeks.",
+      },
+      {
+        q: "Can we import our existing tracker?",
+        a: "Yes — spreadsheets, CSV exports and most case-management exports can be migrated.",
+      },
+      {
+        q: "Does everyone need the same access level?",
+        a: "No. Access is role-based down to the individual matter.",
+      },
+      {
+        q: "What happens after the pilot?",
+        a: "You keep the configured workspace and add portals — Tickets, Finance, Evidence Studio, the AI Assistant — as you grow.",
+      },
     ],
   },
   {
@@ -110,14 +121,22 @@ export const portals: Portal[] = [
     security:
       "Client-facing access is scoped to that client's own tickets only, every message is logged, and data stays in the same region as the rest of the platform.",
     proof: {
-      metric: "[—%] fewer client follow-up calls",
-      quote: "[One sentence attributed quote on the change in client experience.]",
-      attribution: "[Name, Title, Client firm]",
+      metric: "Fewer client follow-up calls",
+      pending: true,
     },
     faqs: [
-      { q: "Do clients need to install anything?", a: "No. Clients use a branded web portal or reply to the same channel they already use." },
-      { q: "Can we set different targets per ticket type?", a: "Yes — service-level targets are configurable per ticket type." },
-      { q: "Does this replace our shared inbox entirely?", a: "Most teams route new requests through Tickets and keep email for everything else." },
+      {
+        q: "Do clients need to install anything?",
+        a: "No. Clients use a branded web portal or reply to the same channel they already use.",
+      },
+      {
+        q: "Can we set different targets per ticket type?",
+        a: "Yes — service-level targets are configurable per ticket type.",
+      },
+      {
+        q: "Does this replace our shared inbox entirely?",
+        a: "Most teams route new requests through Tickets and keep email for everything else.",
+      },
     ],
   },
   {
@@ -151,14 +170,22 @@ export const portals: Portal[] = [
     security:
       "Financial data is access-controlled by role, every invoice change is logged, and reporting exports are permissioned separately from day-to-day billing access.",
     proof: {
-      metric: "[—days] shorter invoicing cycle",
-      quote: "[One sentence attributed quote on the billing-cycle change.]",
-      attribution: "[Name, Title, Client firm]",
+      metric: "Shorter invoicing cycle",
+      pending: true,
     },
     faqs: [
-      { q: "Does this connect to our accounting software?", a: "Yes — financial records export in standard formats for your accounting system." },
-      { q: "Can it handle different billing arrangements?", a: "Yes, including fixed-fee, hourly and retainer models on the same platform." },
-      { q: "How is billing data secured?", a: "By role, with a full audit log on every invoice and payment change." },
+      {
+        q: "Does this connect to our accounting software?",
+        a: "Yes — financial records export in standard formats for your accounting system.",
+      },
+      {
+        q: "Can it handle different billing arrangements?",
+        a: "Yes, including fixed-fee, hourly and retainer models on the same platform.",
+      },
+      {
+        q: "How is billing data secured?",
+        a: "By role, with a full audit log on every invoice and payment change.",
+      },
     ],
   },
   {
@@ -196,14 +223,22 @@ export const portals: Portal[] = [
     security:
       "This is the portal built to be asked about first: role-based access, full audit logging, data stays under customer control, and nothing here is used to train shared models. Every AI-assisted draft carries a human sign-off before it is used.",
     proof: {
-      metric: "[—hours] saved per matter on evidence organization",
-      quote: "[One sentence attributed quote on the review workflow.]",
-      attribution: "[Name, Title, Client firm]",
+      metric: "Time saved per matter on evidence organization",
+      pending: true,
     },
     faqs: [
-      { q: "Does AI submit anything without review?", a: "No. Every AI-assisted draft goes through human review before it is used." },
-      { q: "Where does our evidence data live?", a: "Under your control, in the region you choose, and it is never used to train shared models." },
-      { q: "Can the criteria change per matter type?", a: "Yes — checklists and evidence criteria are configured per matter type." },
+      {
+        q: "Does AI submit anything without review?",
+        a: "No. Every AI-assisted draft goes through human review before it is used.",
+      },
+      {
+        q: "Where does our evidence data live?",
+        a: "Under your control, in the region you choose, and it is never used to train shared models.",
+      },
+      {
+        q: "Can the criteria change per matter type?",
+        a: "Yes — checklists and evidence criteria are configured per matter type.",
+      },
     ],
   },
   {
@@ -239,13 +274,18 @@ export const portals: Portal[] = [
     security:
       "Every answer is scoped to what the asking person is already permitted to see, every query is logged, and answers are always cited back to a real record.",
     proof: {
-      metric: "[—%] less time spent searching for information",
-      quote: "[One sentence attributed quote on onboarding or search time.]",
-      attribution: "[Name, Title, Client firm]",
+      metric: "Less time spent searching for information",
+      pending: true,
     },
     faqs: [
-      { q: "Can it see things a user isn't allowed to see?", a: "No. It only answers from what the asking person already has permission to view." },
-      { q: "Does it work without the other portals?", a: "It's a layer across the portals you already run — the more portals live, the more it can answer." },
+      {
+        q: "Can it see things a user isn't allowed to see?",
+        a: "No. It only answers from what the asking person already has permission to view.",
+      },
+      {
+        q: "Does it work without the other portals?",
+        a: "It's a layer across the portals you already run — the more portals live, the more it can answer.",
+      },
       { q: "Are answers always sourced?", a: "Yes — every answer cites the record it came from." },
     ],
   },
@@ -272,11 +312,11 @@ export const portals: Portal[] = [
       "Hand off directly into a Setu portal pilot or a services engagement",
     ],
     dayOne: [],
-    security: "Covered under the AI Readiness Assessment engagement — see the service page for details.",
+    security:
+      "Covered under the AI Readiness Assessment engagement — see the service page for details.",
     proof: {
       metric: "",
-      quote: "",
-      attribution: "",
+      pending: true,
     },
     faqs: [],
   },
