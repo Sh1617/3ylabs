@@ -4,8 +4,9 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useState } from "react";
 import { portals } from "@/data/setu";
 import { PortalExplorer } from "@/components/PortalExplorer";
+import { PortalMockup } from "@/components/PortalMockup";
 import { SetuArchitecture } from "@/components/SetuArchitecture";
-import { DemoModal } from "@/components/DemoModal";
+import { WalkthroughModal } from "@/components/WalkthroughModal";
 import { CTASection } from "@/components/CTASection";
 
 export const Route = createFileRoute("/products/setu-systems")({
@@ -36,7 +37,7 @@ const layer = portals.find((p) => p.role === "layer")!;
 const discover = portals.find((p) => p.role === "moved-to-service")!;
 
 function SetuPage() {
-  const [demo, setDemo] = useState<string | null>(null);
+  const [walkthrough, setWalkthrough] = useState<string | null>(null);
 
   return (
     <main>
@@ -62,7 +63,7 @@ function SetuPage() {
         <p className="label-mono">Start here</p>
         <div className="mt-6 grid gap-8 rounded-2xl border border-border p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <p className="text-sm font-medium text-primary">{vantage.label} — the lead product</p>
+            <p className="text-sm font-medium text-primary">{vantage.label}  the lead product</p>
             <h2 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
               {vantage.headline}
             </h2>
@@ -72,7 +73,7 @@ function SetuPage() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
-                onClick={() => setDemo(vantage.name)}
+                onClick={() => setWalkthrough(vantage.name)}
                 className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)]"
                 style={{ background: "var(--gradient-accent)" }}
               >
@@ -88,10 +89,9 @@ function SetuPage() {
               </Link>
             </div>
           </div>
-          {/* Screenshot placeholder — IMG-02 */}
-          <div className="flex aspect-video w-full items-center justify-center rounded-2xl border border-dashed border-border bg-[var(--tint)] text-sm text-muted-foreground">
-            [Setu Vantage screenshot — IMG-02]
-          </div>
+          {/* CHANGED: real screenshot (IMG-02) not shot yet — rendering the actual Setu
+              Vantage UI mockup instead of a blank placeholder box */}
+          <PortalMockup id={vantage.id} />
         </div>
 
         {/* Add-on row */}
@@ -165,7 +165,9 @@ function SetuPage() {
       <CTASection
         secondary={{ to: "/products/$portal" as never, label: "See Vantage in 3 minutes" }}
       />
-      {demo && <DemoModal product={demo} onClose={() => setDemo(null)} />}
+      {walkthrough && (
+        <WalkthroughModal product={walkthrough} onClose={() => setWalkthrough(null)} />
+      )}
     </main>
   );
 }

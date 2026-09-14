@@ -41,7 +41,7 @@ export const portals: Portal[] = [
     ],
     buyer: "Operations & case leads",
     recommended: true,
-    headline: "Every matter, task and deadline in one place — live in four weeks.",
+    headline: "Every matter, task and deadline in one place  live in four weeks.",
     role: "lead",
     whoFor:
       "Operations and case leads at firms of 8–60 people who currently run cases across a shared drive, a spreadsheet and email.",
@@ -82,7 +82,7 @@ export const portals: Portal[] = [
       },
       {
         q: "What happens after the pilot?",
-        a: "You keep the configured workspace and add portals — Tickets, Finance, Evidence Studio, the AI Assistant — as you grow.",
+        a: "You keep the configured workspace and add portals  Tickets, Finance, Evidence Studio, the AI Assistant  as you grow.",
       },
     ],
   },
