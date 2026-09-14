@@ -6,7 +6,6 @@ const company = [
   { label: "About", to: "/about" },
   { label: "Approach", to: "/approach" },
   { label: "Results", to: "/results" },
-  { label: "Insights", to: "/insights" },
   { label: "Industries", to: "/industries" },
   { label: "Contact", to: "/contact" },
 ];

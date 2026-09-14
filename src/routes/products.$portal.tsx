@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, PlayCircle, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, Clock3, PlayCircle, ShieldCheck } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { WalkthroughModal } from "@/components/WalkthroughModal";
 import { CTASection } from "@/components/CTASection";
@@ -196,12 +196,10 @@ function PortalPage() {
             </p>
             <p className="mt-2 text-base font-medium text-foreground">{portal.proof.metric}</p>
           </div>
-          <blockquote className="border-l-2 border-border pl-4 text-sm italic leading-relaxed text-muted-foreground">
-            "{portal.proof.quote}"
-            <footer className="mt-1 not-italic font-medium text-muted-foreground">
-              — {portal.proof.attribution}
-            </footer>
-          </blockquote>
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <Clock3 className="h-3.5 w-3.5 shrink-0" aria-hidden />
+            Attributed quote pending client sign-off.
+          </div>
         </div>
       </section>
 

@@ -5,6 +5,11 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Reveal } from "@/components/Reveal";
 import { CTASection } from "@/components/CTASection";
 import legalImage from "@/assets/legal-industry.jpg";
+import healthcareImage from "@/assets/healthcare-industry.png";
+import insuranceImage from "@/assets/insurance-industry.png";
+import financialServicesImage from "@/assets/financial-services-industry.png";
+import manufacturingImage from "@/assets/manufacturing-industry.png";
+import professionalServicesImage from "@/assets/professional-services-industry.png";
 
 export const Route = createFileRoute("/industries")({
   head: () => ({
@@ -33,6 +38,8 @@ const industries = [
     id: "legal",
     icon: Gavel,
     name: "Legal",
+    image: legalImage,
+    alt: "Professionals reviewing case material in a modern glass meeting room",
     lead: "Our deepest domain focus, and the operating context behind Setu Systems.",
     points: [
       "Case and matter management that replaces spreadsheets and email trails",
@@ -45,6 +52,8 @@ const industries = [
     id: "healthcare",
     icon: HeartPulse,
     name: "Healthcare",
+    image: healthcareImage,
+    alt: "Clinical administrator reviewing patient data on a tablet at her workstation",
     lead: "Document-heavy operations where accuracy and auditability are not negotiable.",
     points: [
       "Clinical and administrative document processing",
@@ -56,6 +65,8 @@ const industries = [
     id: "insurance",
     icon: Shield,
     name: "Insurance",
+    image: insuranceImage,
+    alt: "Claims adjuster reviewing an auto claim across a tablet and desktop monitors",
     lead: "Claims and underwriting workflows that reward speed with control.",
     points: [
       "Claims triage and document extraction",
@@ -67,6 +78,8 @@ const industries = [
     id: "financial-services",
     icon: Landmark,
     name: "Financial Services",
+    image: financialServicesImage,
+    alt: "Finance team reviewing a performance dashboard and reports in a meeting room",
     lead: "Intelligence and automation inside a hard compliance perimeter.",
     points: [
       "Reporting and reconciliation automation",
@@ -78,6 +91,8 @@ const industries = [
     id: "manufacturing",
     icon: Factory,
     name: "Manufacturing",
+    image: manufacturingImage,
+    alt: "Technician inspecting a component on the plant floor beside robotic equipment",
     lead: "Operational visibility across plants, suppliers and schedules.",
     points: [
       "Operational dashboards and decision support",
@@ -89,6 +104,8 @@ const industries = [
     id: "professional-services",
     icon: Building2,
     name: "Professional Services",
+    image: professionalServicesImage,
+    alt: "Consulting team presenting a strategic development plan in a meeting room",
     lead: "Billable time protected by better systems, not more effort.",
     points: [
       "Engagement, resourcing and billing workflows",
@@ -153,9 +170,12 @@ function Industries() {
 
           <div key={active} className="animate-fade-up">
             <div className="overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)]">
+              {/* CHANGED: real photo per industry (user-supplied), keyed by the active tab —
+                  previously only Legal had a photo and the other five used a generic icon
+                  panel while photography was pending. */}
               <img
-                src={legalImage}
-                alt="Professionals reviewing case material in a modern glass meeting room"
+                src={current.image}
+                alt={current.alt}
                 loading="lazy"
                 decoding="async"
                 width={1400}

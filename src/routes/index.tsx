@@ -3,6 +3,7 @@ import {
   ArrowRight,
   Brain,
   Building2,
+  Clock3,
   Cloud,
   Factory,
   Gavel,
@@ -182,6 +183,9 @@ function Home() {
                 src={bridgeImage}
                 alt="Abstract flowing bridge graphic representing 3ylabs connecting AI strategy to production"
                 loading="eager"
+                fetchPriority="high"
+                width={1600}
+                height={1100}
                 className="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
               />
             </div>
@@ -292,6 +296,9 @@ function Home() {
               src={teamImage}
               alt="The 3ylabs team reviewing an operations workflow together"
               loading="lazy"
+              decoding="async"
+              width={1600}
+              height={1000}
               className="h-44 w-full object-cover sm:h-56 lg:h-full lg:min-h-[220px]"
             />
           </div>
@@ -310,33 +317,16 @@ function Home() {
               client ticketing and billing, AI in daily workflows with human review, and the cloud
               infrastructure underneath.
             </p>
-            {/* CHANGED: three metric tiles + one attributed quote replace the three generic
-                bullets. Figures/quote are bracketed placeholders — swap in AscendHSI's verified
-                numbers and a signed-off quote before shipping; nothing here is invented. */}
-            <div className="mt-5 grid grid-cols-3 gap-3">
-              {[
-                ["[—%]", "Faster client response"],
-                ["[—]", "Cases on Setu"],
-                ["[—%]", "Fewer manual handoffs"],
-              ].map(([stat, label]) => (
-                <div
-                  key={label}
-                  className="rounded-xl border border-border bg-[var(--tint)] px-3 py-3"
-                >
-                  <p className="font-display text-lg font-bold text-primary">{stat}</p>
-                  <p className="mt-1 text-[11px] leading-tight text-muted-foreground">{label}</p>
-                </div>
-              ))}
-            </div>
-            <blockquote className="mt-5 border-l-2 border-[var(--brand)] pl-4 text-sm italic leading-relaxed text-muted-foreground">
-              "[One sentence, attributed quote from AscendHSI leadership goes here.]"
-              <footer className="mt-1 not-italic font-medium text-primary">
-                — [Name, Title, AscendHSI]
-              </footer>
-            </blockquote>
+            {/* CHANGED: stat tiles + quote (both bracket placeholders) removed from the
+                homepage — the full pending-state detail already lives on /results, so this
+                stays a single compact line rather than duplicating placeholder content. */}
+            <p className="mt-5 flex items-center gap-1.5 text-xs text-muted-foreground">
+              <Clock3 className="h-3.5 w-3.5" aria-hidden />
+              Metrics and a client quote pending AscendHSI sign-off — see the full story.
+            </p>
             <Link
               to="/results"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand)] hover:underline"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand)] hover:underline"
             >
               Read the AscendHSI story <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>

@@ -101,10 +101,7 @@ const groups: NavGroup[] = [
       },
       {
         title: "Proof",
-        items: [
-          { label: "Results", to: "/results", desc: "Client outcomes in production." },
-          { label: "Insights", to: "/insights", desc: "Notes from the work." },
-        ],
+        items: [{ label: "Results", to: "/results", desc: "Client outcomes in production." }],
       },
     ],
   },

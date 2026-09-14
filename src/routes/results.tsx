@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Clock3 } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTASection } from "@/components/CTASection";
 import { PortalMockup } from "@/components/PortalMockup";
@@ -24,13 +25,12 @@ export const Route = createFileRoute("/results")({
   component: ResultsPage,
 });
 
-// CHANGED (08.6): three qualitative claims with no numbers replaced with three before/after
-// metrics. Figures are bracketed placeholders — pull the real before/after from the engagement
-// record before shipping; nothing here is invented.
+// CHANGED: metrics are pending client sign-off (not fabricated). Modeled as a flag rather than
+// bracket-dash text so the pending state can be styled intentionally instead of looking broken.
 const metrics = [
-  { label: "Average client response time", before: "[—]", after: "[—]" },
-  { label: "Manual reporting hours per week", before: "[—]", after: "[—]" },
-  { label: "Invoicing cycle length", before: "[—]", after: "[—]" },
+  { label: "Average client response time", pending: true },
+  { label: "Manual reporting hours per week", pending: true },
+  { label: "Invoicing cycle length", pending: true },
 ];
 
 // CHANGED (08.6): two anonymised mini-cases, for when only one client can be named on the
@@ -81,26 +81,31 @@ function ResultsPage() {
             <PortalMockup id="vantage" />
           </div>
 
-          {/* CHANGED (08.6): three before/after metrics replace the three generic claims. */}
+          {/* CHANGED (08.6): three before/after metrics replace the three generic claims.
+              Pending state is a designed "pending" card, not bracket-dash text. */}
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {metrics.map((m) => (
-              <div key={m.label} className="rounded-xl border border-border bg-[var(--tint)] p-4">
+              <div
+                key={m.label}
+                className="rounded-xl border border-dashed border-border bg-[var(--tint)] p-4"
+              >
                 <p className="text-xs text-muted-foreground">{m.label}</p>
-                <p className="mt-2 font-display text-lg font-bold text-primary">
-                  {m.before} <span className="text-muted-foreground">→</span> {m.after}
-                </p>
+                <div className="mt-2 flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+                  <Clock3 className="h-3.5 w-3.5" aria-hidden />
+                  Pending client sign-off
+                </div>
               </div>
             ))}
           </div>
 
-          {/* CHANGED (08.6): one attributed quote, replacing the unattributed prose above. */}
-          <blockquote className="mt-8 border-l-2 border-[var(--brand)] pl-4 text-base italic leading-relaxed text-muted-foreground">
-            "[One sentence, attributed quote from AscendHSI leadership on the change.]"
-            <footer className="mt-2 not-italic font-medium text-primary">
-              — [Name, Title, AscendHSI]{" "}
-              <span className="text-muted-foreground">— [headshot pending]</span>
-            </footer>
-          </blockquote>
+          {/* CHANGED (08.6): quote slot as a designed "pending" card, matching the metrics
+              above, instead of bracketed placeholder text standing in as a real quote. */}
+          <div className="mt-8 flex items-start gap-3 rounded-xl border border-dashed border-border bg-[var(--tint)] p-4">
+            <Clock3 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+            <p className="text-sm text-muted-foreground">
+              Attributed quote pending — name, title and headshot from AscendHSI leadership.
+            </p>
+          </div>
 
           <div className="mt-8 flex flex-wrap gap-2">
             {["SETU VANTAGE", "SETU TICKETS", "SETU FINANCE", "MANAGED CLOUD"].map((b) => (
