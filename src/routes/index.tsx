@@ -5,24 +5,26 @@ import {
   Building2,
   Clock3,
   Cloud,
+  Cog,
   Factory,
   Gavel,
   HeartPulse,
   Landmark,
   Layers,
+  Lightbulb,
   LineChart,
   Scale,
   Shield,
   Sparkles,
+  Wrench,
 } from "lucide-react";
 import { LeadProductPanel } from "@/components/LeadProductPanel";
 import { CTASection } from "@/components/CTASection";
 // CHANGED (07 — compaction pass): these two photos already shipped in src/assets (used on
-// /industries and /about) and stay in their existing spots. `bridgeImage` moves here to the
-// hero (IMG-01), replacing the fake-dashboard HeroVisual mock — no new image was sourced.
+// /industries and /about) and stay in their existing spots.
 import legalImage from "@/assets/legal-industry.jpg";
 import teamImage from "@/assets/team-about.jpg";
-import bridgeImage from "@/assets/abstract-bridge.jpg";
+import heroVisual from "@/assets/hero-ai-visual.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -141,9 +143,23 @@ function Home() {
               3ylabs helps organizations turn AI ambition into secure, scalable products and
               intelligent operations, from strategy through production.
             </p>
-            <p className="mt-4 font-mono text-xs uppercase tracking-[0.14em] text-[var(--brand-deep)]">
-              We advise. We build. We run our own products.
-            </p>
+            {/* CHANGED: mono strap replaced with a three-icon Advise/Build/Run row, matching
+                the requested layout. Labels are original copy, not the garbled text from the
+                reference mockup. */}
+            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
+              {[
+                { icon: Lightbulb, label: "We advise." },
+                { icon: Wrench, label: "We build." },
+                { icon: Cog, label: "We run our own products." },
+              ].map((b) => (
+                <div key={b.label} className="flex items-center gap-2">
+                  <b.icon className="h-4 w-4 shrink-0 text-[var(--brand-deep)]" aria-hidden />
+                  <span className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--brand-deep)]">
+                    {b.label}
+                  </span>
+                </div>
+              ))}
+            </div>
             {/* CHANGED: third sentence dropped on mobile only — keeps the 3ylabs / Setu /
                 AscendHSI relationship explained on larger screens without adding mobile height */}
             <p className="mt-3 max-w-xl text-xs leading-relaxed text-muted-foreground">
@@ -177,15 +193,15 @@ function Home() {
             </div>
           </div>
           <div className="animate-fade-up lg:pl-6">
-            {/* CHANGED: IMG-01 — real photo replacing the fake "AI Operations" dashboard mock */}
+            {/* CHANGED: user-supplied hero visual (cropped from their reference mockup) */}
             <div className="surface-card overflow-hidden">
               <img
-                src={bridgeImage}
-                alt="Abstract flowing bridge graphic representing 3ylabs connecting AI strategy to production"
+                src={heroVisual}
+                alt="Abstract isometric illustration of connected AI infrastructure and data pathways"
                 loading="eager"
                 fetchPriority="high"
-                width={1600}
-                height={1100}
+                width={1512}
+                height={1134}
                 className="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
               />
             </div>
