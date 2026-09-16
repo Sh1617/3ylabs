@@ -41,7 +41,13 @@ function ServiceDetail() {
       <Breadcrumbs items={[{ label: "Services", to: "/services" }, { label: service.name }]} />
 
       <section className="border-b border-border bg-[var(--gradient-tint)]">
-        <div className="container-page py-14 sm:py-20">
+        {/* CHANGED: services page image system, mirroring industries.tsx — services with a
+            photo (service.image) get a two-column hero with the image on the right; services
+            without one yet (most of them, still pending source photos) keep the original
+            single-column layout unchanged. */}
+        <div
+          className={`container-page py-14 sm:py-20 ${service.image ? "grid gap-10 lg:grid-cols-2 lg:items-center" : ""}`}
+        >
           <Reveal>
             <p className="label-mono">
               {service.kind === "core" ? "Core service" : "Extended service"}
@@ -60,6 +66,21 @@ function ServiceDetail() {
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </Reveal>
+          {service.image && (
+            <Reveal delay={80}>
+              <div className="overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)]">
+                <img
+                  src={service.image}
+                  alt={service.imageAlt ?? `${service.name} in practice`}
+                  loading="eager"
+                  fetchPriority="high"
+                  width={1672}
+                  height={941}
+                  className="aspect-[16/9] w-full object-cover"
+                />
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
 

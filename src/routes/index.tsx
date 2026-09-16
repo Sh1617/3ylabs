@@ -24,7 +24,9 @@ import { CTASection } from "@/components/CTASection";
 // /industries and /about) and stay in their existing spots.
 import legalImage from "@/assets/legal-industry.jpg";
 import teamImage from "@/assets/team-about.jpg";
-import heroVisual from "@/assets/hero-ai-visual.png";
+// CHANGED: replaced the isometric glowing-circuit illustration (an AI-startup cliche image) with
+// a real-person photo, matching the "Proof in production" team photo elsewhere on this page.
+import heroVisual from "@/assets/Hero.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -193,16 +195,20 @@ function Home() {
             </div>
           </div>
           <div className="animate-fade-up lg:pl-6">
-            {/* CHANGED: user-supplied hero visual (cropped from their reference mockup) */}
+            {/* CHANGED: real-person photo (user-supplied), replacing the isometric AI-cliche
+                illustration — matches the "Proof in production" photo's real-faces approach.
+                Fixed heights (h-64/h-80/h-[420px]) didn't match the photo's real ~8:5 ratio,
+                so object-cover was cropping the right side (the "AI" screen) out of frame.
+                aspect-[8/5] matches the source photo so the full frame shows at any width. */}
             <div className="surface-card overflow-hidden">
               <img
                 src={heroVisual}
-                alt="Abstract isometric illustration of connected AI infrastructure and data pathways"
+                alt="A 3ylabs engineer at their workstation with an AI-assisted development environment on screen"
                 loading="eager"
                 fetchPriority="high"
-                width={1512}
-                height={1134}
-                className="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
+                width={1607}
+                height={979}
+                className="aspect-[8/5] w-full object-cover"
               />
             </div>
           </div>

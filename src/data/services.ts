@@ -1,3 +1,11 @@
+import aiStrategyImage from "@/assets/AI_TRANSFORMATION_SERVICES.png";
+import aiProductEngineeringImage from "@/assets/AI_NATIVE.png";
+import legalTechImage from "@/assets/Legal_Tech.png";
+import platformCloudWebImage from "@/assets/Cloud.png";
+import enterpriseIntelligenceImage from "@/assets/Enterprise.png";
+import automationImage from "@/assets/Business.png";
+import managedHostingImage from "@/assets/Website.png";
+
 export interface Service {
   slug: string;
   name: string;
@@ -9,6 +17,10 @@ export interface Service {
   deliverables: string[];
   engagement: { name: string; detail: string }[];
   faqs: { q: string; a: string }[];
+  // CHANGED: optional per-service photo, same pattern as industries.tsx's per-industry image —
+  // services without one yet just render the text-only hero, no placeholder needed.
+  image?: string;
+  imageAlt?: string;
 }
 
 export const services: Service[] = [
@@ -17,6 +29,8 @@ export const services: Service[] = [
     name: "AI Transformation Services",
     kind: "core",
     tagline: "AI opportunity discovery, readiness assessments, enterprise roadmaps and responsible AI governance.",
+    image: aiStrategyImage,
+    imageAlt: "A 3ylabs consultant presenting an AI opportunity roadmap to a client's leadership team",
     problem:
       "Leadership teams know AI matters, but every idea arrives without a business case, a data reality check or an owner. Pilots multiply, nothing reaches production, and confidence erodes.",
     offering:
@@ -59,6 +73,8 @@ export const services: Service[] = [
     name: "AI-Native Product Engineering",
     kind: "core",
     tagline: "Agentic applications, generative AI, copilots, RAG, custom SaaS and intelligent document processing.",
+    image: aiProductEngineeringImage,
+    imageAlt: "3ylabs engineers reviewing an AI system architecture and live production code together",
     problem:
       "Bolting a chat box onto an existing product does not make it AI-native. Teams need software designed around retrieval, reasoning, evaluation and human review from the first line of code.",
     offering:
@@ -102,6 +118,8 @@ export const services: Service[] = [
     name: "Legal-Tech Solutions",
     kind: "core",
     tagline: "Case management, client intake and ticketing, billing, evidence intelligence and AI-assisted drafting.",
+    image: legalTechImage,
+    imageAlt: "A lawyer reviewing a client intake summary alongside an AI legal assistant panel showing case analysis and drafting support",
     problem:
       "Legal and immigration operations run on spreadsheets, shared inboxes and disconnected trackers. Deadlines depend on memory, and no one can see the true state of a matter without asking three people.",
     offering:
@@ -145,6 +163,8 @@ export const services: Service[] = [
     name: "Platform, Cloud & Web Delivery",
     kind: "core",
     tagline: "Websites, portals, cloud architecture, modernization, DevOps, MLOps, security and ongoing operations.",
+    image: platformCloudWebImage,
+    imageAlt: "3ylabs engineers reviewing a multi-cloud architecture diagram spanning AWS, Azure and Google Cloud",
     problem:
       "AI ambitions stall on the platform beneath them: manual deploys, unclear ownership, brittle infrastructure and a website nobody wants to touch.",
     offering:
@@ -188,6 +208,8 @@ export const services: Service[] = [
     name: "Enterprise Intelligence",
     kind: "extended",
     tagline: "Business analytics, executive dashboards, operational intelligence and decision support.",
+    image: enterpriseIntelligenceImage,
+    imageAlt: "An executive presenting a live enterprise intelligence dashboard with global operations, key metrics and trend charts",
     problem:
       "Reporting lives in exports and personal spreadsheets. Leadership debates whose number is right instead of what to do next.",
     offering:
@@ -223,6 +245,8 @@ export const services: Service[] = [
     name: "Business Solutions & Automation",
     kind: "extended",
     tagline: "Workflow automation, process digitization and AI integrated into existing business systems.",
+    image: automationImage,
+    imageAlt: "A manager reviewing a process automation dashboard showing data integration, AI intelligence and measured business impact",
     problem:
       "Skilled people spend their days copying data between systems. The processes work, but they are slow, manual and impossible to measure.",
     offering:
@@ -258,6 +282,8 @@ export const services: Service[] = [
     name: "Website Powering & Managed Hosting",
     kind: "extended",
     tagline: "Design, build, hosting and care of client websites and portals, offered as an ongoing managed service.",
+    image: managedHostingImage,
+    imageAlt: "A developer managing live website deployments alongside a managed hosting dashboard showing monitoring, backups and security",
     problem:
       "A website is launched, then slowly rots: no owner, no updates, no monitoring, and a security posture nobody has checked in a year.",
     offering:
