@@ -90,10 +90,12 @@
   /* Muted / tint */
   --muted: oklch(0.965 0.005 265);
   --muted-foreground: oklch(0.52 0.016 265);
-  /* Accent — text-safe darker orange (4.6:1 on white). The brighter oklch(63% .135 52) is
-     graphics/borders only — see --accent-graphic. Used for eyebrows, active tab, one hero stat. */
-  --accent: oklch(0.52 0.135 47);
-  --accent-graphic: oklch(0.63 0.135 52);
+  /* Accent — now a deeper/more saturated shade of the SAME indigo hue as primary (was a
+     separate orange, hue 47, which read as two competing accents against Lab's separate
+     violet). One hue family end to end: eyebrows/active-tab/hero-stat no longer clash with
+     headline highlights or CTAs. 13.3:1 contrast on white — well past the 4.5:1 text minimum. */
+  --accent: oklch(0.32 0.16 268);
+  --accent-graphic: oklch(0.50 0.17 268);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
@@ -103,7 +105,7 @@
   --ring: oklch(0.39 0.135 268);
   --brand: oklch(0.39 0.135 268);
   --brand-deep: oklch(0.30 0.135 268);
-  --accent-orange: oklch(0.52 0.135 47);
+  --accent-orange: oklch(0.32 0.16 268);
   --amber: oklch(0.65 0.15 55);
   --tint: oklch(0.965 0.005 265);
   /* Semantic status — never reused as the accent; each checked against its own surface. */
@@ -111,7 +113,7 @@
   --warn: oklch(0.65 0.15 70);
   --crit: oklch(0.55 0.22 27);
   --chart-1: oklch(0.39 0.135 268);
-  --chart-2: oklch(0.52 0.135 47);
+  --chart-2: oklch(0.32 0.16 268);
   --chart-3: oklch(0.30 0.135 268);
   --chart-4: oklch(0.65 0.15 55);
   --chart-5: oklch(0.55 0.12 268);
@@ -139,9 +141,12 @@
     --secondary-foreground: oklch(0.9 0.01 265);
     --muted: oklch(0.21 0.018 265);
     --muted-foreground: oklch(0.68 0.022 265);
-    --accent: oklch(0.70 0.155 288);
-    --accent-graphic: oklch(0.70 0.155 288);
-    --accent-foreground: oklch(1 0 0);
+    /* CHANGED: accent (and gradient-brand below) collapsed into the same teal hue as primary
+       (178) — was violet (288) for accent and cyan (195) for gradient-brand, three competing
+       hues on one dark page. 6.85:1 contrast against this background. */
+    --accent: oklch(0.65 0.14 178);
+    --accent-graphic: oklch(0.88 0.13 178);
+    --accent-foreground: oklch(0.13 0.014 265);
     --destructive: oklch(0.64 0.21 27.325);
     --destructive-foreground: oklch(1 0 0);
     --border: oklch(0.26 0.02 265);
@@ -149,19 +154,19 @@
     --ring: oklch(0.82 0.125 178);
     --brand: oklch(0.82 0.125 178);
     --brand-deep: oklch(0.70 0.11 178);
-    --accent-orange: oklch(0.82 0.125 178);
+    --accent-orange: oklch(0.65 0.14 178);
     --amber: oklch(0.75 0.16 55);
     --tint: oklch(0.21 0.018 265);
     --ok: oklch(0.68 0.15 152);
     --warn: oklch(0.75 0.15 70);
     --crit: oklch(0.68 0.20 27);
     --chart-1: oklch(0.82 0.125 178);
-    --chart-2: oklch(0.70 0.155 288);
+    --chart-2: oklch(0.65 0.14 178);
     --chart-3: oklch(0.70 0.11 178);
     --chart-4: oklch(0.75 0.16 55);
     --chart-5: oklch(0.60 0.14 265);
 
-    --gradient-brand: oklch(0.24 0.06 195);
+    --gradient-brand: oklch(0.70 0.11 178);
     --cta-ink: color-mix(in oklch, black 58%, var(--primary) 42%);
     --gradient-accent: var(--primary);
     --gradient-tint: linear-gradient(180deg, var(--background) 0%, var(--tint) 100%);
@@ -184,9 +189,9 @@
   --secondary-foreground: oklch(0.9 0.01 265);
   --muted: oklch(0.21 0.018 265);
   --muted-foreground: oklch(0.68 0.022 265);
-  --accent: oklch(0.70 0.155 288);
-  --accent-graphic: oklch(0.70 0.155 288);
-  --accent-foreground: oklch(1 0 0);
+  --accent: oklch(0.65 0.14 178);
+  --accent-graphic: oklch(0.88 0.13 178);
+  --accent-foreground: oklch(0.13 0.014 265);
   --destructive: oklch(0.64 0.21 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.26 0.02 265);
@@ -194,19 +199,19 @@
   --ring: oklch(0.82 0.125 178);
   --brand: oklch(0.82 0.125 178);
   --brand-deep: oklch(0.70 0.11 178);
-  --accent-orange: oklch(0.82 0.125 178);
+  --accent-orange: oklch(0.65 0.14 178);
   --amber: oklch(0.75 0.16 55);
   --tint: oklch(0.21 0.018 265);
   --ok: oklch(0.68 0.15 152);
   --warn: oklch(0.75 0.15 70);
   --crit: oklch(0.68 0.20 27);
   --chart-1: oklch(0.82 0.125 178);
-  --chart-2: oklch(0.70 0.155 288);
+  --chart-2: oklch(0.65 0.14 178);
   --chart-3: oklch(0.70 0.11 178);
   --chart-4: oklch(0.75 0.16 55);
   --chart-5: oklch(0.60 0.14 265);
 
-  --gradient-brand: oklch(0.24 0.06 195);
+  --gradient-brand: oklch(0.70 0.11 178);
   --cta-ink: color-mix(in oklch, black 58%, var(--primary) 42%);
   --gradient-accent: var(--primary);
   --gradient-tint: linear-gradient(180deg, var(--background) 0%, var(--tint) 100%);

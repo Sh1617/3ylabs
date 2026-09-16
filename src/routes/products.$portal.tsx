@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { WalkthroughModal } from "@/components/WalkthroughModal";
 import { CTASection } from "@/components/CTASection";
 import { PortalMockup } from "@/components/PortalMockup";
+import { LaptopFrame } from "@/components/LaptopFrame";
 import { portals } from "@/data/setu";
 import { useState } from "react";
 
@@ -67,9 +68,10 @@ function PortalPage() {
           <Link
             to="/services/$slug"
             params={{ slug: portal.movedToServiceSlug! }}
-            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)]"
+            className="group mt-8 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
           >
-            See the AI Readiness Assessment <ArrowRight className="h-4 w-4" />
+            See the AI Readiness Assessment{" "}
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </section>
         <CTASection />
@@ -100,7 +102,7 @@ function PortalPage() {
             <button
               type="button"
               onClick={() => setWalkthrough(portal.name)}
-              className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)]"
+              className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
               style={{ background: "var(--gradient-accent)" }}
             >
               <PlayCircle className="h-4 w-4" aria-hidden />
@@ -108,7 +110,7 @@ function PortalPage() {
             </button>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:bg-secondary hover:shadow-[var(--shadow-soft)]"
             >
               Book a demo
             </Link>
@@ -117,9 +119,11 @@ function PortalPage() {
       </section>
 
       {/* Screenshot — IMG-02..07 not shot yet; the portal-specific UI mockup fills this in
-          instead of a blank placeholder box */}
+          instead of a blank placeholder box, framed as a laptop */}
       <section className="container-page py-10 sm:py-14">
-        <PortalMockup id={portal.id} />
+        <LaptopFrame>
+          <PortalMockup id={portal.id} />
+        </LaptopFrame>
       </section>
 
       {/* What it does */}

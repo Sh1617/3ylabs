@@ -5,6 +5,7 @@ import { useState } from "react";
 import { portals } from "@/data/setu";
 import { PortalExplorer } from "@/components/PortalExplorer";
 import { PortalMockup } from "@/components/PortalMockup";
+import { LaptopFrame } from "@/components/LaptopFrame";
 import { SetuArchitecture } from "@/components/SetuArchitecture";
 import { WalkthroughModal } from "@/components/WalkthroughModal";
 import { CTASection } from "@/components/CTASection";
@@ -74,7 +75,7 @@ function SetuPage() {
               <button
                 type="button"
                 onClick={() => setWalkthrough(vantage.name)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)]"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
                 style={{ background: "var(--gradient-accent)" }}
               >
                 <PlayCircle className="h-4 w-4" aria-hidden />
@@ -83,15 +84,18 @@ function SetuPage() {
               <Link
                 to="/products/$portal"
                 params={{ portal: vantage.id }}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
+                className="group inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:bg-secondary hover:shadow-[var(--shadow-soft)]"
               >
-                Full product page <ArrowRight className="h-4 w-4" />
+                Full product page{" "}
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
           {/* CHANGED: real screenshot (IMG-02) not shot yet — rendering the actual Setu
-              Vantage UI mockup instead of a blank placeholder box */}
-          <PortalMockup id={vantage.id} />
+              Vantage UI mockup instead of a blank placeholder box, framed as a laptop */}
+          <LaptopFrame>
+            <PortalMockup id={vantage.id} />
+          </LaptopFrame>
         </div>
 
         {/* Add-on row */}
@@ -105,7 +109,7 @@ function SetuPage() {
               key={p.id}
               to="/products/$portal"
               params={{ portal: p.id }}
-              className="cursor-pointer rounded-xl border border-border bg-[var(--tint)] p-4 transition-colors hover:border-[var(--brand)]"
+              className="cursor-pointer rounded-xl border border-border bg-[var(--tint)] p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:shadow-[var(--shadow-soft)]"
             >
               <p className="font-display text-sm font-semibold">{p.name}</p>
               <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{p.headline}</p>
