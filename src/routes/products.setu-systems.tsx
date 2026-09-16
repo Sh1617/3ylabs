@@ -118,7 +118,7 @@ function SetuPage() {
           <p className="text-sm text-muted-foreground">
             Not sure where to start?{" "}
             <span className="font-medium text-foreground">{discover.name}</span> is how engagements
-            begin — it's the opportunity map behind the AI Readiness Assessment, not a portal you
+            begin  it's the opportunity map behind the AI Readiness Assessment, not a portal you
             buy on its own.
           </p>
           <Link

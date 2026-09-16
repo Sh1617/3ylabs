@@ -1,7 +1,9 @@
-// CHANGED: rebuilt per the Daylight/Lab toggle spec — a labeled two-segment control instead of
-// a sun/moon icon button. The theme names are part of the brand, so an icon-only control that
-// doesn't say what it does isn't enough. Persists to localStorage["3y-theme"]; no stored value
-// means no explicit choice, and styles.css falls back to the OS preference.
+// CHANGED: replaced the two-segment "Daylight / Lab" control with a single icon toggle button,
+// per client request. The original spec argued against icon-only because the theme names are
+// part of the brand — kept that concern addressed via aria-label, a title tooltip, and the
+// aria-live announcement, so the control is still unambiguous to assistive tech even though it
+// no longer shows the words "Daylight"/"Lab" visually.
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Theme = "daylight" | "lab";
@@ -19,7 +21,8 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     }
   }, []);
 
-  const choose = (next: Theme) => {
+  const toggle = () => {
+    const next: Theme = theme === "lab" ? "daylight" : "lab";
     setTheme(next);
     document.documentElement.dataset["theme"] = next;
     try {
@@ -30,35 +33,19 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     setAnnouncement(`${next === "lab" ? "Lab" : "Daylight"} theme on.`);
   };
 
+  const isLab = theme === "lab";
+
   return (
-    <div
-      role="group"
-      aria-label="Theme"
-      className={`inline-flex items-center gap-0.5 rounded-lg border border-border bg-secondary p-0.5 ${className}`}
-    >
+    <div className={`inline-flex ${className}`}>
       <button
         type="button"
-        aria-pressed={theme === "daylight"}
-        onClick={() => choose("daylight")}
-        className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-[240ms] ease-out motion-reduce:transition-none ${
-          theme === "daylight"
-            ? "bg-card text-foreground shadow-[var(--shadow-soft)]"
-            : "text-muted-foreground hover:text-foreground"
-        }`}
+        aria-pressed={isLab}
+        aria-label={isLab ? "Switch to Daylight theme" : "Switch to Lab theme"}
+        title={isLab ? "Switch to Daylight theme" : "Switch to Lab theme"}
+        onClick={toggle}
+        className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground transition-colors duration-[240ms] ease-out hover:text-foreground motion-reduce:transition-none"
       >
-        Daylight
-      </button>
-      <button
-        type="button"
-        aria-pressed={theme === "lab"}
-        onClick={() => choose("lab")}
-        className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-[240ms] ease-out motion-reduce:transition-none ${
-          theme === "lab"
-            ? "bg-card text-foreground shadow-[var(--shadow-soft)]"
-            : "text-muted-foreground hover:text-foreground"
-        }`}
-      >
-        Lab
+        {isLab ? <Moon className="h-4 w-4" aria-hidden /> : <Sun className="h-4 w-4" aria-hidden />}
       </button>
       <span aria-live="polite" className="sr-only">
         {announcement}

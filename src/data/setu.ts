@@ -201,7 +201,7 @@ export const portals: Portal[] = [
       "Sensitive files stay under customer control",
     ],
     buyer: "Case preparation & paralegal teams",
-    headline: "Evidence organised and drafted — with a human signing off every time.",
+    headline: "Evidence organised and drafted  with a human signing off every time.",
     role: "differentiator",
     whoFor:
       "Case preparation and paralegal teams assembling evidence against a defined set of criteria, where a missed or mis-filed document has real consequences.",
@@ -313,7 +313,7 @@ export const portals: Portal[] = [
     ],
     dayOne: [],
     security:
-      "Covered under the AI Readiness Assessment engagement — see the service page for details.",
+      "Covered under the AI Readiness Assessment engagement  see the service page for details.",
     proof: {
       metric: "",
       pending: true,

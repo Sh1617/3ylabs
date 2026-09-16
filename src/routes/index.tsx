@@ -338,7 +338,7 @@ function Home() {
                 stays a single compact line rather than duplicating placeholder content. */}
             <p className="mt-5 flex items-center gap-1.5 text-xs text-muted-foreground">
               <Clock3 className="h-3.5 w-3.5" aria-hidden />
-              Metrics and a client quote pending AscendHSI sign-off — see the full story.
+              Metrics and a client quote pending AscendHSI sign-off  see the full story.
             </p>
             <Link
               to="/results"
@@ -364,7 +364,7 @@ function Home() {
                     {n}
                   </span>
                   <span className="font-display font-semibold">{name}</span>
-                  <span className="text-muted-foreground"> — {body}</span>
+                  <span className="text-muted-foreground">  {body}</span>
                 </p>
               </li>
             ))}
@@ -386,16 +386,20 @@ function Home() {
           AI that fits the way your industry works.
         </h2>
         <article
-          className="relative mt-8 overflow-hidden rounded-2xl p-8 text-primary-foreground shadow-[var(--shadow-lift)] sm:p-10"
+          className="relative mt-8 overflow-hidden rounded-2xl p-8 text-white shadow-[var(--shadow-lift)] sm:p-10"
           style={{
-            backgroundImage: `linear-gradient(135deg, color-mix(in oklab, var(--brand-deep) 92%, transparent) 0%, color-mix(in oklab, var(--brand) 80%, transparent) 100%), url(${legalImage})`,
+            // CHANGED: fixed dark navy scrim instead of var(--brand)/(--brand-deep) — those
+            // tokens become light aqua in Lab theme, which turned this into a washed-out
+            // overlay with unreadable text. A photo-legibility scrim should stay dark and the
+            // text on it stay white regardless of theme.
+            backgroundImage: `linear-gradient(135deg, oklch(0.24 0.09 268 / 0.92) 0%, oklch(0.34 0.12 268 / 0.8) 100%), url(${legalImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <Gavel className="h-5 w-5 text-primary-foreground" aria-hidden />
+          <Gavel className="h-5 w-5 text-white" aria-hidden />
           <h3 className="mt-4 font-display text-2xl font-semibold">Legal</h3>
-          <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-primary-foreground/80">
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-white/80">
             Deepest domain focus
           </p>
         </article>
