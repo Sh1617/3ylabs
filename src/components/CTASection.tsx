@@ -33,9 +33,10 @@ export function CTASection({ asSection = true, compact = false, secondary }: CTA
           <Link
             to="/contact"
             // CHANGED: this pill is always a solid white surface by design (in both themes),
-            // so its text needs a fixed dark color rather than --brand — --brand becomes a
-            // light aqua in Lab, which was unreadable on white.
-            className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-[oklch(0.30_0.135_268)] shadow-[var(--shadow-lift)] transition-all hover:-translate-y-0.5 hover:bg-white/95"
+            // so its text needs to stay dark for contrast — but now reads --cta-ink, a token
+            // that's dark in both themes yet shifts hue per theme (navy in Daylight, dark
+            // teal in Lab), so it visibly re-themes instead of looking static.
+            className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-[var(--cta-ink)] shadow-[var(--shadow-lift)] transition-all hover:-translate-y-0.5 hover:bg-white/95"
           >
             Book an AI Readiness Assessment
             <ArrowRight

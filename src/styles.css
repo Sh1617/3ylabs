@@ -117,6 +117,7 @@
   --chart-5: oklch(0.55 0.12 268);
 
   --gradient-brand: var(--brand-deep);
+  --cta-ink: oklch(0.30 0.135 268);
   --gradient-accent: var(--primary);
   --gradient-tint: linear-gradient(180deg, oklch(1 0 0) 0%, var(--tint) 100%);
   --shadow-soft: 0 1px 2px oklch(0.18 0.014 265 / 0.05), 0 8px 24px -12px oklch(0.30 0.135 268 / 0.16);
@@ -161,6 +162,7 @@
     --chart-5: oklch(0.60 0.14 265);
 
     --gradient-brand: oklch(0.24 0.06 195);
+    --cta-ink: color-mix(in oklch, black 58%, var(--primary) 42%);
     --gradient-accent: var(--primary);
     --gradient-tint: linear-gradient(180deg, var(--background) 0%, var(--tint) 100%);
     --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.4), 0 8px 24px -12px oklch(0 0 0 / 0.55);
@@ -205,6 +207,7 @@
   --chart-5: oklch(0.60 0.14 265);
 
   --gradient-brand: oklch(0.24 0.06 195);
+  --cta-ink: color-mix(in oklch, black 58%, var(--primary) 42%);
   --gradient-accent: var(--primary);
   --gradient-tint: linear-gradient(180deg, var(--background) 0%, var(--tint) 100%);
   --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.4), 0 8px 24px -12px oklch(0 0 0 / 0.55);
