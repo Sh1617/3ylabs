@@ -30,7 +30,7 @@ export function DemoModal({ product, onClose }: { product: string; onClose: () =
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="rounded-md p-1 text-muted-foreground hover:bg-secondary"
+            className="cursor-pointer rounded-md p-1 text-muted-foreground hover:bg-secondary"
           >
             <X className="h-4 w-4" />
           </button>
@@ -46,7 +46,7 @@ export function DemoModal({ product, onClose }: { product: string; onClose: () =
             <button
               type="button"
               onClick={onClose}
-              className="mt-6 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
+              className="mt-6 cursor-pointer rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
             >
               Close
             </button>
@@ -82,7 +82,7 @@ export function DemoModal({ product, onClose }: { product: string; onClose: () =
             ))}
             <button
               type="submit"
-              className="w-full rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              className="w-full cursor-pointer rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
               Request Demo
             </button>

@@ -62,7 +62,7 @@ function PortalPage() {
           <p className="label-mono">Setu Discover</p>
           <h1 className="mt-4 text-3xl font-bold sm:text-4xl">{portal.headline}</h1>
           <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground">
-            Setu Discover isn't a portal you buy on its own  it's the analysis behind the AI
+            Setu Discover isn't a portal you buy on its own — it's the analysis behind the AI
             Readiness Assessment, the engagement most clients start with.
           </p>
           <Link
@@ -102,7 +102,7 @@ function PortalPage() {
             <button
               type="button"
               onClick={() => setWalkthrough(portal.name)}
-              className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
               style={{ background: "var(--gradient-accent)" }}
             >
               <PlayCircle className="h-4 w-4" aria-hidden />
@@ -196,7 +196,7 @@ function PortalPage() {
         <div className="mt-6 grid gap-6 rounded-2xl border border-dashed border-border bg-[var(--tint)] p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr] lg:items-center">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              Metric  pending client sign-off
+              Metric — pending client sign-off
             </p>
             <p className="mt-2 text-base font-medium text-foreground">{portal.proof.metric}</p>
           </div>

@@ -34,7 +34,7 @@ export function PortalExplorer() {
               aria-selected={on}
               type="button"
               onClick={() => setActive(p.id)}
-              className={`relative snap-start whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
+              className={`relative cursor-pointer snap-start whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
                 on
                   ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)] hover:brightness-105"
                   : "border-border bg-background text-muted-foreground hover:-translate-y-0.5 hover:border-[var(--brand)] hover:text-primary hover:shadow-[var(--shadow-soft)]"
@@ -89,7 +89,7 @@ export function PortalExplorer() {
           <button
             type="button"
             onClick={() => setDemo(portal.name)}
-            className="mt-7 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
+            className="mt-7 cursor-pointer rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
           >
             Request a Demo
           </button>

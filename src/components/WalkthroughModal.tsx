@@ -36,7 +36,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="rounded-md p-1 text-muted-foreground hover:bg-secondary"
+            className="cursor-pointer rounded-md p-1 text-muted-foreground hover:bg-secondary"
           >
             <X className="h-4 w-4" />
           </button>
@@ -48,7 +48,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
             <button
               type="button"
               onClick={() => setWatched(true)}
-              className="mt-4 flex aspect-video w-full items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-[var(--tint)] text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--brand)] hover:text-primary"
+              className="mt-4 flex aspect-video w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-[var(--tint)] text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--brand)] hover:text-primary"
             >
               <PlayCircle className="h-6 w-6 text-[var(--brand)]" aria-hidden />
               Play the {product} walkthrough
@@ -67,7 +67,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
             <button
               type="button"
               onClick={onClose}
-              className="mt-6 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
+              className="mt-6 cursor-pointer rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
             >
               Close
             </button>
@@ -96,7 +96,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
               />
               <button
                 type="submit"
-                className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
+                className="cursor-pointer rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
               >
                 Send
               </button>
@@ -104,7 +104,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
             <button
               type="button"
               onClick={onClose}
-              className="mt-3 text-xs text-muted-foreground hover:text-primary"
+              className="mt-3 cursor-pointer text-xs text-muted-foreground hover:text-primary"
             >
               No thanks, just close this
             </button>

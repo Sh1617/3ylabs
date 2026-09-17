@@ -26,7 +26,7 @@ import legalImage from "@/assets/legal-industry.jpg";
 import teamImage from "@/assets/team-about.jpg";
 // CHANGED: replaced the isometric glowing-circuit illustration (an AI-startup cliche image) with
 // a real-person photo, matching the "Proof in production" team photo elsewhere on this page.
-import heroVisual from "@/assets/Hero.png";
+import heroVisual from "@/assets/Hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -344,7 +344,7 @@ function Home() {
                 stays a single compact line rather than duplicating placeholder content. */}
             <p className="mt-5 flex items-center gap-1.5 text-xs text-muted-foreground">
               <Clock3 className="h-3.5 w-3.5" aria-hidden />
-              Metrics and a client quote pending AscendHSI sign-off  see the full story.
+              Metrics and a client quote pending AscendHSI sign-off — see the full story.
             </p>
             <Link
               to="/results"
@@ -370,7 +370,7 @@ function Home() {
                     {n}
                   </span>
                   <span className="font-display font-semibold">{name}</span>
-                  <span className="text-muted-foreground">  {body}</span>
+                  <span className="text-muted-foreground"> — {body}</span>
                 </p>
               </li>
             ))}

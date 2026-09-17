@@ -99,10 +99,10 @@ function ApproachPage() {
                   type="button"
                   aria-current={on}
                   onClick={() => setActive(i)}
-                  className={`w-full rounded-xl border px-4 py-4 text-left transition-all ${
+                  className={`w-full cursor-pointer rounded-xl border px-4 py-4 text-left transition-all duration-200 ${
                     on
                       ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)]"
-                      : "border-border bg-background hover:border-[var(--brand)]"
+                      : "border-border bg-background hover:-translate-y-0.5 hover:border-[var(--brand)] hover:shadow-[var(--shadow-soft)]"
                   }`}
                 >
                   <span

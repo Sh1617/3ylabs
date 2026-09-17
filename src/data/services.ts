@@ -1,10 +1,10 @@
-import aiStrategyImage from "@/assets/AI_TRANSFORMATION_SERVICES.png";
-import aiProductEngineeringImage from "@/assets/AI_NATIVE.png";
-import legalTechImage from "@/assets/Legal_Tech.png";
-import platformCloudWebImage from "@/assets/Cloud.png";
-import enterpriseIntelligenceImage from "@/assets/Enterprise.png";
-import automationImage from "@/assets/Business.png";
-import managedHostingImage from "@/assets/Website.png";
+import aiStrategyImage from "@/assets/AI_TRANSFORMATION_SERVICES.jpg";
+import aiProductEngineeringImage from "@/assets/AI_NATIVE.jpg";
+import legalTechImage from "@/assets/Legal_Tech.jpg";
+import platformCloudWebImage from "@/assets/Cloud.jpg";
+import enterpriseIntelligenceImage from "@/assets/Enterprise.jpg";
+import automationImage from "@/assets/Business.jpg";
+import managedHostingImage from "@/assets/Website.jpg";
 
 export interface Service {
   slug: string;

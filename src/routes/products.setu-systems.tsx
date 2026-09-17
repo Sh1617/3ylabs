@@ -64,7 +64,7 @@ function SetuPage() {
         <p className="label-mono">Start here</p>
         <div className="mt-6 grid gap-8 rounded-2xl border border-border p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <p className="text-sm font-medium text-primary">{vantage.label}  the lead product</p>
+            <p className="text-sm font-medium text-primary">{vantage.label} — the lead product</p>
             <h2 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
               {vantage.headline}
             </h2>
@@ -75,7 +75,7 @@ function SetuPage() {
               <button
                 type="button"
                 onClick={() => setWalkthrough(vantage.name)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
+                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] hover:brightness-105"
                 style={{ background: "var(--gradient-accent)" }}
               >
                 <PlayCircle className="h-4 w-4" aria-hidden />
@@ -122,7 +122,7 @@ function SetuPage() {
           <p className="text-sm text-muted-foreground">
             Not sure where to start?{" "}
             <span className="font-medium text-foreground">{discover.name}</span> is how engagements
-            begin  it's the opportunity map behind the AI Readiness Assessment, not a portal you
+            begin — it's the opportunity map behind the AI Readiness Assessment, not a portal you
             buy on its own.
           </p>
           <Link

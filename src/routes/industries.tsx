@@ -156,7 +156,7 @@ function Industries() {
                       className={`flex w-full cursor-pointer items-center gap-2.5 whitespace-nowrap rounded-xl border px-4 py-3 text-sm font-medium transition-all duration-300 ${
                         on
                           ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)]"
-                          : "border-border bg-background text-muted-foreground hover:border-[var(--brand)] hover:text-primary"
+                          : "border-border bg-background text-muted-foreground hover:-translate-y-0.5 hover:border-[var(--brand)] hover:text-primary hover:shadow-[var(--shadow-soft)]"
                       }`}
                     >
                       <i.icon className="h-4 w-4" aria-hidden />
@@ -173,10 +173,6 @@ function Industries() {
               {/* CHANGED: real photo per industry (user-supplied), keyed by the active tab —
                   previously only Legal had a photo and the other five used a generic icon
                   panel while photography was pending. */}
-              {/* CHANGED: the six source photos are near-square/4:3 (portrait-ish), but the old
-                  h-56/h-72 frame forced a short wide strip — object-cover was cropping out heads
-                  and wall signage. aspect-[4/3] matches the photos' real proportions so far less
-                  gets cropped; object-position favors the upper area where faces/signage sit. */}
               <img
                 src={current.image}
                 alt={current.alt}
@@ -184,7 +180,7 @@ function Industries() {
                 decoding="async"
                 width={1400}
                 height={1000}
-                className="aspect-[4/3] w-full object-cover object-[center_20%]"
+                className="aspect-[4/3] w-full object-cover object-top"
               />
               <div className="bg-card p-7 sm:p-9">
                 <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">
