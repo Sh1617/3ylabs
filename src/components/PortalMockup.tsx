@@ -24,7 +24,7 @@ function Stat({ label, value, tone }: { label: string; value: string; tone?: "cy
         {label}
       </p>
       <p
-        className={`mt-1 font-display text-lg font-semibold ${tone === "cyan" ? "text-[var(--accent-orange)]" : "text-primary"}`}
+        className={`mt-1 font-display text-lg font-semibold ${tone === "cyan" ? "text-[var(--accent)]" : "text-primary"}`}
       >
         {value}
       </p>
@@ -65,8 +65,7 @@ function Row({ cells, badge }: { cells: string[]; badge?: { text: string; tone: 
 
 // CHANGED: mixed with the theme background instead of literal white, so this stays a
 // legible tinted chip in both light and dark mode rather than a light chip on a dark page
-const ok =
-  "bg-[color-mix(in_oklab,var(--accent-orange)_16%,var(--background))] text-[var(--brand-deep)]";
+const ok = "bg-[color-mix(in_oklab,var(--accent)_16%,var(--background))] text-[var(--primary)]";
 const warn = "bg-secondary text-muted-foreground";
 
 export function PortalMockup({ id }: { id: PortalId }) {
@@ -124,7 +123,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
                 background:
                   i > 8
                     ? "var(--gradient-brand)"
-                    : "color-mix(in oklab, var(--brand) 18%, var(--background))",
+                    : "color-mix(in oklab, var(--primary) 18%, var(--background))",
               }}
             />
           ))}
@@ -157,7 +156,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
                 "Expert opinion.docx",
               ].map((d) => (
                 <li key={d} className="flex items-center gap-2 text-xs text-foreground">
-                  <FileText className="h-3.5 w-3.5 text-[var(--brand)]" aria-hidden />
+                  <FileText className="h-3.5 w-3.5 text-[var(--primary)]" aria-hidden />
                   <span className="truncate">{d}</span>
                 </li>
               ))}
@@ -174,7 +173,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
         </div>
         <div className="mt-4 rounded-xl border border-border bg-[var(--tint)] p-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-[var(--accent-orange)]" aria-hidden />
+            <Sparkles className="h-4 w-4 text-[var(--accent)]" aria-hidden />
             <p className="text-xs font-semibold text-primary">AI analysis</p>
           </div>
           <p className="mt-2 text-xs text-muted-foreground">
@@ -249,7 +248,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
               <p className="truncate font-medium">{r[0]}</p>
               <p className="text-muted-foreground">{r[1]}</p>
               <p className="text-muted-foreground">{r[2]}</p>
-              <p className="font-mono text-[var(--brand)]">P{r[3]}</p>
+              <p className="font-mono text-[var(--primary)]">P{r[3]}</p>
             </div>
           ))}
         </div>
@@ -268,7 +267,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
       </div>
       <div className="mt-3 rounded-xl border border-border bg-background p-3">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-[var(--accent-orange)]" aria-hidden />
+          <Sparkles className="h-4 w-4 text-[var(--accent)]" aria-hidden />
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
             AI answer
           </p>
@@ -287,7 +286,7 @@ export function PortalMockup({ id }: { id: PortalId }) {
             "Finance · INV-2041",
           ].map((s, i) => (
             <div key={s} className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Quote className="h-3 w-3 text-[var(--brand)]" aria-hidden />
+              <Quote className="h-3 w-3 text-[var(--primary)]" aria-hidden />
               <span className="truncate">
                 [{i + 1}] {s}
               </span>

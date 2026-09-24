@@ -156,7 +156,7 @@ function Industries() {
                       className={`flex w-full cursor-pointer items-center gap-2.5 whitespace-nowrap rounded-xl border px-4 py-3 text-sm font-medium transition-all duration-300 ${
                         on
                           ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)]"
-                          : "border-border bg-background text-muted-foreground hover:-translate-y-0.5 hover:border-[var(--brand)] hover:text-primary hover:shadow-[var(--shadow-soft)]"
+                          : "border-border bg-background text-muted-foreground hover:-translate-y-0.5 hover:border-[var(--primary)] hover:text-primary hover:shadow-[var(--shadow-soft)]"
                       }`}
                     >
                       <i.icon className="h-4 w-4" aria-hidden />
@@ -193,7 +193,7 @@ function Industries() {
                   {current.points.map((p) => (
                     <li key={p} className="flex gap-3 text-sm text-foreground">
                       <span
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-orange)]"
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"
                         aria-hidden
                       />
                       {p}
@@ -202,7 +202,7 @@ function Industries() {
                 </ul>
                 <Link
                   to="/products/setu-systems"
-                  className="mt-8 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-[var(--brand)] hover:underline"
+                  className="mt-8 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
                 >
                   See how Setu Systems supports this
                 </Link>

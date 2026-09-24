@@ -41,13 +41,7 @@ function ServiceDetail() {
       <Breadcrumbs items={[{ label: "Services", to: "/services" }, { label: service.name }]} />
 
       <section className="border-b border-border bg-[var(--gradient-tint)]">
-        {/* CHANGED: services page image system, mirroring industries.tsx — services with a
-            photo (service.image) get a two-column hero with the image on the right; services
-            without one yet (most of them, still pending source photos) keep the original
-            single-column layout unchanged. */}
-        <div
-          className={`container-page py-14 sm:py-20 ${service.image ? "grid gap-10 lg:grid-cols-2 lg:items-center" : ""}`}
-        >
+        <div className="container-page py-14 sm:py-20">
           <Reveal>
             <p className="label-mono">
               {service.kind === "core" ? "Core service" : "Extended service"}
@@ -66,21 +60,6 @@ function ServiceDetail() {
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </Reveal>
-          {service.image && (
-            <Reveal delay={80}>
-              <div className="overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)]">
-                <img
-                  src={service.image}
-                  alt={service.imageAlt ?? `${service.name} in practice`}
-                  loading="eager"
-                  fetchPriority="high"
-                  width={1672}
-                  height={941}
-                  className="aspect-[16/9] w-full object-cover"
-                />
-              </div>
-            </Reveal>
-          )}
         </div>
       </section>
 
@@ -102,7 +81,7 @@ function ServiceDetail() {
             <ul className="mt-6 space-y-3">
               {service.capabilities.map((c) => (
                 <li key={c} className="flex items-start gap-3 text-sm text-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--brand)]" aria-hidden />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden />
                   {c}
                 </li>
               ))}
@@ -113,10 +92,7 @@ function ServiceDetail() {
             <ul className="mt-6 space-y-3">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-3 text-sm text-foreground">
-                  <Check
-                    className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-orange)]"
-                    aria-hidden
-                  />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden />
                   {d}
                 </li>
               ))}
@@ -134,7 +110,7 @@ function ServiceDetail() {
                 key={e.name}
                 className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-8"
               >
-                <span className="font-mono text-xs tracking-widest text-[var(--brand)] sm:w-10">
+                <span className="font-mono text-xs tracking-widest text-[var(--primary)] sm:w-10">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="font-display text-base font-semibold text-foreground sm:w-52">
@@ -155,7 +131,7 @@ function ServiceDetail() {
               <details key={f.q} className="group py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground">
                   {f.q}
-                  <span className="text-[var(--brand)] transition-transform duration-200 group-open:rotate-45">
+                  <span className="text-[var(--primary)] transition-transform duration-200 group-open:rotate-45">
                     +
                   </span>
                 </summary>
@@ -175,7 +151,7 @@ function ServiceDetail() {
                 key={o.slug}
                 to="/services/$slug"
                 params={{ slug: o.slug }}
-                className="cursor-pointer rounded-full border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--brand)] hover:text-primary"
+                className="cursor-pointer rounded-full border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--primary)] hover:text-primary"
               >
                 {o.name}
               </Link>

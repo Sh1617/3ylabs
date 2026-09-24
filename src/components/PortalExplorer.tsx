@@ -37,7 +37,7 @@ export function PortalExplorer() {
               className={`relative cursor-pointer snap-start whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
                 on
                   ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)] hover:brightness-105"
-                  : "border-border bg-background text-muted-foreground hover:-translate-y-0.5 hover:border-[var(--brand)] hover:text-primary hover:shadow-[var(--shadow-soft)]"
+                  : "border-border bg-background text-muted-foreground hover:-translate-y-0.5 hover:border-[var(--primary)] hover:text-primary hover:shadow-[var(--shadow-soft)]"
               }`}
             >
               {p.name}
@@ -47,7 +47,7 @@ export function PortalExplorer() {
                   className={`ml-2 rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
                     on
                       ? "bg-primary-foreground/20 text-primary-foreground"
-                      : "bg-[var(--tint)] text-[var(--brand-deep)]"
+                      : "bg-[var(--tint)] text-[var(--primary)]"
                   }`}
                 >
                   Start here
@@ -79,8 +79,8 @@ export function PortalExplorer() {
               <li key={b} className="flex items-start gap-3 text-sm text-foreground">
                 {/* CHANGED: was hard-coded to mix with literal white, so the chip stayed
                     light even in dark mode; now mixes with the theme background instead */}
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-orange)_20%,var(--background))]">
-                  <Check className="h-3 w-3 text-[var(--brand-deep)]" aria-hidden />
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_20%,var(--background))]">
+                  <Check className="h-3 w-3 text-[var(--primary)]" aria-hidden />
                 </span>
                 {b}
               </li>

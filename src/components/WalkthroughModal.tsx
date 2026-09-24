@@ -48,9 +48,9 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
             <button
               type="button"
               onClick={() => setWatched(true)}
-              className="mt-4 flex aspect-video w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-[var(--tint)] text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--brand)] hover:text-primary"
+              className="mt-4 flex aspect-video w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-[var(--tint)] text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--primary)] hover:text-primary"
             >
-              <PlayCircle className="h-6 w-6 text-[var(--brand)]" aria-hidden />
+              <PlayCircle className="h-6 w-6 text-[var(--primary)]" aria-hidden />
               Play the {product} walkthrough
             </button>
             <p className="mt-3 text-xs text-muted-foreground">
@@ -59,7 +59,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
           </>
         ) : emailSent ? (
           <div className="py-8 text-center">
-            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--accent-orange)]" aria-hidden />
+            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--accent)]" aria-hidden />
             <h3 className="mt-4 text-lg font-semibold">Sent</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               We've emailed you the {product} walkthrough and notes.
@@ -92,7 +92,7 @@ export function WalkthroughModal({ product, onClose }: { product: string; onClos
                 id="walkthrough-email"
                 type="email"
                 placeholder="Want the notes? Add your work email (optional)"
-                className="w-full flex-1 rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-[var(--brand)]"
+                className="w-full flex-1 rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-[var(--primary)]"
               />
               <button
                 type="submit"

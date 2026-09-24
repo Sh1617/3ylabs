@@ -155,8 +155,8 @@ function Home() {
                 { icon: Cog, label: "We run our own products." },
               ].map((b) => (
                 <div key={b.label} className="flex items-center gap-2">
-                  <b.icon className="h-4 w-4 shrink-0 text-[var(--brand-deep)]" aria-hidden />
-                  <span className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--brand-deep)]">
+                  <b.icon className="h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden />
+                  <span className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--primary)]">
                     {b.label}
                   </span>
                 </div>
@@ -227,7 +227,7 @@ function Home() {
               >
                 <div className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--tint)] transition-colors group-hover:bg-background">
-                    <c.icon className="h-4 w-4 text-[var(--brand)]" aria-hidden />
+                    <c.icon className="h-4 w-4 text-[var(--primary)]" aria-hidden />
                   </span>
                   <h3 className="font-display text-base font-bold uppercase tracking-wide text-primary">
                     {c.key}
@@ -254,7 +254,7 @@ function Home() {
               className="surface-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--tint)]">
-                <s.icon className="h-5 w-5 text-[var(--brand)]" aria-hidden />
+                <s.icon className="h-5 w-5 text-[var(--primary)]" aria-hidden />
               </span>
               <h3 className="mt-5 font-display text-xl font-semibold">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
@@ -300,7 +300,7 @@ function Home() {
           <div className="mt-8">
             <Link
               to="/products/setu-systems"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand)] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
             >
               See the full Setu Systems platform <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
@@ -348,7 +348,7 @@ function Home() {
             </p>
             <Link
               to="/results"
-              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand)] hover:underline"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
             >
               Read the AscendHSI story <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
@@ -366,7 +366,7 @@ function Home() {
             {approachSteps.map(([n, name, body]) => (
               <li key={n} className="flex-1 p-4 sm:p-5">
                 <p className="text-sm leading-relaxed">
-                  <span className="mr-2 font-mono text-[11px] tracking-widest text-[var(--brand)]">
+                  <span className="mr-2 font-mono text-[11px] tracking-widest text-[var(--primary)]">
                     {n}
                   </span>
                   <span className="font-display font-semibold">{name}</span>
@@ -377,7 +377,7 @@ function Home() {
           </ol>
           <Link
             to="/approach"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand)] hover:underline"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
           >
             Explore the full approach <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
@@ -394,7 +394,7 @@ function Home() {
         <article
           className="relative mt-8 overflow-hidden rounded-2xl p-8 text-white shadow-[var(--shadow-lift)] sm:p-10"
           style={{
-            // CHANGED: fixed dark navy scrim instead of var(--brand)/(--brand-deep) — those
+            // CHANGED: fixed dark navy scrim instead of var(--primary)/(--primary-strong) — those
             // tokens become light aqua in Lab theme, which turned this into a washed-out
             // overlay with unreadable text. A photo-legibility scrim should stay dark and the
             // text on it stay white regardless of theme.
@@ -415,7 +415,7 @@ function Home() {
               key={i.name}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-[var(--tint)] px-4 py-2 text-sm font-medium text-primary"
             >
-              <i.icon className="h-3.5 w-3.5 text-[var(--brand)]" aria-hidden />
+              <i.icon className="h-3.5 w-3.5 text-[var(--primary)]" aria-hidden />
               {i.name}
             </span>
           ))}
@@ -446,7 +446,7 @@ function Home() {
               className="absolute -right-16 -top-16 h-56 w-56 rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle, color-mix(in oklab, var(--accent-orange) 35%, transparent), transparent 70%)",
+                  "radial-gradient(circle, color-mix(in oklab, var(--accent) 35%, transparent), transparent 70%)",
               }}
             />
             <div className="relative grid gap-2.5 sm:grid-cols-2">

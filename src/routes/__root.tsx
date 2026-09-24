@@ -100,8 +100,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://3ylabs.com/og.png" },
       // CHANGED: Daylight/Lab spec — mobile browser chrome should match the active theme.
-      { name: "theme-color", content: "#FBFBFD", media: "(prefers-color-scheme: light)" },
-      { name: "theme-color", content: "#0B0F18", media: "(prefers-color-scheme: dark)" },
+      { name: "theme-color", content: "#F9FAFD", media: "(prefers-color-scheme: light)" },
+      { name: "theme-color", content: "#07090F", media: "(prefers-color-scheme: dark)" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -138,7 +138,7 @@ const THEME_INIT_SCRIPT = `
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
         {/* CHANGED: inline theme-init script, must run before body paints */}

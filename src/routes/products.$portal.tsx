@@ -110,7 +110,7 @@ function PortalPage() {
             </button>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:bg-secondary hover:shadow-[var(--shadow-soft)]"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--primary)] hover:bg-secondary hover:shadow-[var(--shadow-soft)]"
             >
               Book a demo
             </Link>
@@ -135,7 +135,7 @@ function PortalPage() {
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {(portal.capabilities ?? []).map((c) => (
             <li key={c} className="flex items-start gap-3 text-sm text-foreground">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--brand)]" aria-hidden />
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden />
               {c}
             </li>
           ))}
@@ -149,10 +149,7 @@ function PortalPage() {
           <ul className="mt-6 space-y-3">
             {(portal.dayOne ?? []).map((d) => (
               <li key={d} className="flex items-start gap-3 text-sm text-foreground">
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-orange)]"
-                  aria-hidden
-                />
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden />
                 {d}
               </li>
             ))}
@@ -161,7 +158,7 @@ function PortalPage() {
         <div>
           <p className="label-mono">Security & data</p>
           <div className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-[var(--tint)] p-5">
-            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--brand)]" aria-hidden />
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--primary)]" aria-hidden />
             <p className="text-sm leading-relaxed text-foreground">{portal.security}</p>
           </div>
         </div>
@@ -216,7 +213,7 @@ function PortalPage() {
               <details key={f.q} className="group py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground">
                   {f.q}
-                  <span className="text-[var(--brand)] transition-transform duration-200 group-open:rotate-45">
+                  <span className="text-[var(--primary)] transition-transform duration-200 group-open:rotate-45">
                     +
                   </span>
                 </summary>

@@ -20,7 +20,7 @@ export function LeadProductPanel() {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <p className="label-mono">{vantage.label}</p>
-            <span className="rounded-full bg-[var(--brand)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-white">
+            <span className="rounded-full bg-[var(--primary)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-white">
               Start here
             </span>
           </div>
@@ -31,8 +31,8 @@ export function LeadProductPanel() {
           <ul className="mt-6 space-y-3">
             {(vantage.benefits ?? []).map((b) => (
               <li key={b} className="flex items-start gap-3 text-sm text-foreground">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-orange)_20%,var(--background))]">
-                  <Check className="h-3 w-3 text-[var(--brand-deep)]" aria-hidden />
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_20%,var(--background))]">
+                  <Check className="h-3 w-3 text-[var(--primary)]" aria-hidden />
                 </span>
                 {b}
               </li>
@@ -64,7 +64,7 @@ export function LeadProductPanel() {
               key={p.id}
               to="/products/$portal"
               params={{ portal: p.id }}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-primary transition-colors hover:border-[var(--brand)]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-primary transition-colors hover:border-[var(--primary)]"
             >
               {p.name}
             </Link>

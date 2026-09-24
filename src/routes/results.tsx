@@ -111,7 +111,7 @@ function ResultsPage() {
             {["SETU VANTAGE", "SETU TICKETS", "SETU FINANCE", "MANAGED CLOUD"].map((b) => (
               <span
                 key={b}
-                className="rounded-full border border-border bg-[var(--tint)] px-3 py-1.5 font-mono text-[10px] tracking-widest text-[var(--brand-deep)]"
+                className="rounded-full border border-border bg-[var(--tint)] px-3 py-1.5 font-mono text-[10px] tracking-widest text-[var(--primary)]"
               >
                 {b}
               </span>

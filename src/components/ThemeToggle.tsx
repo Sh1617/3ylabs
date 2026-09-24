@@ -1,12 +1,30 @@
-// CHANGED: replaced the two-segment "Daylight / Lab" control with a single icon toggle button,
-// per client request. The original spec argued against icon-only because the theme names are
-// part of the brand — kept that concern addressed via aria-label, a title tooltip, and the
-// aria-live announcement, so the control is still unambiguous to assistive tech even though it
-// no longer shows the words "Daylight"/"Lab" visually.
+// CHANGED: single icon toggle button, per client request. Per the theming spec: no
+// aria-pressed (a pressed-state button needs a constant label; this button's label
+// intentionally changes to name the next theme, so the two conflict — keep the changing
+// label only). Initial state reads from the DOM after mount to avoid a hydration mismatch,
+// and each toggle updates <meta name="theme-color"> so mobile browser chrome matches.
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Theme = "daylight" | "lab";
+
+const THEME_COLOR: Record<Theme, string> = {
+  daylight: "#F9FAFD",
+  lab: "#07090F",
+};
+
+function setThemeColorMeta(theme: Theme) {
+  // The two media-query theme-color tags stay for the no-choice/OS case; this one is
+  // unconditional and, being added after them in the DOM, wins once an explicit choice is made.
+  let meta = document.querySelector('meta[name="theme-color"][data-explicit]');
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", "theme-color");
+    meta.setAttribute("data-explicit", "");
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", THEME_COLOR[theme]);
+}
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const [theme, setTheme] = useState<Theme | null>(null);
@@ -25,6 +43,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     const next: Theme = theme === "lab" ? "daylight" : "lab";
     setTheme(next);
     document.documentElement.dataset["theme"] = next;
+    setThemeColorMeta(next);
     try {
       window.localStorage.setItem("3y-theme", next);
     } catch {
@@ -39,7 +58,6 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <div className={`inline-flex ${className}`}>
       <button
         type="button"
-        aria-pressed={isLab}
         aria-label={isLab ? "Switch to Daylight theme" : "Switch to Lab theme"}
         title={isLab ? "Switch to Daylight theme" : "Switch to Lab theme"}
         onClick={toggle}

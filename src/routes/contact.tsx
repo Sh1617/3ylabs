@@ -54,7 +54,7 @@ function Field({ id, label, type = "text" }: { id: string; label: string; type?:
         name={id}
         type={type}
         required
-        className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--brand)]"
+        className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--primary)]"
       />
     </div>
   );
@@ -71,7 +71,7 @@ function SelectField({ id, label, options }: { id: string; label: string; option
         name={id}
         required
         defaultValue=""
-        className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--brand)]"
+        className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--primary)]"
       >
         <option value="" disabled>
           Select…
@@ -114,7 +114,7 @@ function ContactPage() {
         <div className="mx-auto max-w-xl surface-card p-6 sm:p-8">
           {state === "done" ? (
             <div className="animate-fade-up py-10 text-center">
-              <CheckCircle2 className="mx-auto h-12 w-12 text-[var(--accent-orange)]" aria-hidden />
+              <CheckCircle2 className="mx-auto h-12 w-12 text-[var(--accent)]" aria-hidden />
               <h2 className="mt-5 text-scale-21 font-semibold">Assessment request received</h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Thanks. Your information has been captured for this prototype.
@@ -143,7 +143,7 @@ function ContactPage() {
                   name="messiest-part"
                   rows={3}
                   placeholder="e.g. deadlines live in someone's inbox, not the system"
-                  className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--brand)]"
+                  className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-[var(--primary)]"
                 />
               </div>
               <SelectField id="industry" label="Industry" options={industries} />

@@ -64,7 +64,7 @@ function SetuPage() {
         <p className="label-mono">Start here</p>
         <div className="mt-6 grid gap-8 rounded-2xl border border-border p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <p className="text-sm font-medium text-primary">{vantage.label} — the lead product</p>
+            <p className="text-sm font-medium text-primary">{vantage.label}  the lead product</p>
             <h2 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
               {vantage.headline}
             </h2>
@@ -122,7 +122,7 @@ function SetuPage() {
           <p className="text-sm text-muted-foreground">
             Not sure where to start?{" "}
             <span className="font-medium text-foreground">{discover.name}</span> is how engagements
-            begin — it's the opportunity map behind the AI Readiness Assessment, not a portal you
+            begin  it's the opportunity map behind the AI Readiness Assessment, not a portal you
             buy on its own.
           </p>
           <Link
@@ -151,11 +151,11 @@ function SetuPage() {
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           A 10-person firm running Vantage and Tickets typically starts at [$X] per month after a
           [$Y] implementation. The number changes with team size, data volume and how many portals
-          are connected. If exact figures aren't published yet, ask — we'll walk you through the
+          are connected. If exact figures aren't published yet, ask  we'll walk you through the
           shape on a call.
         </p>
         <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-primary">
-          Portal Pilot — 4–6 weeks, one portal, one team, fixed fee
+          Portal Pilot  4–6 weeks, one portal, one team, fixed fee
         </div>
       </section>
 

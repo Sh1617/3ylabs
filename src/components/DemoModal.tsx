@@ -38,7 +38,7 @@ export function DemoModal({ product, onClose }: { product: string; onClose: () =
 
         {sent ? (
           <div className="py-8 text-center">
-            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--accent-orange)]" aria-hidden />
+            <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--accent)]" aria-hidden />
             <h3 className="mt-4 text-lg font-semibold">Demo request received</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               Thanks, we'll be in touch to arrange your walkthrough.
@@ -76,7 +76,7 @@ export function DemoModal({ product, onClose }: { product: string; onClose: () =
                   id={f.id}
                   type={f.type}
                   required
-                  className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-[var(--brand)]"
+                  className="mt-1.5 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-[var(--primary)]"
                 />
               </div>
             ))}

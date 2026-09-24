@@ -102,11 +102,11 @@ function ApproachPage() {
                   className={`w-full cursor-pointer rounded-xl border px-4 py-4 text-left transition-all duration-200 ${
                     on
                       ? "border-transparent bg-primary text-primary-foreground shadow-[var(--shadow-soft)]"
-                      : "border-border bg-background hover:-translate-y-0.5 hover:border-[var(--brand)] hover:shadow-[var(--shadow-soft)]"
+                      : "border-border bg-background hover:-translate-y-0.5 hover:border-[var(--primary)] hover:shadow-[var(--shadow-soft)]"
                   }`}
                 >
                   <span
-                    className={`font-mono text-[11px] tracking-widest ${on ? "text-primary-foreground/70" : "text-[var(--brand)]"}`}
+                    className={`font-mono text-[11px] tracking-widest ${on ? "text-primary-foreground/70" : "text-[var(--primary)]"}`}
                   >
                     {s.n}
                   </span>
@@ -114,7 +114,7 @@ function ApproachPage() {
                 </button>
                 <div
                   aria-hidden
-                  className={`mt-3 h-1 rounded-full transition-colors ${on ? "bg-[var(--accent-orange)]" : "bg-border"}`}
+                  className={`mt-3 h-1 rounded-full transition-colors ${on ? "bg-[var(--accent)]" : "bg-border"}`}
                 />
               </li>
             );
@@ -135,7 +135,7 @@ function ApproachPage() {
             <ul className="mt-4 space-y-3">
               {stage.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-3 text-sm">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-orange)]" />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
                   {d}
                 </li>
               ))}
