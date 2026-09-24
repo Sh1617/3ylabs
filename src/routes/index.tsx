@@ -26,7 +26,7 @@ import legalImage from "@/assets/legal-industry.jpg";
 import teamImage from "@/assets/team-about.jpg";
 // CHANGED: replaced the isometric glowing-circuit illustration (an AI-startup cliche image) with
 // a real-person photo, matching the "Proof in production" team photo elsewhere on this page.
-import heroVisual from "@/assets/Hero.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,9 +128,24 @@ function Home() {
     <main>
       {/* HERO — height unchanged (620). Content changes: real image instead of the fake
           dashboard mock, mobile-shortened eyebrow, trimmed copy, solid-fill mobile CTAs. */}
-      <section className="relative overflow-hidden border-b border-border bg-[var(--gradient-tint)]">
-        <div className="container-page grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-2">
-          <div className="animate-fade-up">
+      <section className="relative overflow-hidden border-b border-border bg-[var(--gradient-tint)] lg:flex lg:min-h-[38vw] lg:flex-col">
+        {/* Background photo + backdrop overlay: keeps text readable on the left, image shows on the right */}
+        <img
+          src={heroBg}
+          alt=""
+          aria-hidden
+          loading="eager"
+          fetchPriority="high"
+          width={1672}
+          height={941}
+          className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:inset-auto lg:right-0 lg:top-1/2 lg:aspect-video lg:h-auto lg:w-[75%] lg:-translate-y-1/2 lg:object-center lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_30%),linear-gradient(to_bottom,transparent_0%,#000_10%,#000_90%,transparent_100%)] lg:[-webkit-mask-composite:source-in] lg:[mask-composite:intersect]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-background/80 lg:hidden"
+        />
+        <div className="container-page relative py-14 sm:py-20 lg:flex lg:w-full lg:flex-1 lg:items-center lg:py-8">
+          <div className="animate-fade-up max-w-xl lg:max-w-lg">
             <p className="label-mono">
               {/* CHANGED: mobile eyebrow shortened so it never wraps to two lines at 375px */}
               <span className="sm:hidden">Advise · Build · Run</span>
@@ -138,10 +153,10 @@ function Home() {
                 AI Transformation • AI-Native Products • Production
               </span>
             </p>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.06] sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-4xl font-bold leading-[1.06] sm:text-[2.6rem] lg:text-5xl">
               From AI curiosity to <span className="text-gradient-brand">AI capability.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-base lg:max-w-md lg:text-[15px]">
               3ylabs helps organizations turn AI ambition into secure, scalable products and
               intelligent operations, from strategy through production.
             </p>
@@ -188,40 +203,22 @@ function Home() {
               </Link>
               <Link
                 to="/products/setu-systems"
-                className="inline-flex h-[52px] w-full items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-semibold text-primary transition-colors hover:bg-secondary sm:h-auto sm:w-auto sm:py-3.5"
+                className="inline-flex h-[52px] w-full items-center justify-center rounded-lg border border-border bg-background/70 px-6 text-sm font-semibold text-primary backdrop-blur transition-colors hover:bg-secondary sm:h-auto sm:w-auto sm:py-3.5"
               >
                 Explore Setu Systems
               </Link>
-            </div>
-          </div>
-          <div className="animate-fade-up lg:pl-6">
-            {/* CHANGED: real-person photo (user-supplied), replacing the isometric AI-cliche
-                illustration — matches the "Proof in production" photo's real-faces approach.
-                Fixed heights (h-64/h-80/h-[420px]) didn't match the photo's real ~8:5 ratio,
-                so object-cover was cropping the right side (the "AI" screen) out of frame.
-                aspect-[8/5] matches the source photo so the full frame shows at any width. */}
-            <div className="surface-card overflow-hidden">
-              <img
-                src={heroVisual}
-                alt="A 3ylabs engineer at their workstation with an AI-assisted development environment on screen"
-                loading="eager"
-                fetchPriority="high"
-                width={1607}
-                height={979}
-                className="aspect-[8/5] w-full object-cover"
-              />
             </div>
           </div>
         </div>
 
         {/* ADVISE / BUILD / RUN — 328px -> 220px. One horizontal band with a dividing rule;
             headings stay <h3> since this is a decorative recap, not a real section heading. */}
-        <div className="container-page pb-10 sm:pb-14">
+        <div className="container-page relative pb-10 sm:pb-14 lg:w-full">
           <div className="grid overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)] md:grid-cols-3">
             {abr.map((c, i) => (
               <div
                 key={c.key}
-                className={`group bg-card p-5 transition-colors hover:bg-[var(--tint)] sm:p-6 ${
+                className={`group bg-card/70 p-5 backdrop-blur-md transition-colors hover:bg-[var(--tint)] sm:p-6 ${
                   i > 0 ? "border-t border-border md:border-l md:border-t-0" : ""
                 }`}
               >
