@@ -5,18 +5,15 @@ import {
   Building2,
   Clock3,
   Cloud,
-  Cog,
   Factory,
   Gavel,
   HeartPulse,
   Landmark,
   Layers,
-  Lightbulb,
   LineChart,
   Scale,
   Shield,
   Sparkles,
-  Wrench,
 } from "lucide-react";
 import { LeadProductPanel } from "@/components/LeadProductPanel";
 import { CTASection } from "@/components/CTASection";
@@ -138,7 +135,7 @@ function Home() {
           fetchPriority="high"
           width={1672}
           height={941}
-          className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:inset-auto lg:right-0 lg:top-1/2 lg:aspect-video lg:h-auto lg:w-[75%] lg:-translate-y-1/2 lg:object-center lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_30%),linear-gradient(to_bottom,transparent_0%,#000_10%,#000_90%,transparent_100%)] lg:[-webkit-mask-composite:source-in] lg:[mask-composite:intersect]"
+          className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:inset-auto lg:right-0 lg:top-1/2 lg:aspect-video lg:h-auto lg:w-[58%] lg:-translate-y-1/2 lg:object-center lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_30%),linear-gradient(to_bottom,transparent_0%,#000_10%,#000_90%,transparent_100%)] lg:[-webkit-mask-composite:source-in] lg:[mask-composite:intersect]"
         />
         <div
           aria-hidden
@@ -146,13 +143,7 @@ function Home() {
         />
         <div className="container-page relative py-14 sm:py-20 lg:flex lg:w-full lg:flex-1 lg:items-center lg:py-8">
           <div className="animate-fade-up max-w-xl lg:max-w-lg">
-            <p className="label-mono">
-              {/* CHANGED: mobile eyebrow shortened so it never wraps to two lines at 375px */}
-              <span className="sm:hidden">Advise · Build · Run</span>
-              <span className="hidden sm:inline">
-                AI Transformation • AI-Native Products • Production
-              </span>
-            </p>
+            <p className="label-mono">AI Transformation</p>
             <h1 className="mt-5 text-4xl font-bold leading-[1.06] sm:text-[2.6rem] lg:text-5xl">
               From AI curiosity to <span className="text-gradient-brand">AI capability.</span>
             </h1>
@@ -160,35 +151,7 @@ function Home() {
               3ylabs helps organizations turn AI ambition into secure, scalable products and
               intelligent operations, from strategy through production.
             </p>
-            {/* CHANGED: mono strap replaced with a three-icon Advise/Build/Run row, matching
-                the requested layout. Labels are original copy, not the garbled text from the
-                reference mockup. */}
-            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
-              {[
-                { icon: Lightbulb, label: "We advise." },
-                { icon: Wrench, label: "We build." },
-                { icon: Cog, label: "We run our own products." },
-              ].map((b) => (
-                <div key={b.label} className="flex items-center gap-2">
-                  <b.icon className="h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden />
-                  <span className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--primary)]">
-                    {b.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            {/* CHANGED: third sentence dropped on mobile only — keeps the 3ylabs / Setu /
-                AscendHSI relationship explained on larger screens without adding mobile height */}
-            <p className="mt-3 max-w-xl text-xs leading-relaxed text-muted-foreground">
-              <span>
-                3ylabs is the studio. Setu Systems is the product platform we build and sell.
-              </span>{" "}
-              <span className="hidden sm:inline">
-                AscendHSI is a client who runs their operations on it end to end.
-              </span>
-            </p>
-
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               {/* CHANGED: mobile — solid --primary fill, full width, 52px tall; desktop keeps
                   the gradient fill and its own sizing */}
               <Link
@@ -214,13 +177,11 @@ function Home() {
         {/* ADVISE / BUILD / RUN — 328px -> 220px. One horizontal band with a dividing rule;
             headings stay <h3> since this is a decorative recap, not a real section heading. */}
         <div className="container-page relative pb-10 sm:pb-14 lg:w-full">
-          <div className="grid overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)] md:grid-cols-3">
-            {abr.map((c, i) => (
+          <div className="grid gap-4 md:grid-cols-3">
+            {abr.map((c) => (
               <div
                 key={c.key}
-                className={`group bg-card/70 p-5 backdrop-blur-md transition-colors hover:bg-[var(--tint)] sm:p-6 ${
-                  i > 0 ? "border-t border-border md:border-l md:border-t-0" : ""
-                }`}
+                className="glass-card group p-5 transition-all hover:-translate-y-0.5 sm:p-6"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--tint)] transition-colors group-hover:bg-background">
@@ -248,7 +209,7 @@ function Home() {
           {services.map((s) => (
             <article
               key={s.title}
-              className="surface-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
+              className="glass-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--tint)]">
                 <s.icon className="h-5 w-5 text-[var(--primary)]" aria-hidden />
@@ -309,7 +270,7 @@ function Home() {
           carries a client mark, three metrics and one attributed quote instead of three
           generic bullets. */}
       <section className="section-y container-page">
-        <div className="surface-card grid gap-6 overflow-hidden p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+        <div className="glass-card grid gap-6 overflow-hidden p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="overflow-hidden rounded-2xl">
             <img
               src={teamImage}
