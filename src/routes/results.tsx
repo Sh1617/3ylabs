@@ -3,6 +3,7 @@ import { Clock3 } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTASection } from "@/components/CTASection";
 import { PortalMockup } from "@/components/PortalMockup";
+import { Marquee } from "@/components/Marquee";
 
 export const Route = createFileRoute("/results")({
   head: () => ({
@@ -40,6 +41,9 @@ const miniCases = [
   "[A regional insurance-claims team cut client follow-up calls after moving intake onto Setu Tickets.]",
 ];
 
+// Existing product/service tags from the featured-client card, now shown as a marquee.
+const platforms = ["SETU VANTAGE", "SETU TICKETS", "SETU FINANCE", "MANAGED CLOUD"];
+
 function ResultsPage() {
   return (
     <main>
@@ -57,74 +61,76 @@ function ResultsPage() {
         </div>
       </section>
 
+      <Marquee
+        items={platforms}
+        copies={4}
+        duration={26}
+        label="Platforms powering AscendHSI"
+        className="border-b border-border bg-[var(--tint)] py-6"
+      />
+
       <section className="container-page py-16 sm:py-20">
-        <div className="surface-card p-6 sm:p-10">
-          <div className="flex flex-wrap items-center gap-3">
-            {/* CHANGED (08.6): client logo — a text mark until a real logo is on file with
-                usage permission in writing (see engagement record). */}
-            <span className="rounded-lg border border-border bg-[var(--tint)] px-3 py-1.5 font-display text-sm font-bold tracking-tight text-primary">
-              AscendHSI
-            </span>
-            <p className="label-mono">Featured client</p>
-          </div>
-          <h2 className="mt-4 text-scale-34 font-bold">Proof, not just a claim.</h2>
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            An immigration case operations firm. 3ylabs powers AscendHSI's operations end to end,
-            replacing spreadsheets and disconnected trackers with Setu portals for case management,
-            client ticketing and billing — with AI in daily workflows under human review, and 3ylabs
-            operating the underlying cloud infrastructure.
-          </p>
-
-          {/* CHANGED: real screenshot pending client sign-off — the Vantage mockup fills
-              this space instead of a blank placeholder box */}
-          <div className="mt-8">
-            <PortalMockup id="vantage" />
-          </div>
-
-          {/* CHANGED (08.6): three before/after metrics replace the three generic claims.
-              Pending state is a designed "pending" card, not bracket-dash text. */}
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {metrics.map((m) => (
-              <div
-                key={m.label}
-                className="rounded-xl border border-dashed border-border bg-[var(--tint)] p-4"
-              >
-                <p className="text-xs text-muted-foreground">{m.label}</p>
-                <div className="mt-2 flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
-                  <Clock3 className="h-3.5 w-3.5" aria-hidden />
-                  Pending client sign-off
-                </div>
+        {/* Sticky case-study layout: client summary stays pinned on the left (desktop) while
+            the mockup, metrics and quote scroll past on the right. */}
+        <div className="lg:grid lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-10">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="glass-card p-6 sm:p-8">
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Text mark until a real logo is on file with written usage permission. */}
+                <span className="rounded-lg border border-border bg-[var(--tint)] px-3 py-1.5 font-display text-sm font-bold tracking-tight text-primary">
+                  AscendHSI
+                </span>
+                <p className="label-mono">Featured client</p>
               </div>
-            ))}
+              <h2 className="mt-4 text-scale-27 font-bold sm:text-scale-34">
+                Proof, not just a claim.
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                An immigration case operations firm. 3ylabs powers AscendHSI's operations end to
+                end, replacing spreadsheets and disconnected trackers with Setu portals for case
+                management, client ticketing and billing — with AI in daily workflows under human
+                review, and 3ylabs operating the underlying cloud infrastructure.
+              </p>
+            </div>
           </div>
 
-          {/* CHANGED (08.6): quote slot as a designed "pending" card, matching the metrics
-              above, instead of bracketed placeholder text standing in as a real quote. */}
-          <div className="mt-8 flex items-start gap-3 rounded-xl border border-dashed border-border bg-[var(--tint)] p-4">
-            <Clock3 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
-            <p className="text-sm text-muted-foreground">
-              Attributed quote pending — name, title and headshot from AscendHSI leadership.
-            </p>
-          </div>
+          <div className="mt-8 space-y-6 lg:mt-0">
+            {/* Real screenshot pending client sign-off — the Vantage mockup fills the space. */}
+            <div className="glass-card p-4 sm:p-6">
+              <PortalMockup id="vantage" />
+            </div>
 
-          <div className="mt-8 flex flex-wrap gap-2">
-            {["SETU VANTAGE", "SETU TICKETS", "SETU FINANCE", "MANAGED CLOUD"].map((b) => (
-              <span
-                key={b}
-                className="rounded-full border border-border bg-[var(--tint)] px-3 py-1.5 font-mono text-[10px] tracking-widest text-[var(--primary)]"
-              >
-                {b}
-              </span>
-            ))}
+            {/* Metrics are pending client sign-off (not fabricated). */}
+            <div className="grid gap-4 sm:grid-cols-3">
+              {metrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-xl border border-dashed border-border bg-[var(--tint)] p-4"
+                >
+                  <p className="text-xs text-muted-foreground">{m.label}</p>
+                  <div className="mt-2 flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+                    <Clock3 className="h-3.5 w-3.5" aria-hidden />
+                    Pending client sign-off
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-start gap-3 rounded-xl border border-dashed border-border bg-[var(--tint)] p-4">
+              <Clock3 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+              <p className="text-sm text-muted-foreground">
+                Attributed quote pending — name, title and headshot from AscendHSI leadership.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* CHANGED (08.6): two anonymised mini-cases, since only AscendHSI can be named today. */}
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        {/* Two anonymised mini-cases, since only AscendHSI can be named today. */}
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
           {miniCases.map((c) => (
             <p
               key={c}
-              className="surface-card p-6 text-sm italic leading-relaxed text-muted-foreground"
+              className="glass-card p-6 text-sm italic leading-relaxed text-muted-foreground"
             >
               {c}
             </p>

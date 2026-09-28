@@ -351,6 +351,51 @@ html {
   backdrop-filter: blur(14px) saturate(140%);
 }
 
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--marquee-shift, -50%));
+  }
+}
+
+/* Marquee: fades at the left/right edges so the strip doesn't clip mid-item. */
+@utility marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+@utility marquee-track {
+  animation: marquee-scroll linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Reveal.tsx toggles reveal-in via IntersectionObserver; this was previously undefined so it did nothing. */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;

@@ -135,7 +135,7 @@ function Home() {
           fetchPriority="high"
           width={1672}
           height={941}
-          className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:inset-auto lg:right-0 lg:top-1/2 lg:aspect-video lg:h-auto lg:w-[58%] lg:-translate-y-1/2 lg:object-center lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_30%),linear-gradient(to_bottom,transparent_0%,#000_10%,#000_90%,transparent_100%)] lg:[-webkit-mask-composite:source-in] lg:[mask-composite:intersect]"
+          className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:inset-auto lg:right-0 lg:top-1/2 lg:aspect-video lg:h-auto lg:w-[80%] lg:-translate-y-1/2 lg:object-center lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_30%),linear-gradient(to_bottom,transparent_0%,#000_10%,#000_90%,transparent_100%)] lg:[-webkit-mask-composite:source-in] lg:[mask-composite:intersect]"
         />
         <div
           aria-hidden

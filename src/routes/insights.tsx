@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTASection } from "@/components/CTASection";
 import { Reveal } from "@/components/Reveal";
+import { Marquee } from "@/components/Marquee";
 import {
   Carousel,
   CarouselContent,
@@ -74,6 +75,23 @@ const notes = [
   },
 ];
 
+// One note card, shared by the mobile carousel and the desktop sticky list.
+function NoteCard({ n }: { n: (typeof notes)[number] }) {
+  return (
+    <article className="glass-card flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-0.5">
+      <p className="label-mono">{n.tag}</p>
+      <h3 className="mt-3 font-display text-lg font-semibold leading-snug tracking-tight">
+        {n.title}
+      </h3>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{n.body}</p>
+      <p className="mt-5 font-mono text-[11px] tracking-widest text-[var(--brand)]">{n.read}</p>
+    </article>
+  );
+}
+
+// Topic tags for the marquee, taken from the actual notes.
+const topics = [featured.tag, ...notes.map((n) => n.tag)];
+
 function InsightsPage() {
   return (
     <main>
@@ -92,8 +110,16 @@ function InsightsPage() {
         </div>
       </section>
 
+      <Marquee
+        items={topics}
+        copies={4}
+        duration={26}
+        label="Topics"
+        className="border-b border-border bg-[var(--tint)] py-6"
+      />
+
       <section className="container-page py-16 sm:py-20">
-        <Reveal as="article" className="surface-card grid gap-8 overflow-hidden lg:grid-cols-2">
+        <Reveal as="article" className="glass-card grid gap-8 overflow-hidden lg:grid-cols-2">
           <img
             src={coverImage}
             alt={`Abstract cover artwork for the ${featured.tag} insight`}
@@ -116,30 +142,16 @@ function InsightsPage() {
           </div>
         </Reveal>
 
-        <div className="mt-14">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="label-mono">More notes</p>
-              <h2 className="mt-2 text-scale-27 font-bold">Short reads</h2>
-            </div>
-          </div>
+        {/* Mobile/tablet: swipeable carousel (unchanged behaviour). */}
+        <div className="mt-14 lg:hidden">
+          <p className="label-mono">More notes</p>
+          <h2 className="mt-2 text-scale-27 font-bold">Short reads</h2>
 
           <Carousel opts={{ align: "start" }} className="mt-8">
             <CarouselContent className="-ml-4">
               {notes.map((n) => (
-                <CarouselItem key={n.title} className="pl-4 sm:basis-1/2 lg:basis-1/3">
-                  <article className="flex h-full flex-col rounded-2xl border border-border bg-background p-6 transition-shadow hover:shadow-[var(--shadow-lift)]">
-                    <p className="label-mono">{n.tag}</p>
-                    <h3 className="mt-3 font-display text-lg font-semibold leading-snug tracking-tight">
-                      {n.title}
-                    </h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                      {n.body}
-                    </p>
-                    <p className="mt-5 font-mono text-[11px] tracking-widest text-[var(--brand)]">
-                      {n.read}
-                    </p>
-                  </article>
+                <CarouselItem key={n.title} className="pl-4 sm:basis-1/2">
+                  <NoteCard n={n} />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -148,6 +160,19 @@ function InsightsPage() {
               <CarouselNext className="static translate-y-0 cursor-pointer" />
             </div>
           </Carousel>
+        </div>
+
+        {/* Desktop: heading pinned on the left while the notes scroll past on the right. */}
+        <div className="mt-14 hidden lg:grid lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-12">
+          <div className="sticky top-24 self-start">
+            <p className="label-mono">More notes</p>
+            <h2 className="mt-2 text-scale-27 font-bold">Short reads</h2>
+          </div>
+          <div className="grid gap-5">
+            {notes.map((n) => (
+              <NoteCard key={n.title} n={n} />
+            ))}
+          </div>
         </div>
       </section>
 

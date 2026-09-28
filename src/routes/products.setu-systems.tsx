@@ -9,6 +9,7 @@ import { LaptopFrame } from "@/components/LaptopFrame";
 import { SetuArchitecture } from "@/components/SetuArchitecture";
 import { WalkthroughModal } from "@/components/WalkthroughModal";
 import { CTASection } from "@/components/CTASection";
+import { Marquee } from "@/components/Marquee";
 
 export const Route = createFileRoute("/products/setu-systems")({
   head: () => ({
@@ -58,11 +59,20 @@ function SetuPage() {
         </div>
       </section>
 
+      {/* Marquee of the real Setu product names (lead + add-ons + layer). */}
+      <Marquee
+        items={[vantage, ...addOns, layer].map((p) => p.name)}
+        copies={4}
+        duration={28}
+        label="Setu products"
+        className="border-b border-border bg-[var(--tint)] py-6"
+      />
+
       {/* CHANGED (08.2): one lead product panel instead of six equal tiles — a decision
           a visitor can make in eight seconds. */}
       <section className="container-page py-16 sm:py-20">
         <p className="label-mono">Start here</p>
-        <div className="mt-6 grid gap-8 rounded-2xl border border-border p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div className="glass-card mt-6 grid gap-8 p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
             <p className="text-sm font-medium text-primary">{vantage.label}  the lead product</p>
             <h2 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
@@ -98,40 +108,44 @@ function SetuPage() {
           </LaptopFrame>
         </div>
 
-        {/* Add-on row */}
-        <p className="mt-10 text-sm font-medium text-primary">
-          Add {addOns.map((p) => p.name.replace("Setu ", "")).join(", ")} and the{" "}
-          {layer.name.replace("Setu ", "")} as you grow.
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {[...addOns, layer].map((p) => (
-            <Link
-              key={p.id}
-              to="/products/$portal"
-              params={{ portal: p.id }}
-              className="cursor-pointer rounded-xl border border-border bg-[var(--tint)] p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:shadow-[var(--shadow-soft)]"
-            >
-              <p className="font-display text-sm font-semibold">{p.name}</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{p.headline}</p>
-            </Link>
-          ))}
-        </div>
-
-        {/* Setu Discover — repositioned as a service deliverable, not a seventh product tile */}
-        <div className="mt-6 flex flex-col items-start justify-between gap-3 rounded-xl border border-dashed border-border p-4 sm:flex-row sm:items-center">
-          <p className="text-sm text-muted-foreground">
-            Not sure where to start?{" "}
-            <span className="font-medium text-foreground">{discover.name}</span> is how engagements
-            begin  it's the opportunity map behind the AI Readiness Assessment, not a portal you
-            buy on its own.
-          </p>
-          <Link
-            to="/services/$slug"
-            params={{ slug: discover.movedToServiceSlug! }}
-            className="shrink-0 text-sm font-semibold text-primary hover:underline"
-          >
-            See the assessment →
-          </Link>
+        {/* Sticky layout: the "add as you grow" note + Discover pointer stay pinned on the left
+            (desktop) while the add-on cards scroll past on the right. */}
+        <div className="mt-12 lg:grid lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-10">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="text-sm font-medium text-primary">
+              Add {addOns.map((p) => p.name.replace("Setu ", "")).join(", ")} and the{" "}
+              {layer.name.replace("Setu ", "")} as you grow.
+            </p>
+            {/* Setu Discover — repositioned as a service deliverable, not a seventh product tile */}
+            <div className="mt-5 flex flex-col items-start justify-between gap-3 rounded-xl border border-dashed border-border p-4 sm:flex-row sm:items-center">
+              <p className="text-sm text-muted-foreground">
+                Not sure where to start?{" "}
+                <span className="font-medium text-foreground">{discover.name}</span> is how engagements
+                begin  it's the opportunity map behind the AI Readiness Assessment, not a portal you
+                buy on its own.
+              </p>
+              <Link
+                to="/services/$slug"
+                params={{ slug: discover.movedToServiceSlug! }}
+                className="shrink-0 text-sm font-semibold text-primary hover:underline"
+              >
+                See the assessment →
+              </Link>
+            </div>
+          </div>
+          <div className="mt-6 grid gap-4 lg:mt-0">
+            {[...addOns, layer].map((p) => (
+              <Link
+                key={p.id}
+                to="/products/$portal"
+                params={{ portal: p.id }}
+                className="glass-card cursor-pointer p-6 transition-all duration-200 hover:-translate-y-0.5"
+              >
+                <p className="font-display text-base font-semibold">{p.name}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.headline}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

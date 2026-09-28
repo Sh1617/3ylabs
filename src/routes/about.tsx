@@ -3,6 +3,7 @@ import { Compass, Layers, ShieldCheck, Users } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTASection } from "@/components/CTASection";
 import { Reveal } from "@/components/Reveal";
+import { Marquee } from "@/components/Marquee";
 import teamImage from "@/assets/team-about.jpg";
 
 export const Route = createFileRoute("/about")({
@@ -97,28 +98,50 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="container-page py-16 sm:py-20">
-        <p className="label-mono">How we work</p>
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
-          {principles.map((p, i) => (
-            <Reveal as="article" key={p.title} delay={i * 70} className="surface-card p-6">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--tint)]">
-                <p.icon className="h-5 w-5 text-[var(--brand)]" aria-hidden />
-              </span>
-              <h2 className="mt-4 font-display text-lg font-semibold tracking-tight">{p.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </Reveal>
-          ))}
-        </div>
+      {/* Marquee of the four working principles (existing copy, not new claims). */}
+      <Marquee
+        items={principles.map((p) => p.title)}
+        copies={3}
+        duration={36}
+        label="How we work"
+        className="border-b border-border bg-[var(--tint)] py-6"
+      />
 
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
-          {facts.map((f) => (
-            <div key={f.k} className="bg-background p-6">
-              <dt className="label-mono">{f.k}</dt>
-              <dd className="mt-2 font-display text-scale-21 font-semibold">{f.v}</dd>
-            </div>
-          ))}
-        </dl>
+      {/* Sticky layout: the three key facts stay pinned on the left (desktop) while the four
+          principles scroll past on the right. */}
+      <section className="container-page py-16 sm:py-20">
+        <div className="lg:grid lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="label-mono">How we work</p>
+            <dl className="mt-6 grid gap-4">
+              {facts.map((f) => (
+                <div key={f.k} className="glass-card p-5">
+                  <dt className="label-mono">{f.k}</dt>
+                  <dd className="mt-2 font-display text-scale-21 font-semibold">{f.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:mt-0 lg:grid-cols-1">
+            {principles.map((p, i) => (
+              <Reveal
+                as="article"
+                key={p.title}
+                delay={i * 70}
+                className="glass-card p-6 transition-all duration-300 hover:-translate-y-1"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--tint)]">
+                  <p.icon className="h-5 w-5 text-[var(--brand)]" aria-hidden />
+                </span>
+                <h2 className="mt-4 font-display text-lg font-semibold tracking-tight">
+                  {p.title}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
       <CTASection />

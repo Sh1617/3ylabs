@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Reveal } from "@/components/Reveal";
 import { CTASection } from "@/components/CTASection";
+import { Marquee } from "@/components/Marquee";
 import legalImage from "@/assets/legal-industry.jpg";
 import healthcareImage from "@/assets/healthcare-industry.png";
 import insuranceImage from "@/assets/insurance-industry.png";
@@ -136,7 +137,17 @@ function Industries() {
         </Reveal>
       </section>
 
-      <section className="container-page pb-16">
+      {/* Marquee of the six industry names (real data, not client logos). copies=4 because six
+          short items would otherwise leave a gap at the end of each loop on wide screens. */}
+      <Marquee
+        items={industries.map((i) => i.name)}
+        copies={4}
+        duration={28}
+        label="Industries we serve"
+        className="border-y border-border bg-[var(--tint)] py-6"
+      />
+
+      <section className="container-page py-16">
         <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <ul
@@ -170,9 +181,6 @@ function Industries() {
 
           <div key={active} className="animate-fade-up">
             <div className="overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-soft)]">
-              {/* CHANGED: real photo per industry (user-supplied), keyed by the active tab —
-                  previously only Legal had a photo and the other five used a generic icon
-                  panel while photography was pending. */}
               <img
                 src={current.image}
                 alt={current.alt}
@@ -180,33 +188,33 @@ function Industries() {
                 decoding="async"
                 width={1400}
                 height={1000}
-                className="aspect-[4/3] w-full object-cover object-top"
+                className="aspect-[16/10] w-full object-cover object-top"
               />
-              <div className="bg-card p-7 sm:p-9">
-                <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">
-                  {current.name}
-                </h2>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                  {current.lead}
-                </p>
-                <ul className="mt-6 space-y-3">
-                  {current.points.map((p) => (
-                    <li key={p} className="flex gap-3 text-sm text-foreground">
-                      <span
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"
-                        aria-hidden
-                      />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/products/setu-systems"
-                  className="mt-8 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
-                >
-                  See how Setu Systems supports this
-                </Link>
-              </div>
+            </div>
+            <div className="glass-card relative z-10 -mt-16 mx-4 p-7 sm:mx-8 sm:p-9">
+              <h2 className="font-display text-scale-27 font-bold sm:text-scale-34">
+                {current.name}
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                {current.lead}
+              </p>
+              <ul className="mt-6 space-y-3">
+                {current.points.map((p) => (
+                  <li key={p} className="flex gap-3 text-sm text-foreground">
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"
+                      aria-hidden
+                    />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/products/setu-systems"
+                className="mt-8 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+              >
+                See how Setu Systems supports this
+              </Link>
             </div>
           </div>
         </div>
