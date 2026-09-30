@@ -43,6 +43,12 @@ const goals = [
   "Other",
 ];
 
+const steps = [
+  { n: "01", title: "You tell us where things stand", body: "Company, industry and the messiest part of day-to-day operations." },
+  { n: "02", title: "We map the opportunity", body: "A 45-minute call, then a written opportunity map within a week." },
+  { n: "03", title: "You decide what's next", body: "No obligation — the map is yours to use with or without 3ylabs." },
+];
+
 function Field({ id, label, type = "text" }: { id: string; label: string; type?: string }) {
   return (
     <div>
@@ -110,8 +116,26 @@ function ContactPage() {
         </div>
       </section>
 
+      {/* Sticky layout: "What happens next" stays pinned on the left (desktop) while the
+          form sits on the right. */}
       <section className="container-page py-16">
-        <div className="mx-auto max-w-xl surface-card p-6 sm:p-8">
+        <div className="mx-auto max-w-4xl lg:grid lg:grid-cols-[minmax(0,300px)_1fr] lg:items-start lg:gap-10">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="label-mono">What happens next</p>
+            <ol className="mt-5 space-y-4">
+              {steps.map((s) => (
+                <li key={s.n} className="glass-card p-5">
+                  <span className="font-mono text-xs tracking-widest text-[var(--primary)]">
+                    {s.n}
+                  </span>
+                  <p className="mt-1.5 font-display text-sm font-semibold">{s.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="glass-card mt-8 p-6 sm:p-8 lg:mt-0">
           {state === "done" ? (
             <div className="animate-fade-up py-10 text-center">
               <CheckCircle2 className="mx-auto h-12 w-12 text-[var(--accent)]" aria-hidden />
@@ -160,6 +184,7 @@ function ContactPage() {
               </button>
             </form>
           )}
+          </div>
         </div>
       </section>
     </main>

@@ -141,8 +141,10 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b border-border bg-background/85 backdrop-blur-md transition-shadow duration-300 ${
-        scrolled ? "shadow-[0_1px_24px_-10px_rgba(11,16,32,0.35)]" : ""
+      className={`sticky top-0 z-50 w-full border-b border-border backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/75 shadow-[0_1px_24px_-10px_rgba(11,16,32,0.35)]"
+          : "bg-background/40"
       }`}
       onKeyDown={(e) => {
         // CHANGED (WEB-001): Escape closes the open dropdown and returns focus to its trigger
@@ -216,7 +218,7 @@ export function Navbar() {
                       : "pointer-events-none -translate-y-1 opacity-0"
                   }`}
                 >
-                  <div className="grid grid-cols-2 gap-2 rounded-2xl border border-border bg-background p-3 shadow-[var(--shadow-lift)]">
+                  <div className="glass-card grid grid-cols-2 gap-2 p-3">
                     {g.columns.map((col) => (
                       <div key={col.title}>
                         <p className="label-mono px-3 pb-1 pt-2">{col.title}</p>

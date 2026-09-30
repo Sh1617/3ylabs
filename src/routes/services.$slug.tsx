@@ -4,6 +4,7 @@ import { services } from "@/data/services";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Reveal } from "@/components/Reveal";
 import { CTASection } from "@/components/CTASection";
+import { Marquee } from "@/components/Marquee";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -63,6 +64,14 @@ function ServiceDetail() {
         </div>
       </section>
 
+      <Marquee
+        items={service.capabilities}
+        copies={3}
+        duration={30}
+        label={`${service.name} capabilities`}
+        className="border-b border-border bg-[var(--tint)] py-6"
+      />
+
       <section className="container-page grid gap-10 py-14 lg:grid-cols-2 sm:py-20">
         <Reveal>
           <p className="label-mono">The problem</p>
@@ -75,8 +84,8 @@ function ServiceDetail() {
       </section>
 
       <section className="border-y border-border bg-[var(--tint)] py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-2">
-          <Reveal>
+        <div className="container-page grid gap-6 lg:grid-cols-2">
+          <Reveal className="glass-card p-7 sm:p-8">
             <h2 className="text-scale-27 font-bold sm:text-scale-34">Capabilities</h2>
             <ul className="mt-6 space-y-3">
               {service.capabilities.map((c) => (
@@ -87,7 +96,7 @@ function ServiceDetail() {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={80}>
+          <Reveal delay={80} className="glass-card p-7 sm:p-8">
             <h2 className="text-scale-27 font-bold sm:text-scale-34">What you get</h2>
             <ul className="mt-6 space-y-3">
               {service.deliverables.map((d) => (
@@ -102,31 +111,34 @@ function ServiceDetail() {
       </section>
 
       <section className="container-page py-14 sm:py-20">
-        <Reveal>
-          <p className="label-mono">Engagement models</p>
-          <ol className="mt-6 divide-y divide-border border-t border-border">
+        {/* Sticky on desktop: the "Engagement models" label stays pinned on the left while the
+            options scroll past on the right. */}
+        <div className="lg:grid lg:grid-cols-[minmax(0,240px)_1fr] lg:gap-10">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="label-mono">Engagement models</p>
+          </div>
+          <ol className="mt-6 grid gap-3 lg:mt-0">
             {service.engagement.map((e, i) => (
-              <li
-                key={e.name}
-                className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-8"
-              >
-                <span className="font-mono text-xs tracking-widest text-[var(--primary)] sm:w-10">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="font-display text-base font-semibold text-foreground sm:w-52">
-                  {e.name}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground sm:flex-1">
-                  {e.detail}
-                </p>
-              </li>
+              <Reveal as="li" key={e.name} delay={i * 60} className="glass-card p-5 sm:p-6">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
+                  <span className="font-mono text-xs tracking-widest text-[var(--primary)] sm:w-10">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-display text-base font-semibold text-foreground sm:w-52">
+                    {e.name}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground sm:flex-1">
+                    {e.detail}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </ol>
-        </Reveal>
+        </div>
 
-        <Reveal className="mt-14">
+        <Reveal className="glass-card mt-14 p-7 sm:p-8">
           <h2 className="text-scale-27 font-bold sm:text-scale-34">Questions we get asked</h2>
-          <div className="mt-6 divide-y divide-border border-y border-border">
+          <div className="mt-6 divide-y divide-border">
             {service.faqs.map((f) => (
               <details key={f.q} className="group py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground">

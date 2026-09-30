@@ -6,6 +6,7 @@ import { CTASection } from "@/components/CTASection";
 import { PortalMockup } from "@/components/PortalMockup";
 import { LaptopFrame } from "@/components/LaptopFrame";
 import { portals } from "@/data/setu";
+import { Marquee } from "@/components/Marquee";
 import { useState } from "react";
 
 export const Route = createFileRoute("/products/$portal")({
@@ -118,6 +119,15 @@ function PortalPage() {
         </div>
       </section>
 
+      {/* Marquee of this portal's own capabilities. */}
+      <Marquee
+        items={portal.capabilities ?? []}
+        copies={3}
+        duration={28}
+        label={`${portal.name} capabilities`}
+        className="border-b border-border bg-[var(--tint)] py-6"
+      />
+
       {/* Screenshot — IMG-02..07 not shot yet; the portal-specific UI mockup fills this in
           instead of a blank placeholder box, framed as a laptop */}
       <section className="container-page py-10 sm:py-14">
@@ -132,7 +142,7 @@ function PortalPage() {
         <h2 className="mt-3 text-3xl font-bold">
           Designed around the work, not another dashboard.
         </h2>
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+        <ul className="glass-card mt-8 grid gap-3 p-6 sm:grid-cols-2 sm:p-8">
           {(portal.capabilities ?? []).map((c) => (
             <li key={c} className="flex items-start gap-3 text-sm text-foreground">
               <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden />
@@ -144,7 +154,7 @@ function PortalPage() {
 
       {/* Day one + Security */}
       <section className="container-page grid gap-10 py-14 sm:py-20 lg:grid-cols-2">
-        <div>
+        <div className="glass-card p-6 sm:p-8">
           <p className="label-mono">What you get on day one</p>
           <ul className="mt-6 space-y-3">
             {(portal.dayOne ?? []).map((d) => (
@@ -155,9 +165,9 @@ function PortalPage() {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="glass-card p-6 sm:p-8">
           <p className="label-mono">Security & data</p>
-          <div className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-[var(--tint)] p-5">
+          <div className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-[var(--tint)] p-5">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--primary)]" aria-hidden />
             <p className="text-sm leading-relaxed text-foreground">{portal.security}</p>
           </div>
@@ -208,7 +218,7 @@ function PortalPage() {
       <section className="border-t border-border bg-[var(--tint)] py-14 sm:py-20">
         <div className="container-page">
           <h2 className="text-2xl font-bold sm:text-3xl">Questions we get asked</h2>
-          <div className="mt-6 divide-y divide-border border-y border-border">
+          <div className="glass-card mt-6 divide-y divide-border p-6 sm:p-8">
             {(portal.faqs ?? []).map((f) => (
               <details key={f.q} className="group py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground">
@@ -226,19 +236,44 @@ function PortalPage() {
         </div>
       </section>
 
+      {/* Sticky: the platform blurb stays pinned on the left (desktop) while the sibling
+          portals scroll past on the right. */}
       <section className="container-page py-14 sm:py-20">
-        <p className="label-mono">Setu Systems</p>
-        <h2 className="mt-3 text-3xl font-bold">Part of one connected platform.</h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Start with Setu Vantage, then connect {portal.name} and the other Setu portals as your
-          operation grows. 3ylabs handles implementation, customization and the platform underneath.
-        </p>
-        <Link
-          to="/products/setu-systems"
-          className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-        >
-          Explore all Setu portals <ArrowRight className="h-4 w-4" />
-        </Link>
+        <div className="lg:grid lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-10">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="label-mono">Setu Systems</p>
+            <h2 className="mt-3 text-3xl font-bold">Part of one connected platform.</h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Start with Setu Vantage, then connect {portal.name} and the other Setu portals as
+              your operation grows. 3ylabs handles implementation, customization and the platform
+              underneath.
+            </p>
+            <Link
+              to="/products/setu-systems"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+            >
+              Explore all Setu portals <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-0">
+            {portals
+              .filter((p) => p.id !== portal.id && p.role !== "moved-to-service")
+              .map((p) => (
+                <Link
+                  key={p.id}
+                  to="/products/$portal"
+                  params={{ portal: p.id }}
+                  className="glass-card cursor-pointer p-5 transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  <p className="font-display text-sm font-semibold">{p.name}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {p.short}
+                  </p>
+                </Link>
+              ))}
+          </div>
+        </div>
       </section>
 
       <CTASection
